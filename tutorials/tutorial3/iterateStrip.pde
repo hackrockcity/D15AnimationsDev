@@ -57,7 +57,7 @@ class IterateStrip extends DisplayableStrips {
     int yOffset = y * pg.width;
 
     for (int x = 0; x < stripLength; x++) {
-      pg.pixels[yOffset + x] = color(255, 128, 0);
+      pg.pixels[yOffset + x] = theColor;
     } 
 
     pg.updatePixels();
