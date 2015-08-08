@@ -42,8 +42,7 @@ void setup() {
   setupPixelMap();
 
   // Setup Broadcasting
-  broadcast = new Broadcast(this, pixelMap, ip, port);  // Set up broadcast
-  broadcast.pg = g;                                     // Broadcast global canvas instead of PixelMap
+  broadcast = new Broadcast(this, pixelMap, ip, port);
 
   // Setup Animation
   movingLED = new LeftRedRightBlue(pixelMap, asterix);
@@ -61,5 +60,5 @@ void draw() {
   pixelMap.display();
 
   // Broadcast to simulator  
-  broadcast.send();
+  broadcast.update();
 }
