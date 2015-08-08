@@ -43,7 +43,8 @@ void setup() {
 
   // Setup Broadcasting
   broadcast = new Broadcast(this, pixelMap, ip, port);
-
+  broadcast.pg = g;
+  
   // Setup Animation
   movingLED = new MovingLED(pixelMap, asterix);
 }
