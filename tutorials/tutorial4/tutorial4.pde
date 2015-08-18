@@ -3,8 +3,10 @@ import moonpaper.*;
 
 String teatroJSON = "../../teatro.json";
 String asterixJSON = "../../asterix.json";
+String signJSON = "../../sign.json";
 Structure teatro;
 Structure asterix;
+Structure sign;
 PixelMap pixelMap;  // PixelMap is the master canvas which all animations will draw to
 
 // Broadcast
@@ -31,6 +33,10 @@ void setupPixelMap() {
   asterix = new Structure(pixelMap, asterixJSON, loadTransformation);
   loadTransformation.popMatrix();
 
+
+  sign = new Structure(pixelMap, signJSON);
+
+
   // Once all structures are loaded, finalize the pixelMap
   pixelMap.finalize();
 }
@@ -46,7 +52,7 @@ void setup() {
   broadcast.pg = g;
 
   // Setup Animation
-  stripSweep = new StripSweep(pixelMap, asterix);
+  stripSweep = new StripSweep(pixelMap, teatro);
 }
 
 void draw() {
