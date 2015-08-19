@@ -59,7 +59,6 @@ public class Gradient {
 
 
 class Plasma extends DisplayableLEDs {
-  //  color c1 = color(255, 80, 180);
   color c1 = color(0);
   color c2 = color(255, 128, 0);
   float nInc = 0.01;
@@ -75,8 +74,10 @@ class Plasma extends DisplayableLEDs {
     super(pixelMap, structure);
     gradient = new Gradient();
     gradient.add(color(255, 255, 255), 0.25);
-    gradient.add(color(255, 0, 0), 1);
-    gradient.add(color(0, 0, 255), 0);
+    gradient.add(color(255, 32, 180), 1);
+    gradient.add(color(255, 32, 180, 0), 1);
+    gradient.add(color(255, 128, 0), 1);
+    gradient.add(color(255, 128, 0, 0), 0);
   }
 
   void update() {
@@ -85,9 +86,7 @@ class Plasma extends DisplayableLEDs {
       v += phase;
       v *= 2;
       v -= int(v);
-//      color c = lerpColor(c1, c2, v);
-      color c = gradient.getColor(v);
-      led.c = c;
+      led.c = gradient.getColor(v);
     }
 
     ny += yInc;

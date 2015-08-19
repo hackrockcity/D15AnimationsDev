@@ -47,9 +47,13 @@ void setup() {
       led.position.y *= -1;
     }
   }
-
   popMatrix();
   strips.addAll(asterix);
+
+  // Load sign
+  Strips sign = new Strips();
+  loadStrips(sign, "../sign.json");
+  strips.addAll(sign);
 
   // Generate PixelMap
   pixelMap = new PixelMap();
