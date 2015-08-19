@@ -1,5 +1,6 @@
 import hypermedia.net.*;
 import moonpaper.*;
+import moonpaper.opcodes.*;
 
 // PixelMap and Structures
 String teatroJSON = "../../teatro.json";
@@ -9,6 +10,7 @@ Structure teatro;
 Structure asterix;
 Structure sign;
 PixelMap pixelMap;  // PixelMap is the master canvas which all animations will draw to
+Moonpaper mp;
 
 // Broadcast
 Broadcast broadcast;
@@ -20,7 +22,6 @@ StripSweep stripSweep;
 
 // Turn on frame capture
 boolean captureFrames = false;
-
 
 void verifySize() {
   if (width != pixelMap.pg.width || height != pixelMap.pg.height) {
@@ -64,26 +65,22 @@ void setup() {
   broadcast = new Broadcast(this, pixelMap, ip, port);
   broadcast.pg = g;
 
-  // Setup Animation
-  stripSweep = new StripSweep(pixelMap, sign);
+  // Create sequence
+  createSequence();
 }
 
 void draw() {
   background(0);
 
   // Update and display animation
-  stripSweep.update();
-  stripSweep.display();
-
-  // Update pixelMap
-  pixelMap.update();
-  pixelMap.display();
+  mp.update();
+  mp.display();
 
   // Save frame to png
   if (captureFrames) {
     saveFrame("./frames/f########.png");
   }
-  
+
   // Broadcast to simulator  
   broadcast.update();
 }

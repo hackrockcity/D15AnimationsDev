@@ -508,7 +508,7 @@ class Structure {
     }
     return w;
   }
-  
+
   // getBox
   // getHeight
   // getDepth
@@ -517,12 +517,25 @@ class Structure {
 }
 
 class ComboStructure extends Structure {
-  
-  
   ComboStructure(PixelMap pixelMap, Structures structures) {
     super(pixelMap);
   }
 }
+
+class StructurePixelMap extends Structure {
+  StructurePixelMap(PixelMap pixelMap) {
+    super(pixelMap);
+    setup();
+  }
+
+  void setup() {
+    strips = new Strips();
+    strips.addAll(pixelMap.strips);
+    rowOffset = 0;
+    //      this.pixelMap.addStrips(strips);
+  }
+}
+
 // Distance between two PVectors
 float dist(PVector p1, PVector p2) {
   return dist(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
