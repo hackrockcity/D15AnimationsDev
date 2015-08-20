@@ -11,6 +11,9 @@ Broadcast broadcast;
 String ip = "localhost"; 
 int port = 6100;
 
+// Set FrameRate
+int fps = 60;        // Frames-per-second
+
 // PixelMap and Structures
 String teatroJSON = "../../teatro.json";
 String asterixJSON = "../../asterix.json";
@@ -58,7 +61,8 @@ void setupPixelMap() {
 
 void setup() {
   size(150, 128, P2D);
-
+  frameRate(fps);
+  
   // Load in structures and create master PixelMap
   setupPixelMap();
 
@@ -77,9 +81,9 @@ void draw() {
   mp.update();
   mp.display();
 
-  // Save frame to png
+  // Capture frame
   if (captureFrames) {
-    saveFrame("./frames/f########.png");
+    saveFrame(captureFolder + "f########.png");
   }
 
   // Broadcast to simulator  

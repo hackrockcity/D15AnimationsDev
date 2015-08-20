@@ -3,7 +3,7 @@ import moonpaper.*;
 import moonpaper.opcodes.*;
 
 // Turn on frame capture
-boolean captureFrames = true;
+boolean captureFrames = false;
 String captureFolder = "./frames/";
 
 // Broadcast
@@ -77,7 +77,7 @@ void draw() {
   mp.update();
   mp.display();
 
-  // Save frame to png
+  // Capture frame
   if (captureFrames) {
     saveFrame(captureFolder + "f########.png");
   }
