@@ -30,7 +30,7 @@ public class Gradient {
   public color getColor(float interp) {
     int s = points.size();
     interp *= n;
-    
+
     if (s == 0) {
       return 0;
     } else if (s == 1) {
@@ -46,7 +46,7 @@ public class Gradient {
         p2 = points.get((i + 1) % s);
         counter = counterNext;
         counterNext += p1.len;
-        
+
         if (interp < counterNext) {
           break;
         }

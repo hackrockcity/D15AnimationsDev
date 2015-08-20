@@ -1,5 +1,3 @@
-
-
 class Plasma extends DisplayableLEDs {
   color c1 = color(0);
   color c2 = color(255, 128, 0);
@@ -9,7 +7,7 @@ class Plasma extends DisplayableLEDs {
   float xInc = 0.0;
   float yInc = -0.005;
   float phase = 0.0;
-  float phaseInc = 0.001;
+  float phaseInc = 0.0005;
   Gradient gradient;
   
   Plasma(PixelMap pixelMap, Structure structure) {
