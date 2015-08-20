@@ -73,18 +73,19 @@ class Plasma extends DisplayableLEDs {
   Plasma(PixelMap pixelMap, Structure structure) {
     super(pixelMap, structure);
     gradient = new Gradient();
-    gradient.add(color(255, 255, 255), 0.25);
+    gradient.add(color(255, 255, 255), 0.1);
     gradient.add(color(255, 32, 180), 1);
-    gradient.add(color(255, 32, 180, 0), 1);
+    gradient.add(color(255, 32, 180, 0), 0.1);
+    gradient.add(color(255, 255, 255), 0.1);
     gradient.add(color(255, 128, 0), 1);
-    gradient.add(color(255, 128, 0, 0), 0);
+    gradient.add(color(255, 128, 0, 0), 0.1);
   }
 
   void update() {
     for (LED led : leds) {
-      float v = noise(led.position.x * nInc + nx, led.position.y * nInc + ny);
+      float v = noise(led.position.x * nInc + nx, led.position.y * nInc + ny, led.position.z * nInc + ny);
       v += phase;
-      v *= 2;
+      v *= 1;
       v -= int(v);
       led.c = gradient.getColor(v);
     }

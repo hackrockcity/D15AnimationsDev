@@ -2,6 +2,15 @@ import hypermedia.net.*;
 import moonpaper.*;
 import moonpaper.opcodes.*;
 
+// Turn on frame capture
+boolean captureFrames = true;
+String captureFolder = "./frames/";
+
+// Broadcast
+Broadcast broadcast;
+String ip = "localhost"; 
+int port = 6100;
+
 // PixelMap and Structures
 String teatroJSON = "../../teatro.json";
 String asterixJSON = "../../asterix.json";
@@ -12,16 +21,8 @@ Structure sign;
 PixelMap pixelMap;  // PixelMap is the master canvas which all animations will draw to
 Moonpaper mp;
 
-// Broadcast
-Broadcast broadcast;
-String ip = "localhost"; 
-int port = 6100;
-
 // Animation
 StripSweep stripSweep;
-
-// Turn on frame capture
-boolean captureFrames = false;
 
 void verifySize() {
   if (width != pixelMap.pg.width || height != pixelMap.pg.height) {
@@ -78,7 +79,7 @@ void draw() {
 
   // Save frame to png
   if (captureFrames) {
-    saveFrame("./frames/f########.png");
+    saveFrame(captureFolder + "f########.png");
   }
 
   // Broadcast to simulator  
