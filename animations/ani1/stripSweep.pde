@@ -37,11 +37,10 @@ class StripSweep extends DisplayableStrips {
 
   StripSweep(PixelMap pixelMap, Structure structure) {
     super(pixelMap, structure);
-    setup();
   }
 
   void setup() {
-    super.setup();
+   super.setup();
     
     // Create the individual animation data for each strip
     animations = new ArrayList<StripAnimation>();

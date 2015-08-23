@@ -5,24 +5,49 @@ void createSequence() {
 
   mp = new Moonpaper(this);
   Cel cel0 = mp.createCel(width, height);
-  Cel cel1 = mp.createCel(width, height);
+
 
   // Start of sequence
   mp.seq(new ClearCels());
   mp.seq(new PushCel(cel0, pixelMap));
-  mp.seq(new PushCel(cel1, pixelMap));
-//  mp.seq(new PatchSet(cel0.getTransparency(), 0.0));
-//  mp.seq(new PatchSet(cel1.getTransparency(), 0.0));
+  mp.seq(new PatchSet(cel0.getTransparency(), 0.0));
 
-  // Fade-in cel0
-//  mp.seq(new PatchSet(cel0.getTransparency(), 0.0));
-//  mp.seq(new Line(2 * fps, cel0.getTransparency(), 255));
+  // Fade in cel
+  mp.seq(new PatchSet(cel0.getTransparency(), 0.0));
+  mp.seq(new Line(5 * fps, cel0.getTransparency(), 255));
 
   // Plasma
   Plasma defaultPlasma = new Plasma(pixelMap, allStructures);
   mp.seq(new PatchSet(defaultPlasma.transparency, 255.0));
   mp.seq(new PushCel(cel0, defaultPlasma));
-  mp.seq(new Wait(2 * fps));
+  
+  // Hold
+//  mp.seq(new Wait(1 * fpm));
+  mp.seq(new Wait(5 * fps));
+
+
+  // SparkleDecay
+  SparkleDecay sp = new SparkleDecay(pixelMap, allStructures);
+  mp.seq(new PushCel(cel0, sp));
+  mp.seq(new PatchSet(sp.transparency, 0.0));
+  mp.seq(new Line(5 * fps, sp.transparency, 255.0  ));
+
+  // Hold
+  mp.seq(new Wait(1 * fpm));
+
+  
+//  mp.seq(new PushCel(cel0, new StripSweep(pixelMap, allStructures)));
+//  mp.seq(new PushCel(cel0, new CrossNoise(pixelMap, allStructures)));
+//  mp.seq(new PushCel(cel0, defaultPlasma2));
+  mp.seq(new Wait(2 * fpm));
+  
+  
+  
+
+  // Fade-in cel0
+//  mp.seq(new PatchSet(cel0.getTransparency(), 0.0));
+//  mp.seq(new Line(2 * fps, cel0.getTransparency(), 255));
+
   
   
   // Add Sparkle
