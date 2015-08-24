@@ -1,9 +1,9 @@
 
 
 class SparkleDecay extends DisplayableLEDs {
-  color c1 = color(128);
-  float odds = 0.001;
-  float decay = 4;
+  color c1 = color(255);
+  float odds = 0.005;
+  float decay = 3;
 
   SparkleDecay(PixelMap pixelMap, Structure structure) {
     super(pixelMap, structure);
@@ -12,7 +12,6 @@ class SparkleDecay extends DisplayableLEDs {
   void setup() {
     super.setup();
     clear();
-    theBlendMode.set(ADD);
   }
 
   void update() {
