@@ -2,6 +2,10 @@ import hypermedia.net.*;
 import moonpaper.*;
 import moonpaper.opcodes.*;
 
+import peasy.org.apache.commons.math.*;
+import peasy.*;
+import peasy.org.apache.commons.math.geometry.*;
+
 float lightSize = 4;  // Size of LEDs
 float eyeHeight = 170;
 
@@ -10,6 +14,10 @@ PVector theCamera = new PVector(0, eyeHeight, 0);
 PixelMap pixelMap;
 String ip = "localhost";
 int port = 6100;
+
+
+PeasyCam g_pCamera;
+
 
 void drawPlane() {
   float corner = 10000;
@@ -27,6 +35,22 @@ void drawPlane() {
 void setup() {
   size(640, 480, P3D);
   frameRate(60);
+  
+  //g_pCamera = new PeasyCam(this, 0, 1.2, 0, 4);
+  g_pCamera = new PeasyCam(this, 1, 1, 0, 20);
+  g_pCamera.setMinimumDistance(20);
+  g_pCamera.setMaximumDistance(500);
+  g_pCamera.setWheelScale(.1);
+  //g_pCamera.setYawRotationMode();
+
+  //g_pCamera.rotateY(1.6);
+  //g_pCamera.rotateY(0);
+  //g_pCamera.rotateZ(PI);
+
+  // Fix the front clipping plane
+  float fov = PI/3.0;
+  float cameraZ = (height/2.0) / tan(fov/2.0);
+  perspective(fov, float(width)/float(height), cameraZ/1000.0, cameraZ*10.0);
 
   // Setup Virtual Installation  
   strips = new Strips();
@@ -86,20 +110,20 @@ void draw() {
   background(32);
   pushMatrix();
 
-  // Reorient Plane
-  rotateX(PI);
-  translate(width / 2.0, -500);
+//  // Reorient Plane
+//  rotateX(PI);
+//  translate(width / 2.0, -500);
 
-  // Set Camera
-  theCamera.x = map(mouseX, 0, width, -width * 5, width * 5);
-  theCamera.z = map(mouseY, 0, height, 500, -3700);
-  camera(
-  theCamera.x, theCamera.y, theCamera.z, 
-  0.0, eyeHeight * 2, 500.0, 
-  0.0, -1.0, 0.0);
+//  // Set Camera
+//  theCamera.x = map(mouseX, 0, width, -width * 5, width * 5);
+//  theCamera.z = map(mouseY, 0, height, 500, -3700);
+//  camera(
+//  theCamera.x, theCamera.y, theCamera.z, 
+//  0.0, eyeHeight * 2, 500.0, 
+//  0.0, -1.0, 0.0);
 
   // Draw landscape and structure  
-  drawPlane();
+  //drawPlane();
 
   pushStyle();
   noStroke();
