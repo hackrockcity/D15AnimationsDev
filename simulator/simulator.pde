@@ -33,24 +33,23 @@ void drawPlane() {
 }
 
 void setup() {
-  size(640, 480, P3D);
+  size(800, 600, P3D);
   frameRate(60);
   
   //g_pCamera = new PeasyCam(this, 0, 1.2, 0, 4);
-  g_pCamera = new PeasyCam(this, 1, 1, 0, 20);
-  g_pCamera.setMinimumDistance(20);
-  g_pCamera.setMaximumDistance(500);
-  g_pCamera.setWheelScale(.1);
+  g_pCamera = new PeasyCam(this, 0, 400, 0, 3200);
+  g_pCamera.setMinimumDistance(100);
+  g_pCamera.setMaximumDistance(5000);
+  g_pCamera.setWheelScale(1);
   //g_pCamera.setYawRotationMode();
 
-  //g_pCamera.rotateY(1.6);
-  //g_pCamera.rotateY(0);
-  //g_pCamera.rotateZ(PI);
+  g_pCamera.rotateX(PI);
+  g_pCamera.rotateY(-0.2);
 
   // Fix the front clipping plane
   float fov = PI/3.0;
   float cameraZ = (height/2.0) / tan(fov/2.0);
-  perspective(fov, float(width)/float(height), cameraZ/1000.0, cameraZ*10.0);
+  perspective(fov, float(width)/float(height), cameraZ/1000.0, cameraZ*50.0);
 
   // Setup Virtual Installation  
   strips = new Strips();
@@ -123,7 +122,7 @@ void draw() {
 //  0.0, -1.0, 0.0);
 
   // Draw landscape and structure  
-  //drawPlane();
+  drawPlane();
 
   pushStyle();
   noStroke();
