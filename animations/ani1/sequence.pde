@@ -17,6 +17,20 @@ void createSequence() {
   mp.seq(new PatchSet(cel0.getTransparency(), 0.0));
   mp.seq(new Line(5 * fps, cel0.getTransparency(), 255));
 
+
+
+
+  // Testing PerlinSparkle
+  PerlinSparkle defaultPerlinSparkle = new PerlinSparkle(pixelMap, allStructures);
+  mp.seq(new PatchSet(defaultPerlinSparkle.transparency, 255.0));
+  mp.seq(new PushCel(cel0, defaultPerlinSparkle));
+  // Hold
+  mp.seq(new Wait(10));
+
+
+
+
+
   // Plasma
   Plasma defaultPlasma = new Plasma(pixelMap, allStructures);
   mp.seq(new PatchSet(defaultPlasma.transparency, 255.0));
