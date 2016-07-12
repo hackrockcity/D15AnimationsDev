@@ -18,6 +18,8 @@ int port = 6100;
 
 PeasyCam g_pCamera;
 
+PShape teatro_model;
+
 
 void drawPlane() {
   float corner = 10000;
@@ -33,7 +35,7 @@ void drawPlane() {
 }
 
 void setup() {
-  size(800, 600, P3D);
+  size(1600, 1200, P3D);
   frameRate(60);
   
   //g_pCamera = new PeasyCam(this, 0, 1.2, 0, 4);
@@ -58,6 +60,7 @@ void setup() {
   Strips teatro = new Strips();
   loadStrips(teatro, "../teatro.json");
   strips.addAll(teatro);
+  teatro_model = loadShape("../teatro.obj");
 
   // Load asterix
   pushMatrix();
@@ -124,10 +127,19 @@ void draw() {
   // Draw landscape and structure  
   drawPlane();
 
+  pushMatrix();
+  scale(30);
+  rotateX(-PI/2);
+  rotateZ(PI);
+  shape(teatro_model, 0, 0);
+  popMatrix();
+
   pushStyle();
   noStroke();
-  pixelMapToStrips(pixelMap, strips);
 
+  broadcastReceiver.draw();
+  pixelMapToStrips(pixelMap, strips);
+  
   for (Strip strip : strips) {
     for (LED led : strip.leds) {
       pushMatrix();

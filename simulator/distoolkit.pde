@@ -75,10 +75,9 @@ class BroadcastReceiver {
   String ip;
   int port;
   UDP udp;
-  PGraphics pg;
   int nPixels;
   int bufferSize;
-  byte buffer[];
+  byte rx_buffer[];
 
   BroadcastReceiver(Object receiveHandler, PixelMap pixelMap, String ip, int port) {
     this.receiveHandler = receiveHandler;
@@ -92,8 +91,7 @@ class BroadcastReceiver {
   protected void setup() {
     nPixels = pixelMap.columns * pixelMap.rows;
     bufferSize =  3 * nPixels + 1;
-    buffer = new byte[bufferSize];
-    pg = pixelMap.pg;
+    rx_buffer = new byte[bufferSize];
 
     udp = new UDP(receiveHandler, port);
     udp.setReceiveHandler("broadcastReceiveHandler");
@@ -103,18 +101,30 @@ class BroadcastReceiver {
 
   public void receive(byte[] data, String ip, int port) {
     if (data.length != bufferSize || data[0] != 1) {
+      System.out.println("rx " + str(data.length) + " != " + str(bufferSize) + " or data[0] = " + str(data[0]));
       return;
     }
 
+    System.arraycopy(data, 0, rx_buffer, 0, data.length);
+  }
+
+  public void draw()
+  {
+    PGraphics pg = pixelMap.pg;
     pg.loadPixels();
 
     for (int i = 0; i < nPixels; i++) {
       int offset = i * 3 + 1;
 
-      pg.pixels[i] = 0xFF000000 |         // Alpha
-      ((data[offset] & 0xFF) << 16) |     // Red
-      ((data[offset + 1] & 0xFF) << 8) |  // Green
-      (data[offset + 2] & 0xFF);          // Blue
+      int r = rx_buffer[offset+0] & 0xFF;
+      int g = rx_buffer[offset+1] & 0xFF;
+      int b = rx_buffer[offset+2] & 0xFF;
+
+      pg.pixels[i] = 0x7F000000 // alpha
+          | r << 16
+          | g <<  8
+          | b <<  0
+          ;
     }
 
     pg.updatePixels();
@@ -263,6 +273,8 @@ void loadStrips(Strips strips, String filename) {
     PVector p2 = new PVector(x4, y4, z4);
     strips.add(new Strip(p1, p2, density));
   }
+
+  System.out.println(filename + ": loaded " + str(nValues) + " strips");
 }
 
 void writeJSONStrips(Strips strips, String saveAs) {
@@ -358,8 +370,13 @@ class PixelMap extends Displayable {
       }
     }
 
+    System.out.println(str(columns) + "x" + str(rows));
+
     pg = createGraphics(columns, rows);
+
+    pg.beginDraw();
     pg.background(255, 0, 0);
+    pg.endDraw();
     nLights = leds.size();
   }
 
