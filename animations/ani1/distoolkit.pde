@@ -359,7 +359,9 @@ class PixelMap extends Displayable {
     }
 
     pg = createGraphics(columns, rows);
+    pg.beginDraw();
     pg.background(255, 0, 0);
+    pg.endDraw();
     nLights = leds.size();
   }
 
