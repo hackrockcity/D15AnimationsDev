@@ -20,9 +20,9 @@ void createSequence() {
   Plasma defaultPlasma = new Plasma(pixelMap, allStructures);
   mp.seq(new PatchSet(defaultPlasma.transparency, 255.0));
   mp.seq(new PushCel(cel0, defaultPlasma));
-  
+
   // Hold
-//  mp.seq(new Wait(1 * fpm));
+  //  mp.seq(new Wait(1 * fpm));
   mp.seq(new Wait(5 * fps));
 
 
@@ -36,13 +36,13 @@ void createSequence() {
   // Hold
   mp.seq(new Wait(10 * fps));
 
-  
-//  mp.seq(new PushCel(cel0, new StripSweep(pixelMap, allStructures)));
-//  mp.seq(new PushCel(cel0, new CrossNoise(pixelMap, allStructures)));
-//  mp.seq(new PushCel(cel0, defaultPlasma2));
-//  mp.seq(new Wait(2 * fpm));
-  
-  
+
+  //  mp.seq(new PushCel(cel0, new StripSweep(pixelMap, allStructures)));
+  //  mp.seq(new PushCel(cel0, new CrossNoise(pixelMap, allStructures)));
+  //  mp.seq(new PushCel(cel0, defaultPlasma2));
+  //  mp.seq(new Wait(2 * fpm));
+
+
   // Crossfade SparkleDecay to WhiteGradient
 
   Gradient whiteGradient = new Gradient();
@@ -55,7 +55,7 @@ void createSequence() {
   whiteGradient.add(color(255), 0.1);
   whiteGradient.add(color(255, 0), 0.4);
   whiteGradient.add(color(255, 0), 0.1);
-  
+
   // White Plasma
   Plasma whitePlasma = new Plasma(pixelMap, allStructures, whiteGradient);
   mp.seq(new PatchSet(whitePlasma.transparency, 0.0));

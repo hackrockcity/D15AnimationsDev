@@ -9,17 +9,17 @@ class Plasma extends DisplayableLEDs {
   float phase = 0.0;
   float phaseInc = 0.0005;
   Gradient gradient;
-  
+
   Plasma(PixelMap pixelMap, Structure structure) {
     super(pixelMap, structure);
     createDefaultGradient();
   }
-  
+
   Plasma(PixelMap pixelMap, Structure structure, Gradient gradient) {
     super(pixelMap, structure);
-    this.gradient = gradient;    
+    this.gradient = gradient;
   }  
-  
+
   void createDefaultGradient() {
     gradient = new Gradient();
     gradient.add(color(255, 255, 255), 0.1);

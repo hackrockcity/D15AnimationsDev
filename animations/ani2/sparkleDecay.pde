@@ -20,11 +20,11 @@ class SparkleDecay extends DisplayableLEDs {
     for (LED led : leds) {
       color c = led.c;
       c = color(
-      (c >> 16 & 0xff) - decay, 
-      (c >> 8 & 0xff) - decay, 
-      (c & 0xff) - decay, 
-      (c >> 24 & 0xff) - decay);
-      
+        (c >> 16 & 0xff) - decay, 
+        (c >> 8 & 0xff) - decay, 
+        (c & 0xff) - decay, 
+        (c >> 24 & 0xff) - decay);
+
       led.c = c;
 
       if (random(1.0) < odds) {

@@ -3,17 +3,17 @@
  StripSweep is an example of applying an animation to each individual
  strip within a structure. In this case, it moves a pixel from the
  starting point to the end point, and then starts over again.
-
+ 
  Since strip lengths are different, they'll begin to appear out of
  sync after the first pass.
-
+ 
  The class StripAnimation is embedded as an inner class of StripSweep.
  This acts as a data structure that will track the current position
  of the pixel for each strip.
-
+ 
  In StripSweep.update(), the animation positions are then applied
  to the local pg.
-
+ 
  */
 
 class StripSweep extends DisplayableStrips {
@@ -40,8 +40,8 @@ class StripSweep extends DisplayableStrips {
   }
 
   void setup() {
-   super.setup();
-    
+    super.setup();
+
     // Create the individual animation data for each strip
     animations = new ArrayList<StripAnimation>();
     for (Strip strip : strips) {
@@ -51,7 +51,7 @@ class StripSweep extends DisplayableStrips {
 
   void update() {
     super.update();
-    
+
     // Update each animation
     for (StripAnimation animation : animations) {
       animation.update();

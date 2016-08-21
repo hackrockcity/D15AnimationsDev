@@ -40,17 +40,17 @@ class Broadcast {
 
   void update() {
     try {
-    pg.loadPixels();
-    buffer[0] = 1;  // Header. Always 1.
+      pg.loadPixels();
+      buffer[0] = 1;  // Header. Always 1.
 
-    for (int i = 0; i < nPixels; i++) {
-      int offset = i * 3 + 1;
-      int c = pg.pixels[i];
+      for (int i = 0; i < nPixels; i++) {
+        int offset = i * 3 + 1;
+        int c = pg.pixels[i];
 
-      buffer[offset] = byte((c >> 16) & 0xFF);     // Red 
-      buffer[offset + 1] = byte((c >> 8) & 0xFF);  // Blue
-      buffer[offset + 2] = byte(c & 0xFF);         // Green
-    }
+        buffer[offset] = byte((c >> 16) & 0xFF);     // Red 
+        buffer[offset + 1] = byte((c >> 8) & 0xFF);  // Blue
+        buffer[offset + 2] = byte(c & 0xFF);         // Green
+      }
     }
     catch (Exception e) {
       println("frame: " + frameCount + "  Broadcast.update() frame dropped");
@@ -112,9 +112,9 @@ class BroadcastReceiver {
       int offset = i * 3 + 1;
 
       pg.pixels[i] = 0xFF000000 |         // Alpha
-      ((data[offset] & 0xFF) << 16) |     // Red
-      ((data[offset + 1] & 0xFF) << 8) |  // Green
-      (data[offset + 2] & 0xFF);          // Blue
+        ((data[offset] & 0xFF) << 16) |     // Red
+        ((data[offset + 1] & 0xFF) << 8) |  // Green
+        (data[offset + 2] & 0xFF);          // Blue
     }
 
     pg.updatePixels();
@@ -222,14 +222,14 @@ class DisplayableLEDs extends DisplayableStrips {
         pg.pixels[rowOffset + col] = led.c;
       }
     }
-    
+
     pg.updatePixels();
     pg.endDraw();
   }
-  
+
   void clear() {
     for (LED led : leds) {
-        led.c = color(0, 0);
+      led.c = color(0, 0);
     }
   }
 }
@@ -312,7 +312,7 @@ class LEDs extends ArrayList<LED> {
 class LED {
   PVector position;
   color c;
- 
+
   LED() {
     this.position = new PVector();
     c = color(0);
@@ -366,23 +366,23 @@ class PixelMap extends Displayable {
   }
 
   void update() {
-//    pg.beginDraw();
-//    pg.background(255, 0, 0);
-//    pg.loadPixels();
-//
-//    for (int row = 0; row < rows; row++) {
-//      Strip strip = strips.get(row);
-//      int stripSize = strip.nLights;
-//      int rowOffset = row * pg.width;
-//      ArrayList<LED> leds = strip.leds;
-//
-//      for (int col = 0; col < stripSize; col++) {
-//        pg.pixels[rowOffset + col] = leds.get(col).c;
-//      }
-//    }
-//
-//    pg.updatePixels();
-//    pg.endDraw();
+    //    pg.beginDraw();
+    //    pg.background(255, 0, 0);
+    //    pg.loadPixels();
+    //
+    //    for (int row = 0; row < rows; row++) {
+    //      Strip strip = strips.get(row);
+    //      int stripSize = strip.nLights;
+    //      int rowOffset = row * pg.width;
+    //      ArrayList<LED> leds = strip.leds;
+    //
+    //      for (int col = 0; col < stripSize; col++) {
+    //        pg.pixels[rowOffset + col] = leds.get(col).c;
+    //      }
+    //    }
+    //
+    //    pg.updatePixels();
+    //    pg.endDraw();
   }
 
   void display() {
@@ -557,12 +557,12 @@ PVector transPVector(float x, float y, float z) {
   float x1 = modelX(x, y, z);
   float y1 = modelY(x, y, z);
   float z1 = modelZ(x, y, z);
-  return new PVector(x1, y1, z1);  
+  return new PVector(x1, y1, z1);
 }
 
 // Convert point to include matrix translation
 PVector transPVector(PVector p) {
-  return transPVector(p.x, p.y, p.z);  
+  return transPVector(p.x, p.y, p.z);
 }
 
 // Inches to Centimeters

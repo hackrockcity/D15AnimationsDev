@@ -22,7 +22,7 @@ class CrossNoise extends DisplayableStrips {
       lights1 = new ArrayList<Boolean>();
       lights2 = new ArrayList<Boolean>();
       float odds = parent.odds.value();
-      
+
       for (int i = 0; i < theLength; i++) {
         if (random(1.0) < odds) {
           lights1.add(i, true);
@@ -91,11 +91,10 @@ class CrossNoise extends DisplayableStrips {
     for (int row = 0; row < rows; row++) {
       CrossNoiseAnimation a = animations.get(row);
       pg.image(a.pg, 0, row);
-      
     }
-    
+
     pg.endDraw();
-    
+
     super.display();
   }
 }

@@ -56,8 +56,8 @@ void setupPixelMap() {
 
   // Once all structures are loaded, finalize the pixelMap
   pixelMap.finalize();
-  surface.setSize(pixelMap.pg.width, pixelMap.pg.height);
-  verifySize();
+  surface.setSize(pixelMap.pg.width, pixelMap.pg.height); // Resize
+  verifySize();  // Sanity
 }
 
 void settings() {
@@ -66,7 +66,6 @@ void settings() {
 
 void setup() {
   surface.setResizable(true);
-
   frameRate(fps);
 
   // Load in structures and create master PixelMap
