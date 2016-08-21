@@ -306,8 +306,6 @@ void writeJSONStrips(Strips strips, String saveAs) {
   println(values);
   saveJSONArray(values, saveAs);
 }
-class LEDs extends ArrayList<LED> {
-}
 
 class LED {
   PVector position;
@@ -322,7 +320,26 @@ class LED {
     this.position = position;
     c = color(0);
   }
+
+  void set(color c) {
+    this.c = c;
+  }
 }
+// LEDList or Strip or Channel
+class LEDList extends ArrayList<LED> {
+}
+class LEDs extends LEDList {
+}
+
+// StripList of ChannelList
+class LEDSegmentsList extends ArrayList<LEDList> {
+}
+
+// ChannelStripList or ChannelSegmentsList
+class ChannelSegmentsList extends ArrayList<LEDSegmentsList> {
+}
+
+
 import moonpaper.*;
 
 // PixelMap.createStructure()
