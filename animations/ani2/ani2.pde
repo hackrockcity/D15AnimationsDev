@@ -45,24 +45,30 @@ void setupPixelMap() {
   // Create asterix structure
   // The load transformation allows us to apply transformations to the Structure
   // being loaded.
-  PGraphics loadTransformation = createGraphics(1, 1, P3D);
-  loadTransformation.pushMatrix();
-  loadTransformation.scale(1, -1, 1);
-  asterix = new Structure(pixelMap, asterixJSON, loadTransformation);
-  loadTransformation.popMatrix();
+  //PGraphics loadTransformation = createGraphics(1, 1, P3D);
+  //loadTransformation.pushMatrix();
+  //loadTransformation.scale(1, -1, 1);
+  //asterix = new Structure(pixelMap, asterixJSON, loadTransformation);
+  //loadTransformation.popMatrix();
 
   // Create sign structure
   sign = new Structure(pixelMap, signJSON);
 
   // Once all structures are loaded, finalize the pixelMap
   pixelMap.finalize();
+  surface.setSize(pixelMap.pg.width, pixelMap.pg.height);
   verifySize();
 }
 
+void settings() {
+  size(1, 1, P2D);  // Set to P2D. Will resize once pixelMap is loaded
+}
+
 void setup() {
-  size(150, 128, P2D);
+  surface.setResizable(true);
+
   frameRate(fps);
-  
+
   // Load in structures and create master PixelMap
   setupPixelMap();
 
