@@ -116,17 +116,18 @@ class SignAnimationTest3 extends DisplayableLEDs {
  *
  * Target the sign.ledSegmentsList. Black Fade to Bright Gradient Scroller 
  */
-class SignAnimationTest4 extends DisplayableLEDs {
+class LetterSegmentScroller extends DisplayableLEDs {
   Sign sign;
   int nSegments = 24;
 
-  SignAnimationTest4(PixelMap pixelMap, SignStructure structure) {
+  LetterSegmentScroller(PixelMap pixelMap, SignStructure structure) {
     super(pixelMap, structure);
     SignStructure signStructure = (SignStructure) structure;
     this.sign = signStructure.sign;
   }
 
   void update() {
+    clear();
     sign.clear();
 
     int size = sign.ledSegmentsList.size();

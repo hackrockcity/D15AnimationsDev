@@ -1,7 +1,7 @@
 class Plasma extends DisplayableLEDs {
   color c1 = color(0);
   color c2 = color(255, 128, 0);
-  float nInc = 0.01;
+  Patchable<Float> nInc = new Patchable<Float>(0.01);
   float nx = 0.0;
   float ny = 0.0;
   float xInc = 0.0;
@@ -32,7 +32,7 @@ class Plasma extends DisplayableLEDs {
 
   void update() {
     for (LED led : leds) {
-      float v = noise(led.position.x * nInc + nx, led.position.y * nInc + ny, led.position.z * nInc + ny);
+      float v = noise(led.position.x * nInc.value() + nx, led.position.y * nInc.value() + ny, led.position.z * nInc.value() + ny);
       v += phase;
       v *= 1;
       v -= int(v);
