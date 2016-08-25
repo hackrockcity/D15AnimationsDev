@@ -1,5 +1,5 @@
 void createSequence() {  
-  int fpm = fps * 60;  // Frames-per-minute
+  int fpm = fps * 5;  // Frames-per-minute
 
   StructurePixelMap allStructures = new StructurePixelMap(pixelMap);
 
@@ -16,38 +16,39 @@ void createSequence() {
   mp.seq(new PatchSet(cel0.getTransparency(), 0.0));
   mp.seq(new Line(1 * fps, cel0.getTransparency(), 255));
 
-  // Sign Animation Test
-  //SignAnimationTest signAnimationTest = new SignAnimationTest(pixelMap, allStructures); 
-  //mp.seq(new PatchSet(signAnimationTest.transparency, 255.0));
-  //mp.seq(new PushCel(cel0, signAnimationTest));
+  SparkleDecay sp = new SparkleDecay(pixelMap, allStructures);
+  mp.seq(new PushCel(cel0, sp));
+  //mp.seq(new PatchSet(sp.transparency, 0.0));
+  //mp.seq(new Line(5 * fps, sp.transparency, 255.0));
+
+
 
   // Sign Animation Test 2
-  //SignAnimationTest2 signAnimationTest2 = new SignAnimationTest2(pixelMap, signStructure); 
-  //mp.seq(new PatchSet(signAnimationTest2.transparency, 255.0));
-  //mp.seq(new PushCel(cel0, signAnimationTest2));
-
+  SignAnimationTest2 signAnimationTest2 = new SignAnimationTest2(pixelMap, signStructure); 
+  mp.seq(new PatchSet(signAnimationTest2.transparency, 255.0));
+  mp.seq(new PushCel(cel0, signAnimationTest2));
+  mp.seq(new Wait(1 * fpm));
+  mp.seq(new PopCel(cel0));
+  
   // Sign Animation Test 3
-  SignAnimationTest3 signAnimationTest3 = new SignAnimationTest3(pixelMap, signStructure); 
+  SignAnimationTest3 signAnimationTest3 = new SignAnimationTest3(pixelMap, signStructure);
   mp.seq(new PatchSet(signAnimationTest3.transparency, 255.0));
   mp.seq(new PushCel(cel0, signAnimationTest3));
-
+  mp.seq(new Wait(1 * fpm));
+  mp.seq(new PopCel(cel0));
+  
   // Sign Animation Test 4
   SignAnimationTest4 signAnimationTest4 = new SignAnimationTest4(pixelMap, signStructure); 
   mp.seq(new PatchSet(signAnimationTest4.transparency, 255.0));
   mp.seq(new PushCel(cel0, signAnimationTest4));
-
-  // Hold
-  mp.seq(new Wait(5 * fpm));
-
+  mp.seq(new Wait(1 * fpm));
+  mp.seq(new PopCel(cel0));
 
   // Crossnoise
-  CrossNoise crossNoise = new CrossNoise(pixelMap, allStructures); 
+  CrossNoise crossNoise = new CrossNoise(pixelMap, signStructure); 
   mp.seq(new PatchSet(crossNoise.transparency, 255.0));
   mp.seq(new PushCel(cel0, crossNoise));
-
-  // Hold
   mp.seq(new Wait(1 * fpm));
-  //mp.seq(new Wait(5 * fps));
 
   // Plasma
   Plasma defaultPlasma = new Plasma(pixelMap, allStructures);

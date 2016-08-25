@@ -70,8 +70,8 @@ class SignAnimationTest2 extends DisplayableLEDs {
  */
 class SignAnimationTest3 extends DisplayableLEDs {
   Sign sign;
-  color orange = color(255, 128, 0);
-  color magenta = color(255, 0, 255);
+  color c0 = color(255, 128, 0);
+  color c1 = color(255, 0, 255);
   ArrayList<Boolean> heliosPattern = new ArrayList<Boolean>();
   float heliosOdds = 0.1;
 
@@ -96,8 +96,8 @@ class SignAnimationTest3 extends DisplayableLEDs {
       LED led = sign.ledList.get(counter);
       LED led2 = sign.ledList.get(sign.ledList.size() - counter - 1);
       if (b) {
-        led.c = lerpColor(orange, magenta, led.position.y / sign.h);
-        led2.c = lerpColor(orange, magenta, led2.position.y / sign.h);
+        led.c = lerpColor(c0, c1, led.position.y / sign.h);
+        led2.c = led.c;
       }
       counter++;
     }

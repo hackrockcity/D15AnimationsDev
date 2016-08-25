@@ -36,8 +36,6 @@ void setup() {
   }
 }
 
-
-
 void draw() {
   //scale(2);
   background(0);
