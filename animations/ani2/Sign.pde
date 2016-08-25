@@ -164,7 +164,7 @@ abstract class SignLetter {
     if (displayInfo) {
       print(this.getClass().getSimpleName() + " Channel " + channelIndex + "  nLeds: ");
     }
-    
+
     // Horizontal strip
     if (y0 == y1) {
       int stripLength = (x1 - x0) / 4;
@@ -174,10 +174,8 @@ abstract class SignLetter {
       for (int v = 0; v < stripLength; v++) {
         int x = x0 + v * 4 * direction;
         PVector p = new PVector((x + xOffset) / (4 / spacer), (y0 + yOffset) / (4 / spacer));
-        //channel.add(p);
         strip.add(new LED(p));
       }
-      //println(stripLength);
     }
     // Vertical strip
     else if (x0 == x1) {
@@ -190,7 +188,6 @@ abstract class SignLetter {
         PVector p = new PVector((x0 + xOffset) / (4 / spacer), (y + yOffset) / (4 / spacer));
         strip.add(new LED(p));
       }
-      //println(stripLength);
     }
     // Error
     else {
@@ -277,6 +274,15 @@ class SignLetterD extends SignLetter {
 
 class SignLetterI extends SignLetter {
   SignLetterI() {
+    // Remove unnecessary channels
+    // TODO: Janky code warning
+    channelSegmentsList.remove(1);
+    channelSegmentsList.remove(1);
+    channelSegmentsList.remove(1);
+    channelList.remove(1);
+    channelList.remove(1);
+    channelList.remove(1);
+
     // Channel 0
     add(181, 115, 181, 51, 0);
     add(181, 23, 181, 3, 0);
@@ -385,6 +391,15 @@ class SignLetterR extends SignLetter {
 
 class SignLetterI2 extends SignLetter {
   SignLetterI2() {
+    // Remove unnecessary channels
+    // TODO: Janky code warning
+    channelSegmentsList.remove(1);
+    channelSegmentsList.remove(1);
+    channelSegmentsList.remove(1);
+    channelList.remove(1);
+    channelList.remove(1);
+    channelList.remove(1);
+
     // Channel 0
     add(791, 115, 791, 51, 0);
     add(791, 23, 791, 3, 0);
@@ -456,6 +471,13 @@ class SignLetterN extends SignLetter {
 
 class SignLetterT extends SignLetter {
   SignLetterT() {
+    // Remove unnecessary channels
+    // TODO: Janky code warning
+    channelSegmentsList.remove(2);
+    channelSegmentsList.remove(2);
+    channelList.remove(2);
+    channelList.remove(2);
+
     // Channel 0
     add(1270, 115, 1270, 39, 0);
     add(1278, 39, 1278, 115, 0);
