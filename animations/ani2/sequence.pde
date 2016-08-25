@@ -22,10 +22,19 @@ void createSequence() {
   //mp.seq(new PushCel(cel0, signAnimationTest));
 
   // Sign Animation Test 2
-  SignAnimationTest2 signAnimationTest2 = new SignAnimationTest2(pixelMap, signStructure); 
-  mp.seq(new PatchSet(signAnimationTest2.transparency, 255.0));
-  mp.seq(new PushCel(cel0, signAnimationTest2));
+  //SignAnimationTest2 signAnimationTest2 = new SignAnimationTest2(pixelMap, signStructure); 
+  //mp.seq(new PatchSet(signAnimationTest2.transparency, 255.0));
+  //mp.seq(new PushCel(cel0, signAnimationTest2));
 
+  // Sign Animation Test 3
+  SignAnimationTest3 signAnimationTest3 = new SignAnimationTest3(pixelMap, signStructure); 
+  mp.seq(new PatchSet(signAnimationTest3.transparency, 255.0));
+  mp.seq(new PushCel(cel0, signAnimationTest3));
+
+  // Sign Animation Test 4
+  SignAnimationTest4 signAnimationTest4 = new SignAnimationTest4(pixelMap, signStructure); 
+  mp.seq(new PatchSet(signAnimationTest4.transparency, 255.0));
+  mp.seq(new PushCel(cel0, signAnimationTest4));
 
   // Hold
   mp.seq(new Wait(5 * fpm));

@@ -94,17 +94,17 @@ void draw() {
   }
 
   // White segment scroll: Target segments
-  //int size = sign.ledSegmentsList.size();
-  //int segmentIndex = frameCount % size;
-  //int nSegments = 24;
-  //for (int i = 0; i < nSegments; i++) {
-  //  //int thisIndex = (segmentIndex + size / nSegments * i) % size;
-  //  int thisIndex = (segmentIndex + i) % size;
-  //  for (LED led : sign.ledSegmentsList.get(thisIndex)) {
-  //    led.c = color(255 - i * 255 / nSegments);
-  //    //led.c = lerpColor(color(255), lerpColor(orange, magenta, led.position.y / sign.h), i / (float) nSegments);
-  //  }
-  //}
+  int size = sign.ledSegmentsList.size();
+  int segmentIndex = frameCount % size;
+  int nSegments = 24;
+  for (int i = 0; i < nSegments; i++) {
+    //int thisIndex = (segmentIndex + size / nSegments * i) % size;
+    int thisIndex = (segmentIndex + i) % size;
+    for (LED led : sign.ledSegmentsList.get(thisIndex)) {
+      led.c = color(255 - i * 255 / nSegments);
+      //led.c = lerpColor(color(255), lerpColor(orange, magenta, led.position.y / sign.h), i / (float) nSegments);
+    }
+  }
 
   // Helios Pattern
   int counter = 0;

@@ -37,7 +37,7 @@ void setupPixelMap() {
   pixelMap = new PixelMap();  // Create 2D PixelMap from strips
 
   // Create teatro structure
-  //teatro = new Structure(pixelMap, teatroJSON);
+  teatro = new Structure(pixelMap, teatroJSON);
 
   // Create sign structure
   signStructure = new SignStructure(pixelMap, new Sign());
