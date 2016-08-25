@@ -8,8 +8,9 @@ String captureFolder = "./frames/";
 
 // Broadcast
 Broadcast broadcast;
-String ip = "localhost"; 
-int port = 6100;
+//String ip = "localhost"; 
+String ip = "192.168.7.2"; 
+int port = 9999;
 
 // Set FrameRate
 int fps = 60;        // Frames-per-second
@@ -40,7 +41,7 @@ void setupPixelMap() {
   pixelMap = new PixelMap();  // Create 2D PixelMap from strips
 
   // Create teatro structure
-  teatro = new Structure(pixelMap, teatroJSON);
+  //teatro = new Structure(pixelMap, teatroJSON);
 
   // Create asterix structure
   // The load transformation allows us to apply transformations to the Structure
@@ -52,7 +53,8 @@ void setupPixelMap() {
   //loadTransformation.popMatrix();
 
   // Create sign structure
-  sign = new Structure(pixelMap, signJSON);
+  //sign = new Structure(pixelMap, signJSON);
+  sign = new SignStructure(pixelMap, new Sign());
 
   // Once all structures are loaded, finalize the pixelMap
   pixelMap.finalize();
@@ -77,6 +79,8 @@ void setup() {
 
   // Create sequence
   createSequence();
+  
+  println("Sketch dimensions: " + width, ", " + height);
 }
 
 void draw() {
@@ -92,5 +96,5 @@ void draw() {
   }
 
   // Broadcast to simulator  
-  broadcast.update();
+  //broadcast.update();
 }

@@ -168,8 +168,8 @@ class DisplayableStrips extends DisplayableStructure {
 
 
 class DisplayableLEDs extends DisplayableStrips {
-  ArrayList<LEDs> ledMatrix;
-  LEDs leds;
+  ArrayList<LEDList> ledMatrix;
+  LEDList leds;
   int maxStripLength;
 
   DisplayableLEDs(PixelMap pixelMap, Structure structure) {
@@ -179,18 +179,18 @@ class DisplayableLEDs extends DisplayableStrips {
 
   void setup() {
     super.setup();
-    leds = new LEDs();
+    leds = new LEDList();
     maxStripLength = strips.getMaxStripLength();
 
     // Create LED Matrix that has a 1 to 1 ordered relationship to
     // the LEDs in the strip
-    ledMatrix = new ArrayList<LEDs>();
+    ledMatrix = new ArrayList<LEDList>();
     int nRows = strips.size();
 
     for (int row = 0; row < nRows; row++) {
       Strip strip = strips.get(row);
       int nCols = strip.nLights;
-      LEDs stripLeds = new LEDs();
+      LEDList stripLeds = new LEDList();
 
       for (int col = 0; col < nCols; col++) {
         LED thisLed = new LED();
@@ -213,7 +213,7 @@ class DisplayableLEDs extends DisplayableStrips {
     int nRows = ledMatrix.size();
 
     for (int row = 0; row < nRows; row++) {
-      LEDs stripLeds = ledMatrix.get(row);
+      LEDList stripLeds = ledMatrix.get(row);
       int nCols = stripLeds.size();
       int rowOffset = row * maxStripLength;
 
@@ -328,8 +328,6 @@ class LED {
 // LEDList or Strip or Channel
 class LEDList extends ArrayList<LED> {
 }
-class LEDs extends LEDList {
-}
 
 // StripList of ChannelList
 class LEDSegmentsList extends ArrayList<LEDList> {
@@ -363,7 +361,7 @@ class PixelMap extends Displayable {
   }
 
   void finalize() {
-    leds = new LEDs();
+    leds = new LEDList();
     columns = 0;
 
     for (Strip strip : strips) {
@@ -430,7 +428,7 @@ class Strip {
   PVector p2;
   int density;
   int nLights;
-  ArrayList<LED> leds;
+  ArrayList<LED> leds = new ArrayList<LED>();
 
   Strip(PVector p1, PVector p2, int density) {
     this.p1 = p1;
@@ -439,11 +437,28 @@ class Strip {
     nLights = ceil(dist(p1, p2) / meter * density);
 
     // Create positions for each LED
-    leds = new ArrayList<LED>();    
     for (int i = 0; i < nLights; i++) {
       float n = i / float(nLights);
       PVector p = lerp(p1, p2, n);
       leds.add(new LED(p));
+    }
+  }
+
+  Strip(LEDList ledList) {
+    nLights = ledList.size();
+
+    // Check that list isn't emp
+    if (nLights == 0) {
+      return;
+    }
+
+    density = 30;
+    LED firstLED = ledList.get(0);
+    LED lastLED = ledList.get(ledList.size() - 1); 
+    p1 = new PVector(firstLED.position.x, firstLED.position.y, 0); 
+    p2 = new PVector(lastLED.position.x, firstLED.position.y, 0); 
+    for (LED led : ledList) {
+      leds.add(led);
     }
   }
 }

@@ -62,9 +62,6 @@ void createSequence() {
   mp.seq(new PushCel(cel0, whitePlasma));
   mp.seq(new Line(5 * fps, sp.transparency, 0.0));
   mp.seq(new Line(5 * fps, whitePlasma.transparency, 255.0));
-
-
-
   mp.seq(new Wait(5 * fpm));
 
 
