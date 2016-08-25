@@ -16,8 +16,8 @@ void createSequence() {
   mp.seq(new PatchSet(cel0.getTransparency(), 0.0));
   mp.seq(new Line(1 * fps, cel0.getTransparency(), 255));
 
-  SparkleDecay sp = new SparkleDecay(pixelMap, allStructures);
-  mp.seq(new PushCel(cel0, sp));
+  SparkleDecay sp2 = new SparkleDecay(pixelMap, teatro);
+  mp.seq(new PushCel(cel0, sp2));
   //mp.seq(new PatchSet(sp.transparency, 0.0));
   //mp.seq(new Line(5 * fps, sp.transparency, 255.0));
 

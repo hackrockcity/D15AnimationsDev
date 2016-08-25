@@ -455,19 +455,13 @@ class Strip {
       return;
     }
 
-    // Not useful but unsure if left undefined. Probably nothing.
-    //density = 30;
-    //p1 = ledList.get(0).position; 
-    //p2 = ledList.get(ledList.size() - 1).position;
+    // Not useful, but set it just in case
+    density = 30;
+    p1 = ledList.get(0).position; 
+    p2 = ledList.get(ledList.size() - 1).position;
 
     // Add LEDs to strip
     leds.addAll(ledList);
-
-    for (int i = 0; i < leds.size(); i++) {
-      LED source = ledList.get(i);
-      LED destination = leds.get(i);
-      println(source + ", " + destination);
-    }
   }
 }
 

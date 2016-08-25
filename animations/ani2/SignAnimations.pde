@@ -4,7 +4,7 @@
  * Moves a single pixel across the screen.
  */
 class SignAnimationTest extends DisplayableLEDs {
-  color c = color(255, 0, 255);
+  color c = magenta;
   int index = 0;  
 
   SignAnimationTest(PixelMap pixelMap, Structure structure) {
@@ -28,8 +28,6 @@ class SignAnimationTest2 extends DisplayableLEDs {
   Sign sign;
   float phase = 0.0;
   float phaseInc = 0.01;
-  color orange = color(255, 128, 0);
-  color magenta = color(255, 0, 255);
 
   SignAnimationTest2(PixelMap pixelMap, SignStructure structure) {
     super(pixelMap, structure);

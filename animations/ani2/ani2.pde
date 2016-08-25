@@ -2,13 +2,21 @@ import hypermedia.net.*;
 import moonpaper.*;
 import moonpaper.opcodes.*;
 
+// Broadcast
+boolean broadcastData = true; 
+
+// Colors
+color orange = color(255, 80, 0);
+color magenta = color(255, 0, 255);
+color pink = color(240, 32, 180);
+
 // Turn on frame capture
 boolean captureFrames = false;
 String captureFolder = "./frames/";
 
 // Broadcast
 Broadcast broadcast;
-//String ip = "localhost"; 
+//String ip = "localhost";  // For simulator 
 String ip = "192.168.7.2"; 
 int port = 9999;
 
@@ -16,8 +24,7 @@ int port = 9999;
 int fps = 60;        // Frames-per-second
 
 // PixelMap and Structures
-String teatroJSON = "../../teatro.json";
-String signJSON = "../../sign.json";
+String teatroJSON = "../../teatro16.json";
 Structure teatro;
 SignStructure signStructure;
 PixelMap pixelMap;  // PixelMap is the master canvas which all animations will draw to
@@ -82,6 +89,8 @@ void draw() {
     saveFrame(captureFolder + "f########.png");
   }
 
-  // Broadcast to simulator  
-  //broadcast.update();
+  // Broadcast to simulator
+  if (broadcastData) {
+    broadcast.update();
+  }
 }
