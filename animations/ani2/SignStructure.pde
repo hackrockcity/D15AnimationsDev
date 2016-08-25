@@ -1,37 +1,26 @@
 class SignStructure extends Structure {
-  PixelMap pixelMap;
-  String filename = "";
-  Strips strips;
-  int rowOffset = 0;
-  PGraphics loadTransformation;
   Sign sign;
 
   SignStructure(PixelMap pixelMap, Sign sign) {
     super(pixelMap);
     this.sign = sign;
-    this.pixelMap = pixelMap;
-    signInit();
+    setup();
   }
 
-  void signInit() {
-    //rowOffset = this.pixelMap.rows;  // This allows multiple structures in an animation
+  void setup() {
+    // This allows multiple structures in an animation
+    rowOffset = pixelMap.rows;
 
     // Create strips
     strips = new Strips();
 
+    // Create strip based on each sign channel.
     for (LEDList channel : sign.allChannelsList) {
       Strip strip = new Strip(channel);
       strips.add(strip);
     }
-    println(strips.size());
-    this.pixelMap.addStrips(strips);
-  }
 
-  void setup() {
-    strips = new Strips(); 
-    loadFromJSON(filename); 
-    rowOffset = pixelMap.rows; 
-    this.pixelMap.addStrips(strips);
+    pixelMap.addStrips(strips);
   }
-
 }
+  

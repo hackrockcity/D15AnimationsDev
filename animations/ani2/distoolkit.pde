@@ -169,7 +169,7 @@ class DisplayableStrips extends DisplayableStructure {
 
 class DisplayableLEDs extends DisplayableStrips {
   ArrayList<LEDList> ledMatrix;
-  LEDList leds;
+  ArrayList<LED> leds;
   int maxStripLength;
 
   DisplayableLEDs(PixelMap pixelMap, Structure structure) {
@@ -230,6 +230,12 @@ class DisplayableLEDs extends DisplayableStrips {
   void clear() {
     for (LED led : leds) {
       led.c = color(0, 0);
+    }
+  }
+
+  void copyLEDList(LEDList ledList) {
+    for (int i = 0; i < leds.size(); i++) {
+      leds.get(i).c = ledList.get(i).c;
     }
   }
 }
@@ -340,12 +346,9 @@ class ChannelSegmentsList extends ArrayList<LEDSegmentsList> {
 
 import moonpaper.*;
 
-// PixelMap.createStructure()
-// PixelMap.createPartialStructe()
-
 class PixelMap extends Displayable {
   Strips strips;
-  ArrayList<LED> leds;
+  LEDList leds;
   int rows = 0;
   int columns;
   PGraphics pg;
@@ -428,7 +431,7 @@ class Strip {
   PVector p2;
   int density;
   int nLights;
-  ArrayList<LED> leds = new ArrayList<LED>();
+  LEDList leds = new LEDList();
 
   Strip(PVector p1, PVector p2, int density) {
     this.p1 = p1;
@@ -447,18 +450,23 @@ class Strip {
   Strip(LEDList ledList) {
     nLights = ledList.size();
 
-    // Check that list isn't emp
+    // Check that list isn't empty
     if (nLights == 0) {
       return;
     }
 
-    density = 30;
-    LED firstLED = ledList.get(0);
-    LED lastLED = ledList.get(ledList.size() - 1); 
-    p1 = new PVector(firstLED.position.x, firstLED.position.y, 0); 
-    p2 = new PVector(lastLED.position.x, firstLED.position.y, 0); 
-    for (LED led : ledList) {
-      leds.add(led);
+    // Not useful but unsure if left undefined. Probably nothing.
+    //density = 30;
+    //p1 = ledList.get(0).position; 
+    //p2 = ledList.get(ledList.size() - 1).position;
+
+    // Add LEDs to strip
+    leds.addAll(ledList);
+
+    for (int i = 0; i < leds.size(); i++) {
+      LED source = ledList.get(i);
+      LED destination = leds.get(i);
+      println(source + ", " + destination);
     }
   }
 }

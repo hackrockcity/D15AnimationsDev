@@ -14,17 +14,31 @@ void createSequence() {
 
   // Fade in cel
   mp.seq(new PatchSet(cel0.getTransparency(), 0.0));
-  mp.seq(new Line(5 * fps, cel0.getTransparency(), 255));
+  mp.seq(new Line(1 * fps, cel0.getTransparency(), 255));
+
+  // Sign Animation Test
+  //SignAnimationTest signAnimationTest = new SignAnimationTest(pixelMap, allStructures); 
+  //mp.seq(new PatchSet(signAnimationTest.transparency, 255.0));
+  //mp.seq(new PushCel(cel0, signAnimationTest));
+
+  // Sign Animation Test 2
+  SignAnimationTest2 signAnimationTest2 = new SignAnimationTest2(pixelMap, signStructure); 
+  mp.seq(new PatchSet(signAnimationTest2.transparency, 255.0));
+  mp.seq(new PushCel(cel0, signAnimationTest2));
+
+
+  // Hold
+  mp.seq(new Wait(5 * fpm));
+
 
   // Crossnoise
-  //CrossNoise crossNoise = new CrossNoise(pixelMap, allStructures); 
-  //mp.seq(new PatchSet(crossNoise.transparency, 255.0));
-  //mp.seq(new PushCel(cel0, crossNoise));
+  CrossNoise crossNoise = new CrossNoise(pixelMap, allStructures); 
+  mp.seq(new PatchSet(crossNoise.transparency, 255.0));
+  mp.seq(new PushCel(cel0, crossNoise));
 
-  //// Hold
-  //  mp.seq(new Wait(1 * fpm));
-  ////mp.seq(new Wait(5 * fps));
-
+  // Hold
+  mp.seq(new Wait(1 * fpm));
+  //mp.seq(new Wait(5 * fps));
 
   // Plasma
   Plasma defaultPlasma = new Plasma(pixelMap, allStructures);
