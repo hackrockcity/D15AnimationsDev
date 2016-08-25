@@ -16,6 +16,16 @@ void createSequence() {
   mp.seq(new PatchSet(cel0.getTransparency(), 0.0));
   mp.seq(new Line(5 * fps, cel0.getTransparency(), 255));
 
+  // Crossnoise
+  //CrossNoise crossNoise = new CrossNoise(pixelMap, allStructures); 
+  //mp.seq(new PatchSet(crossNoise.transparency, 255.0));
+  //mp.seq(new PushCel(cel0, crossNoise));
+
+  //// Hold
+  //  mp.seq(new Wait(1 * fpm));
+  ////mp.seq(new Wait(5 * fps));
+
+
   // Plasma
   Plasma defaultPlasma = new Plasma(pixelMap, allStructures);
   mp.seq(new PatchSet(defaultPlasma.transparency, 255.0));
