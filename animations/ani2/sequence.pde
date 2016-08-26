@@ -38,6 +38,23 @@ void createSequence() {
   //mp.seq(new Line(5 * fps, defaultPlasma.transparency, 0.0));
 
 
+  // SECTION: Default Gradient Plasma with some changes -----------------
+  int plasmaDuration = 90 * fps;
+  int plasmaWait = 10 * fps;
+  Plasma plasmaSign = new Plasma(pixelMap, signStructure);
+  plasmaSign.phaseInc = 0.01;
+  mp.seq(new PatchSet(plasmaSign.nInc, (0.01)));
+  mp.seq(new PatchSet(plasmaSign.transparency, 0.0));
+  mp.seq(new Line(1 * fps, plasmaSign.transparency, 255.0));
+  mp.seq(new PushCel(cel0, plasmaSign));
+  mp.seq(new Wait(plasmaWait));
+  mp.seq(new Line(plasmaDuration, plasmaSign.nInc, 0.5));
+
+  mp.seq(new Wait(plasmaDuration));
+  mp.seq(new Wait(plasmaWait));
+  mp.seq(new PopCel(cel0));
+
+
   // SECTION: White Gradient --------------------------------------------
   int whitePlasmaDuration = 90 * fps;
   int whitePlasmaWait = 10 * fps;
@@ -59,7 +76,7 @@ void createSequence() {
 
   // White Plasma for Teatro
   //Plasma whitePlasmaTeatro = new Plasma(pixelMap, teatro, whiteGradient);
-  //whitePlasmaTeatro.nInc.set(0.1);
+  //mp.seq(new PatchSet(whitePlasmaTeatro.nInc, (0.1)));
   //mp.seq(new PatchSet(whitePlasmaTeatro.transparency, 0.0));
   //mp.seq(new Line(1 * fps, whitePlasmaTeatro.transparency, 255.0));
   //mp.seq(new Line(whitePlasmaDuration, whitePlasmaTeatro.nInc, 0.005));
@@ -67,12 +84,9 @@ void createSequence() {
 
   // White Plasma for Sign
   Plasma whitePlasmaSign = new Plasma(pixelMap, signStructure, whiteGradient);
-  whitePlasmaSign.nInc.set(0.5);
-  mp.seq(new PatchSet(whitePlasmaSign.transparency, 0.0));
-  mp.seq(new Line(1 * fps, whitePlasmaSign.transparency, 255.0));
+  mp.seq(new PatchSet(whitePlasmaSign.nInc, (0.5)));
   mp.seq(new Line(whitePlasmaDuration, whitePlasmaSign.nInc, 0.01));
   mp.seq(new PushCel(cel0, whitePlasmaSign));
-
 
 
   // Wait for Line Envelope
@@ -127,8 +141,6 @@ void createSequence() {
   //mp.seq(new PatchSet(crossNoise.transparency, 255.0));
   //mp.seq(new PushCel(cel0, crossNoise));
   //mp.seq(new Wait(1 * fpm));
-
-
 
   //  mp.seq(new PushCel(cel0, new StripSweep(pixelMap, allStructures)));
   //  mp.seq(new PushCel(cel0, new CrossNoise(pixelMap, allStructures)));

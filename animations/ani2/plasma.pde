@@ -1,6 +1,4 @@
 class Plasma extends DisplayableLEDs {
-  color c1 = color(0);
-  color c2 = color(255, 128, 0);
   Patchable<Float> nInc = new Patchable<Float>(0.01);
   float nx = 0.0;
   float ny = 0.0;
@@ -22,12 +20,12 @@ class Plasma extends DisplayableLEDs {
 
   void createDefaultGradient() {
     gradient = new Gradient();
-    gradient.add(color(255, 255, 255), 0.1);
-    gradient.add(color(255, 32, 180), 1);
-    gradient.add(color(255, 32, 180, 0), 0.1);
-    gradient.add(color(255, 255, 255), 0.1);
-    gradient.add(color(255, 128, 0), 1);
-    gradient.add(color(255, 128, 0, 0), 0.1);
+    gradient.add(white, 0.1);
+    gradient.add(pink, 1);
+    gradient.add(color(pink, 0), 0.1);
+    gradient.add(white, 0.1);
+    gradient.add(orange, 1);
+    gradient.add(color(orange, 0), 0.1);
   }
 
   void update() {

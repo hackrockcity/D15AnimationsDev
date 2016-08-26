@@ -9,6 +9,8 @@ boolean broadcastData = false;
 color orange = color(255, 80, 0);
 color magenta = color(255, 0, 255);
 color pink = color(240, 32, 180);
+color white = color(255);
+color black = color(0);
 
 // Turn on frame capture
 boolean captureFrames = false;
