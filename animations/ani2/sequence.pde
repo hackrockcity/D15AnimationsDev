@@ -37,6 +37,11 @@ void createSequence() {
   //mp.seq(new Line(5 * fps, sp.transparency, 255.0));
   //mp.seq(new Line(5 * fps, defaultPlasma.transparency, 0.0));
 
+/**
+
+Transition between color and white gradients
+Fade out white plasma and let it sit of LetterScroller before crossyNoise starts up
+*/
 
   // SECTION: Default Gradient Plasma with some changes -----------------
   //int plasmaDuration = 90 * fps;
@@ -50,7 +55,7 @@ void createSequence() {
   //mp.seq(new Line(1 * fps, plasmaSign.transparency, 255.0));
   //mp.seq(new PushCel(cel0, plasmaSign));
   //mp.seq(new Wait(plasmaWait));
-  //mp.seq(new Line(plasmaDuration, plasmaSign.nInc, 0.5));
+  //mp.seq(new Line(plasmaDuration, plasmaSign.nInc, 0.1));
 
   //mp.seq(new Wait(plasmaDuration));
   //mp.seq(new Wait(plasmaWait));
@@ -58,101 +63,100 @@ void createSequence() {
 
 
   // SECTION: White Gradient --------------------------------------------
-  //int whitePlasmaDuration = 90 * fps;
-  //int whitePlasmaWait = 10 * fps;
-  ////int whitePlasmaDuration = 3 * fps;
-  ////int whitePlasmaWait = 3 * fps;
+  int whitePlasmaDuration = 10 * fps;
+  int whitePlasmaWait = 10 * fps;
+  //int whitePlasmaDuration = 3 * fps;
+  //int whitePlasmaWait = 3 * fps;
 
-  //Gradient whiteGradient = new Gradient();
-  //float whiteGradientWidth1 = 0.05;
-  //float whiteGradientWidth2 = 0.5;
-  //whiteGradient.add(color(255), whiteGradientWidth1);
-  //whiteGradient.add(color(255, 0), whiteGradientWidth2);
-  //whiteGradient.add(color(255, 0), whiteGradientWidth1);
-  //whiteGradient.add(color(255), whiteGradientWidth1);
-  //whiteGradient.add(color(255, 0), whiteGradientWidth2);
-  //whiteGradient.add(color(255, 0), whiteGradientWidth1);
-  //whiteGradient.add(color(255), whiteGradientWidth1);
-  //whiteGradient.add(color(255, 0), whiteGradientWidth2);
-  //whiteGradient.add(color(255, 0), whiteGradientWidth1);
+  Gradient whiteGradient = new Gradient();
+  float whiteGradientWidth1 = 0.05;
+  float whiteGradientWidth2 = 0.5;
+  whiteGradient.add(color(255), whiteGradientWidth1);
+  whiteGradient.add(color(255, 0), whiteGradientWidth2);
+  whiteGradient.add(color(255, 0), whiteGradientWidth1);
+  whiteGradient.add(color(255), whiteGradientWidth1);
+  whiteGradient.add(color(255, 0), whiteGradientWidth2);
+  whiteGradient.add(color(255, 0), whiteGradientWidth1);
+  whiteGradient.add(color(255), whiteGradientWidth1);
+  whiteGradient.add(color(255, 0), whiteGradientWidth2);
+  whiteGradient.add(color(255, 0), whiteGradientWidth1);
 
-  //// White Plasma for Teatro
-  ////Plasma whitePlasmaTeatro = new Plasma(pixelMap, teatro, whiteGradient);
-  ////mp.seq(new PatchSet(whitePlasmaTeatro.nInc, (0.1)));
-  ////mp.seq(new PatchSet(whitePlasmaTeatro.transparency, 0.0));
-  ////mp.seq(new Line(1 * fps, whitePlasmaTeatro.transparency, 255.0));
-  ////mp.seq(new Line(whitePlasmaDuration, whitePlasmaTeatro.nInc, 0.005));
-  ////mp.seq(new PushCel(cel0, whitePlasmaTeatro));
+  // White Plasma for Teatro
+  //Plasma whitePlasmaTeatro = new Plasma(pixelMap, teatro, whiteGradient);
+  //mp.seq(new PatchSet(whitePlasmaTeatro.nInc, (0.1)));
+  //mp.seq(new PatchSet(whitePlasmaTeatro.transparency, 0.0));
+  //mp.seq(new Line(1 * fps, whitePlasmaTeatro.transparency, 255.0));
+  //mp.seq(new Line(whitePlasmaDuration, whitePlasmaTeatro.nInc, 0.005));
+  //mp.seq(new PushCel(cel0, whitePlasmaTeatro));
 
-  //// White Plasma for Sign
-  //Plasma whitePlasmaSign = new Plasma(pixelMap, signStructure, whiteGradient);
-  //mp.seq(new PatchSet(whitePlasmaSign.nInc, (0.5)));
-  //mp.seq(new Line(whitePlasmaDuration, whitePlasmaSign.nInc, 0.01));
-  //mp.seq(new PushCel(cel0, whitePlasmaSign));
+  // White Plasma for Sign
+  Plasma whitePlasmaSign = new Plasma(pixelMap, signStructure, whiteGradient);
+  mp.seq(new PatchSet(whitePlasmaSign.nInc, (0.5)));
+  mp.seq(new Line(whitePlasmaDuration, whitePlasmaSign.nInc, 0.01));
+  mp.seq(new PushCel(cel0, whitePlasmaSign));
 
 
-  //// Wait for Line Envelope
-  //mp.seq(new Wait(whitePlasmaDuration));
+  // Wait for Line Envelope
+  mp.seq(new Wait(whitePlasmaDuration));
 
-  //// Wait until next change
-  //mp.seq(new Wait(whitePlasmaWait));
+  // Wait until next change
+  mp.seq(new Wait(whitePlasmaWait));
 
 
 
 
   //// SECTION: letterSegmentScroller
-  //int letterSegmentScrollerWait = 10 * fps;
+  int letterSegmentScrollerWait = 10 * fps;
 
-  ////mp.seq(new Line(30 * fps, cel1.getTransparency(), 255.0));  // Cels reversed. Big bug. Living with it.
-  ////mp.seq(new PatchSet(cel0.getTransparency(), 128.0));
-  //mp.seq(new PatchSet(cel1.getTransparency(), 255.0));
-  //LetterSegmentScroller letterSegmentScroller = new LetterSegmentScroller(pixelMap, signStructure); 
-  ////mp.seq(new PatchSet(letterSegmentScroller.transparency, 0.0));
-  ////mp.seq(new Line(1 * fps, letterSegmentScroller.transparency, 255.0));
-  //mp.seq(new PushCel(cel1, letterSegmentScroller));
-  //mp.seq(new Wait(4 * fps));
-  ////mp.seq(new PopCel(cel1));
-  ////mp.seq(new Line(10 * fps, cel0.getTransparency(), 0));
+  //mp.seq(new Line(30 * fps, cel1.getTransparency(), 255.0));  // Cels reversed. Big bug. Living with it.
+  //mp.seq(new PatchSet(cel0.getTransparency(), 128.0));
+  mp.seq(new PatchSet(cel1.getTransparency(), 255.0));
+  LetterSegmentScroller letterSegmentScroller = new LetterSegmentScroller(pixelMap, signStructure); 
+  //mp.seq(new PatchSet(letterSegmentScroller.transparency, 0.0));
+  //mp.seq(new Line(1 * fps, letterSegmentScroller.transparency, 255.0));
+  mp.seq(new PushCel(cel1, letterSegmentScroller));
+  mp.seq(new Wait(4 * fps));
 
-
-  //mp.seq(new Wait(letterSegmentScrollerWait));
-
-
-  ////mp.seq(new ClearCels());
-  //mp.seq(new PopCel(cel0));
-
-
-  // Sign Animation Test 3
-  SignAnimationTest3 signAnimationTest3 = new SignAnimationTest3(pixelMap, signStructure);
-  mp.seq(new PatchSet(signAnimationTest3.transparency, 255.0));
-  mp.seq(new PushCel(cel0, signAnimationTest3));
-  mp.seq(new Wait(60 * fps));
+  
   mp.seq(new PopCel(cel0));
 
-  // Sign Animation Test 2
-  SignAnimationTest2 signAnimationTest2 = new SignAnimationTest2(pixelMap, signStructure); 
-  mp.seq(new PatchSet(signAnimationTest2.transparency, 255.0));
-  mp.seq(new PushCel(cel0, signAnimationTest2));
+  // SECTION: CrossyAnimation ---------------------------------------------------
+  CrossyAnimation crossyAnimation = new CrossyAnimation(pixelMap, signStructure);
+  mp.seq(new PatchSet(crossyAnimation.transparency, 255.0));
+  mp.seq(new PatchSet(crossyAnimation.heliosOdds, 0.001));
+  mp.seq(new Line(30 * fps, crossyAnimation.heliosOdds, 0.15));
+  mp.seq(new PushCel(cel0, crossyAnimation));
+  mp.seq(new Wait(30 * fps));
+  mp.seq(new Line(30 * fps, letterSegmentScroller.transparency, 0.0));
+
+  // FlickerLetter
+  FlickerLetter flickerLetter = new FlickerLetter(pixelMap, signStructure);
+  flickerLetter.min = 0.8;
+
+  mp.seq(new PushCel(cel0, flickerLetter));
+  int flickerWaitCounter = 0;
+  int flickerWaitTime = 20 * fps;
+  while (flickerWaitCounter < flickerWaitTime) {
+    mp.seq(new PatchSet(flickerLetter.index, (int) random(9)));
+    int w = 2 * fps / (int) random(1, 6);
+    flickerWaitCounter += w;
+    mp.seq(new Wait(w));
+  }
+
+  mp.seq(new PopCel(cel0));
+
+  SparkleDecay sparkleDecay = new SparkleDecay(pixelMap, allStructures);
+  sparkleDecay.odds = 0.001;
+  mp.seq(new PatchSet(sparkleDecay.transparency, 0.0));
+  mp.seq(new PushCel(cel0, sparkleDecay));
+  
+  mp.seq(new PatchSet(crossyAnimation.isGenerating, false));
+  mp.seq(new Wait(20 * fps));
+  mp.seq(new Line(3 * fps, crossyAnimation.transparency, 0.0));
+  mp.seq(new Line(3 * fps, sparkleDecay.transparency, 255.0));
   mp.seq(new Wait(60 * fps));
-
-  //mp.seq(new ClearCels());
-
-
-  // Crossnoise
-  //CrossNoise crossNoise = new CrossNoise(pixelMap, signStructure); 
-  //mp.seq(new PatchSet(crossNoise.transparency, 255.0));
-  //mp.seq(new PushCel(cel0, crossNoise));
-  //mp.seq(new Wait(1 * fpm));
-
-  //  mp.seq(new PushCel(cel0, new StripSweep(pixelMap, allStructures)));
-  //  mp.seq(new PushCel(cel0, new CrossNoise(pixelMap, allStructures)));
-  //  mp.seq(new PushCel(cel0, defaultPlasma2));
-  //  mp.seq(new Wait(2 * fpm));
-
-
-  // Crossfade SparkleDecay to WhiteGradient
-
-
+  //mp.seq(new PopCel(cel0));
+  //mp.seq(new PopCel(cel0));
 
 
   // Exit sketch

@@ -62,25 +62,27 @@ class SignAnimationTest2 extends DisplayableLEDs {
 }
 
 /**
- * SignAnimationTest3 1D Animation
+ * CrossyAnimation 1D Animation
  *
  * Target the sign.ledList. Using Helios Pattern with Gradient
  */
-class SignAnimationTest3 extends DisplayableLEDs {
+class CrossyAnimation extends DisplayableLEDs {
   Sign sign;
   color c0 = orange;
   color c1 = pink;
   ArrayList<Boolean> heliosPattern = new ArrayList<Boolean>();
-  float heliosOdds = 0.1;
+  Patchable<Float> heliosOdds = new Patchable<Float>(0.01);
+  Patchable<Boolean> isGenerating = new Patchable<Boolean>(true);
 
 
-  SignAnimationTest3(PixelMap pixelMap, SignStructure structure) {
+  CrossyAnimation(PixelMap pixelMap, SignStructure structure) {
     super(pixelMap, structure);
     SignStructure signStructure = (SignStructure) structure;
     this.sign = signStructure.sign;
 
     for (int i = 0; i < sign.ledList.size() - 1; i++) {
-      heliosPattern.add(random(1.0) < heliosOdds);
+      //heliosPattern.add(random(1.0) < heliosOdds.value());
+      heliosPattern.add(false);
     }
   }
 
@@ -100,7 +102,12 @@ class SignAnimationTest3 extends DisplayableLEDs {
       counter++;
     }
 
-    heliosPattern.add(0, random(1.0) < heliosOdds);
+    if (isGenerating.value()) {
+      heliosPattern.add(0, random(1.0) < heliosOdds.value());
+    } else {
+      heliosPattern.add(0, false);
+    }
+    
     if (heliosPattern.size() == sign.ledList.size()) {
       heliosPattern.remove(sign.ledList.size() - 1);
     }
@@ -112,14 +119,15 @@ class SignAnimationTest3 extends DisplayableLEDs {
 }
 
 /**
- * SignAnimationTest3 1D Animation
+ * CrossyAnimation 1D Animation
  *
  * Target the sign.ledSegmentsList. Black Fade to Bright Gradient Scroller 
  */
 class LetterSegmentScroller extends DisplayableLEDs {
   Sign sign;
   int nSegments = 24;
-  
+  int frame = 0;
+
   LetterSegmentScroller(PixelMap pixelMap, SignStructure structure) {
     super(pixelMap, structure);
     SignStructure signStructure = (SignStructure) structure;
@@ -131,8 +139,9 @@ class LetterSegmentScroller extends DisplayableLEDs {
     sign.clear();
 
     int size = sign.ledSegmentsList.size();
-    int segmentIndex = (frameCount + nSegments + 1) % size;
-
+    int segmentIndex = frame % size;
+    frame++;
+    
     for (int i = 0; i < nSegments; i++) {
       int thisIndex = (segmentIndex + i) % size;
       for (LED led : sign.ledSegmentsList.get(thisIndex)) {
@@ -140,6 +149,58 @@ class LetterSegmentScroller extends DisplayableLEDs {
       }
     }
     // Copy Sign LEDs to PixelMap
+    copyLEDList(sign.ledList);
+    super.update();
+  }
+}
+
+class FlickerSegment extends DisplayableLEDs {
+  Sign sign;
+  int index = 0;
+  float n = 0.0;
+  float nInc = 0.1;
+  float min = 0.5;
+  float max = 1.0;
+
+  FlickerSegment(PixelMap pixelMap, SignStructure structure) {
+    super(pixelMap, structure);
+    SignStructure signStructure = (SignStructure) structure;
+    this.sign = signStructure.sign;
+  }
+
+  void update() {
+    float brightness = random(min, max);
+    LEDList ledList = sign.ledSegmentsList.get(index);
+    for (LED led : ledList) {
+      color c = led.c;
+      led.c = color(red(c) * brightness, green(c) * brightness, blue(c) * brightness);
+    }
+    copyLEDList(sign.ledList);
+    super.update();
+  }
+}
+
+class FlickerLetter extends DisplayableLEDs {
+  Sign sign;
+  Patchable<Integer> index = new Patchable<Integer>(0);
+  float n = 0.0;
+  float nInc = 0.1;
+  float min = 0.5;
+  float max = 1.0;
+
+  FlickerLetter(PixelMap pixelMap, SignStructure structure) {
+    super(pixelMap, structure);
+    SignStructure signStructure = (SignStructure) structure;
+    this.sign = signStructure.sign;
+  }
+
+  void update() {
+    float brightness = random(min, max);
+    LEDList ledList = sign.letterList.get(index.value()).ledList;
+    for (LED led : ledList) {
+      color c = led.c;
+      led.c = color(red(c) * brightness, green(c) * brightness, blue(c) * brightness);
+    }
     copyLEDList(sign.ledList);
     super.update();
   }

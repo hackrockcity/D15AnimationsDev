@@ -3,7 +3,7 @@ import moonpaper.*;
 import moonpaper.opcodes.*;
 
 // Broadcast
-boolean broadcastData = true; 
+boolean broadcastData = false; 
 
 // Colors
 color orange = color(255, 48, 0);
@@ -25,7 +25,7 @@ String ip = "192.168.1.99";
 int port = 9999;
 
 // Set FrameRate
-int fps = 30;        // Frames-per-second
+int fps = 60;        // Frames-per-second
 
 // PixelMap and Structures
 String teatroJSON = "../../teatro16.json";
