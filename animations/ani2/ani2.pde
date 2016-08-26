@@ -3,10 +3,10 @@ import moonpaper.*;
 import moonpaper.opcodes.*;
 
 // Broadcast
-boolean broadcastData = false; 
+boolean broadcastData = true; 
 
 // Colors
-color orange = color(255, 80, 0);
+color orange = color(255, 32, 0);
 color magenta = color(255, 0, 255);
 color pink = color(240, 32, 180);
 color white = color(255);
@@ -19,7 +19,7 @@ String captureFolder = "./frames/";
 // Broadcast
 Broadcast broadcast;
 //String ip = "localhost";  // For simulator 
-String ip = "192.168.7.2"; 
+String ip = "192.168.1.99"; 
 int port = 9999;
 
 // Set FrameRate
@@ -70,6 +70,7 @@ void setup() {
 
   // Setup Broadcasting
   broadcast = new Broadcast(this, pixelMap, ip, port);
+  //broadcast.pg = pixelMap.pg;
   broadcast.pg = g;
 
   // Create sequence

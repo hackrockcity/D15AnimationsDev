@@ -1,7 +1,7 @@
 class Plasma extends DisplayableLEDs {
   Patchable<Float> nInc = new Patchable<Float>(0.01);
   float nx = 0.0;
-  float ny = 0.0;
+  float ny = 1000;
   float xInc = 0.0;
   float yInc = -0.005;
   float phase = 0.0;

@@ -28,7 +28,9 @@ class Broadcast {
 
   private void setup() {
     nPixels = pixelMap.columns * pixelMap.rows;
+    println(nPixels);
     bufferSize =  3 * nPixels + 1;
+    println("bufferSize: " + bufferSize);
     buffer = new byte[bufferSize];
     pg = pixelMap.pg;
 
@@ -45,6 +47,9 @@ class Broadcast {
 
       for (int i = 0; i < nPixels; i++) {
         int offset = i * 3 + 1;
+        //if (i == 0) {
+        //  println("offset: " + offset);
+        //}
         int c = pg.pixels[i];
 
         buffer[offset] = byte((c >> 16) & 0xFF);     // Red 

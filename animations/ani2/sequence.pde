@@ -42,7 +42,9 @@ void createSequence() {
   int plasmaDuration = 90 * fps;
   int plasmaWait = 10 * fps;
   Plasma plasmaSign = new Plasma(pixelMap, signStructure);
-  plasmaSign.phaseInc = 0.01;
+  plasmaSign.phaseInc = 0.001;
+  //plasmaSign.xInc = 0.0;
+  //plasmaSign.yInc = 0.000001;
   mp.seq(new PatchSet(plasmaSign.nInc, (0.01)));
   mp.seq(new PatchSet(plasmaSign.transparency, 0.0));
   mp.seq(new Line(1 * fps, plasmaSign.transparency, 255.0));
