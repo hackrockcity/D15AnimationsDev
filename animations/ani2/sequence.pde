@@ -19,12 +19,17 @@ void createSequence() {
 
 /**
 Animation Ideas:
-Sparkly Letters
+RGB
+TestPattern
 
 Sequencer Fixes:
 Transition between color and white gradients
 */
 
+  // RGB!!!!
+  RGB rgb = new RGB(pixelMap, signStructure);
+  mp.seq(new PushCel(cel0, rgb));  
+  mp.seq(new Wait(60 * fps));
 
 
   // SECTION: SparkleSegment

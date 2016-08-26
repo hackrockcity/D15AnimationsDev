@@ -211,7 +211,7 @@ class SparkleSegment extends DisplayableLEDs {
   float odds = 0.002;
   float decayAmount = 0.04;
   color c = white;
-  
+
   SparkleSegment(PixelMap pixelMap, SignStructure structure) {
     super(pixelMap, structure);
     SignStructure signStructure = (SignStructure) structure;
@@ -230,6 +230,46 @@ class SparkleSegment extends DisplayableLEDs {
         segment.setAll(c);
       }
     }
+
+    copyLEDList(sign.ledList);
+    super.update();
+  }
+}
+
+class RGB extends DisplayableLEDs {
+  Sign sign;
+  int nFrames = 30;
+  int framesLeft = nFrames;
+  ArrayList<Integer> ticks = new ArrayList<Integer>();
+  int currentLetter = 0;
+  color[] colors = {color(255, 0, 0), color(0, 255, 0), color(0, 0, 255)}; 
+
+  RGB(PixelMap pixelMap, SignStructure structure) {
+    super(pixelMap, structure);
+    SignStructure signStructure = (SignStructure) structure;
+    this.sign = signStructure.sign;
+
+    for (int i = 0; i < sign.letterList.size(); i++) {
+      ticks.add(0);
+    }
+  }
+
+  void update() {
+    for (int i = 0; i < ticks.size(); i++) {
+      SignLetter letter = sign.letterList.get(i);
+      letter.ledList.setAll(colors[ticks.get(i)]);
+    }
+    
+    if (--framesLeft == 0) {
+      framesLeft = nFrames;
+      
+      color v = ticks.get(currentLetter);
+      v = (v + 1) % colors.length;
+      ticks.set(currentLetter, v);
+      
+      currentLetter = (currentLetter + 1) % ticks.size();
+    }
+    
 
     copyLEDList(sign.ledList);
     super.update();
