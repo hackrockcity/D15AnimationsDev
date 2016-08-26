@@ -3,7 +3,7 @@ import moonpaper.*;
 import moonpaper.opcodes.*;
 
 // Broadcast
-boolean broadcastData = true; 
+boolean broadcastData = false; 
 
 // Colors
 color orange = color(255, 80, 0);
@@ -44,7 +44,7 @@ void setupPixelMap() {
   pixelMap = new PixelMap();  // Create 2D PixelMap from strips
 
   // Create teatro structure
-  teatro = new Structure(pixelMap, teatroJSON);
+  //teatro = new Structure(pixelMap, teatroJSON);
 
   // Create sign structure
   signStructure = new SignStructure(pixelMap, new Sign());

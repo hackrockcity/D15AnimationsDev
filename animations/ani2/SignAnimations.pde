@@ -119,7 +119,7 @@ class SignAnimationTest3 extends DisplayableLEDs {
 class LetterSegmentScroller extends DisplayableLEDs {
   Sign sign;
   int nSegments = 24;
-
+  
   LetterSegmentScroller(PixelMap pixelMap, SignStructure structure) {
     super(pixelMap, structure);
     SignStructure signStructure = (SignStructure) structure;
@@ -131,8 +131,8 @@ class LetterSegmentScroller extends DisplayableLEDs {
     sign.clear();
 
     int size = sign.ledSegmentsList.size();
-    int segmentIndex = frameCount % size;
-    int nSegments = 24;
+    int segmentIndex = (frameCount + nSegments + 1) % size;
+
     for (int i = 0; i < nSegments; i++) {
       int thisIndex = (segmentIndex + i) % size;
       for (LED led : sign.ledSegmentsList.get(thisIndex)) {
