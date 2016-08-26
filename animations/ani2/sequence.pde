@@ -26,11 +26,17 @@ Sequencer Fixes:
 Transition between color and white gradients
 */
 
+  // TESTING: ----------------------------------------------------
+  // SignTest
+  //SignTester signTester = new SignTester(pixelMap, signStructure);
+  //mp.seq(new PushCel(cel0, signTester));
+  //mp.seq(new Wait(60 * fpm));
+
   // RGB!!!!
   RGB rgb = new RGB(pixelMap, signStructure);
   mp.seq(new PushCel(cel0, rgb));  
   mp.seq(new Wait(60 * fps));
-
+    
 
   // SECTION: SparkleSegment
   SparkleSegment sparkleSegment = new SparkleSegment(pixelMap, signStructure);
