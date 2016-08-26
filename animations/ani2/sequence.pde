@@ -19,11 +19,8 @@ void createSequence() {
 
 /**
 Animation Ideas:
-RGB
-TestPattern
 
 Sequencer Fixes:
-Transition between color and white gradients
 */
 
   // TESTING: ----------------------------------------------------
@@ -33,34 +30,32 @@ Transition between color and white gradients
   //mp.seq(new Wait(60 * fpm));
 
   // RGB!!!!
-  RGB rgb = new RGB(pixelMap, signStructure);
-  mp.seq(new PushCel(cel0, rgb));  
-  mp.seq(new Wait(60 * fps));
+  //RGB rgb = new RGB(pixelMap, signStructure);
+  //mp.seq(new PushCel(cel0, rgb));  
+  //mp.seq(new Wait(60 * fps));
     
 
   // SECTION: SparkleSegment
-  SparkleSegment sparkleSegment = new SparkleSegment(pixelMap, signStructure);
-  mp.seq(new PushCel(cel0, sparkleSegment));
-  mp.seq(new Wait(60 * fps));
-  mp.seq(new Line(30 * fps, sparkleSegment.transparency, 0.0));
+  //SparkleSegment sparkleSegment = new SparkleSegment(pixelMap, signStructure);
+  //mp.seq(new PushCel(cel0, sparkleSegment));
+  //mp.seq(new Wait(120 * fps));
+  //mp.seq(new Line(30 * fps, sparkleSegment.transparency, 0.0));
 
 
   // SECTION: Default Gradient Plasma with some changes -----------------
-  int plasmaDuration = 90 * fps;
-  int plasmaWait = 10 * fps;
+  int plasmaDuration = 2 * fps;
+  int plasmaWait = 2 * fps;
   Plasma plasmaSign = new Plasma(pixelMap, signStructure);
   plasmaSign.phaseInc = 0.001;
-  //plasmaSign.xInc = 0.0;
-  //plasmaSign.yInc = 0.000001;
   mp.seq(new PatchSet(plasmaSign.nInc, (0.01)));
   mp.seq(new PatchSet(plasmaSign.transparency, 0.0));
   mp.seq(new Line(1 * fps, plasmaSign.transparency, 255.0));
   mp.seq(new PushCel(cel0, plasmaSign));
   mp.seq(new Wait(plasmaWait));
   mp.seq(new Line(plasmaDuration, plasmaSign.nInc, 0.1));
-
-  mp.seq(new Wait(plasmaDuration));
   mp.seq(new Wait(plasmaWait));
+  mp.seq(new Line(1 * fps, plasmaSign.transparency, 0));
+  mp.seq(new Wait(1 * fps));
   mp.seq(new PopCel(cel0));
 
 
@@ -93,6 +88,8 @@ Transition between color and white gradients
 
   // White Plasma for Sign
   Plasma whitePlasmaSign = new Plasma(pixelMap, signStructure, whiteGradient);
+  mp.seq(new PatchSet(whitePlasmaSign.transparency, 0.0));
+  mp.seq(new Line(1 * fps, whitePlasmaSign.transparency, 255.0));
   mp.seq(new PatchSet(whitePlasmaSign.nInc, (0.5)));
   mp.seq(new Line(whitePlasmaDuration, whitePlasmaSign.nInc, 0.01));
   mp.seq(new PushCel(cel0, whitePlasmaSign));
