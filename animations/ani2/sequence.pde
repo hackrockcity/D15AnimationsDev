@@ -17,49 +17,28 @@ void createSequence() {
   // Fade in cel
   mp.seq(new Line(1 * fps, cel0.getTransparency(), 255));
 
-  //SparkleDecay sp2 = new SparkleDecay(pixelMap, teatro);
-  //mp.seq(new PushCel(cel0, sp2));
-  //mp.seq(new PatchSet(sp.transparency, 0.0));
-  //mp.seq(new Line(5 * fps, sp.transparency, 255.0));
-
-
-  // Plasma
-  //Plasma defaultPlasma = new Plasma(pixelMap, allStructures);
-  //mp.seq(new PatchSet(defaultPlasma.transparency, 255.0));
-  //mp.seq(new PushCel(cel0, defaultPlasma));
-
-
-
-  // Crossfade Plasma to SparkleDecay
-  //SparkleDecay sp = new SparkleDecay(pixelMap, allStructures);
-  //mp.seq(new PushCel(cel0, sp));
-  //mp.seq(new PatchSet(sp.transparency, 0.0));
-  //mp.seq(new Line(5 * fps, sp.transparency, 255.0));
-  //mp.seq(new Line(5 * fps, defaultPlasma.transparency, 0.0));
-
 /**
 
 Transition between color and white gradients
-Fade out white plasma and let it sit of LetterScroller before crossyNoise starts up
 */
 
   // SECTION: Default Gradient Plasma with some changes -----------------
-  //int plasmaDuration = 90 * fps;
-  //int plasmaWait = 10 * fps;
-  //Plasma plasmaSign = new Plasma(pixelMap, signStructure);
-  //plasmaSign.phaseInc = 0.001;
-  ////plasmaSign.xInc = 0.0;
-  ////plasmaSign.yInc = 0.000001;
-  //mp.seq(new PatchSet(plasmaSign.nInc, (0.01)));
-  //mp.seq(new PatchSet(plasmaSign.transparency, 0.0));
-  //mp.seq(new Line(1 * fps, plasmaSign.transparency, 255.0));
-  //mp.seq(new PushCel(cel0, plasmaSign));
-  //mp.seq(new Wait(plasmaWait));
-  //mp.seq(new Line(plasmaDuration, plasmaSign.nInc, 0.1));
+  int plasmaDuration = 90 * fps;
+  int plasmaWait = 10 * fps;
+  Plasma plasmaSign = new Plasma(pixelMap, signStructure);
+  plasmaSign.phaseInc = 0.001;
+  //plasmaSign.xInc = 0.0;
+  //plasmaSign.yInc = 0.000001;
+  mp.seq(new PatchSet(plasmaSign.nInc, (0.01)));
+  mp.seq(new PatchSet(plasmaSign.transparency, 0.0));
+  mp.seq(new Line(1 * fps, plasmaSign.transparency, 255.0));
+  mp.seq(new PushCel(cel0, plasmaSign));
+  mp.seq(new Wait(plasmaWait));
+  mp.seq(new Line(plasmaDuration, plasmaSign.nInc, 0.1));
 
-  //mp.seq(new Wait(plasmaDuration));
-  //mp.seq(new Wait(plasmaWait));
-  //mp.seq(new PopCel(cel0));
+  mp.seq(new Wait(plasmaDuration));
+  mp.seq(new Wait(plasmaWait));
+  mp.seq(new PopCel(cel0));
 
 
   // SECTION: White Gradient --------------------------------------------
@@ -106,16 +85,17 @@ Fade out white plasma and let it sit of LetterScroller before crossyNoise starts
 
 
   //// SECTION: letterSegmentScroller
-  int letterSegmentScrollerWait = 10 * fps;
+  int letterSegmentScrollerWait = 20 * fps;
 
   //mp.seq(new Line(30 * fps, cel1.getTransparency(), 255.0));  // Cels reversed. Big bug. Living with it.
   //mp.seq(new PatchSet(cel0.getTransparency(), 128.0));
   mp.seq(new PatchSet(cel1.getTransparency(), 255.0));
   LetterSegmentScroller letterSegmentScroller = new LetterSegmentScroller(pixelMap, signStructure); 
   //mp.seq(new PatchSet(letterSegmentScroller.transparency, 0.0));
-  //mp.seq(new Line(1 * fps, letterSegmentScroller.transparency, 255.0));
   mp.seq(new PushCel(cel1, letterSegmentScroller));
-  mp.seq(new Wait(4 * fps));
+  mp.seq(new Wait(5 * fps));
+  mp.seq(new Line(20 * fps, whitePlasmaSign.transparency, 0.0));
+  mp.seq(new Wait(letterSegmentScrollerWait));
 
   
   mp.seq(new PopCel(cel0));
@@ -145,6 +125,7 @@ Fade out white plasma and let it sit of LetterScroller before crossyNoise starts
 
   mp.seq(new PopCel(cel0));
 
+  // SECTION: SparkleDecay ---------------------------------------------
   SparkleDecay sparkleDecay = new SparkleDecay(pixelMap, allStructures);
   sparkleDecay.odds = 0.001;
   mp.seq(new PatchSet(sparkleDecay.transparency, 0.0));
