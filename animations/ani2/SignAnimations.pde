@@ -68,8 +68,8 @@ class SignAnimationTest2 extends DisplayableLEDs {
  */
 class SignAnimationTest3 extends DisplayableLEDs {
   Sign sign;
-  color c0 = color(255, 128, 0);
-  color c1 = color(255, 0, 255);
+  color c0 = orange;
+  color c1 = pink;
   ArrayList<Boolean> heliosPattern = new ArrayList<Boolean>();
   float heliosOdds = 0.1;
 

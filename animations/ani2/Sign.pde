@@ -276,22 +276,20 @@ class SignLetterI extends SignLetter {
   SignLetterI() {
     // Remove unnecessary channels
     // TODO: Janky code warning
-    channelSegmentsList.remove(1);
-    channelSegmentsList.remove(1);
-    channelSegmentsList.remove(1);
-    channelList.remove(1);
-    channelList.remove(1);
-    channelList.remove(1);
+    channelSegmentsList.remove(2);
+    channelSegmentsList.remove(2);
+    channelList.remove(2);
+    channelList.remove(2);
 
     // Channel 0
-    add(181, 115, 181, 51, 0);
-    add(181, 23, 181, 3, 0);
-    add(189, 3, 189, 23, 0);
-    add(189, 51, 189, 115, 0);
-    add(197, 115, 197, 51, 0);
-    add(197, 23, 197, 3, 0);
-    add(205, 3, 205, 23, 0);
-    add(205, 51, 205, 115, 0);
+    add(181, 115, 181, 51, 1);
+    add(181, 23, 181, 3, 1);
+    add(189, 3, 189, 23, 1);
+    add(189, 51, 189, 115, 1);
+    add(197, 115, 197, 51, 1);
+    add(197, 23, 197, 3, 1);
+    add(205, 3, 205, 23, 1);
+    add(205, 51, 205, 115, 1);
   }
 }
 
@@ -393,22 +391,23 @@ class SignLetterI2 extends SignLetter {
   SignLetterI2() {
     // Remove unnecessary channels
     // TODO: Janky code warning
-    channelSegmentsList.remove(1);
-    channelSegmentsList.remove(1);
-    channelSegmentsList.remove(1);
-    channelList.remove(1);
-    channelList.remove(1);
-    channelList.remove(1);
+    //channelList.remove(1);
 
     // Channel 0
-    add(791, 115, 791, 51, 0);
-    add(791, 23, 791, 3, 0);
-    add(799, 3, 799, 23, 0);
-    add(799, 51, 799, 115, 0);
-    add(807, 115, 807, 51, 0);
-    add(807, 23, 807, 3, 0);
-    add(815, 3, 815, 23, 0);
-    add(815, 51, 815, 115, 0);
+    add(791, 115, 791, 51, 1);
+    add(791, 23, 791, 3, 1);
+    add(799, 3, 799, 23, 1);
+    add(799, 51, 799, 115, 1);
+    add(807, 115, 807, 51, 1);
+    add(807, 23, 807, 3, 1);
+    add(815, 3, 815, 23, 1);
+    add(815, 51, 815, 115, 1);
+
+    channelSegmentsList.remove(2);
+    channelSegmentsList.remove(2);
+    //channelSegmentsList.remove(1);
+    channelList.remove(2);
+    channelList.remove(2);
   }
 }
 

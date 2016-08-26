@@ -6,9 +6,9 @@ import moonpaper.opcodes.*;
 boolean broadcastData = true; 
 
 // Colors
-color orange = color(255, 32, 0);
-color magenta = color(255, 0, 255);
-color pink = color(240, 32, 180);
+color orange = color(255, 48, 0);
+color magenta = color(180, 0, 180);
+color pink = color(212, 0, 128);
 color white = color(255);
 color black = color(0);
 
@@ -20,10 +20,12 @@ String captureFolder = "./frames/";
 Broadcast broadcast;
 //String ip = "localhost";  // For simulator 
 String ip = "192.168.1.99"; 
+//String ip = "192.168.1.255"; 
+//String ip = "255.255.255.255"; 
 int port = 9999;
 
 // Set FrameRate
-int fps = 60;        // Frames-per-second
+int fps = 30;        // Frames-per-second
 
 // PixelMap and Structures
 String teatroJSON = "../../teatro16.json";

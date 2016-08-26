@@ -39,87 +39,87 @@ void createSequence() {
 
 
   // SECTION: Default Gradient Plasma with some changes -----------------
-  int plasmaDuration = 90 * fps;
-  int plasmaWait = 10 * fps;
-  Plasma plasmaSign = new Plasma(pixelMap, signStructure);
-  plasmaSign.phaseInc = 0.001;
-  //plasmaSign.xInc = 0.0;
-  //plasmaSign.yInc = 0.000001;
-  mp.seq(new PatchSet(plasmaSign.nInc, (0.01)));
-  mp.seq(new PatchSet(plasmaSign.transparency, 0.0));
-  mp.seq(new Line(1 * fps, plasmaSign.transparency, 255.0));
-  mp.seq(new PushCel(cel0, plasmaSign));
-  mp.seq(new Wait(plasmaWait));
-  mp.seq(new Line(plasmaDuration, plasmaSign.nInc, 0.5));
+  //int plasmaDuration = 90 * fps;
+  //int plasmaWait = 10 * fps;
+  //Plasma plasmaSign = new Plasma(pixelMap, signStructure);
+  //plasmaSign.phaseInc = 0.001;
+  ////plasmaSign.xInc = 0.0;
+  ////plasmaSign.yInc = 0.000001;
+  //mp.seq(new PatchSet(plasmaSign.nInc, (0.01)));
+  //mp.seq(new PatchSet(plasmaSign.transparency, 0.0));
+  //mp.seq(new Line(1 * fps, plasmaSign.transparency, 255.0));
+  //mp.seq(new PushCel(cel0, plasmaSign));
+  //mp.seq(new Wait(plasmaWait));
+  //mp.seq(new Line(plasmaDuration, plasmaSign.nInc, 0.5));
 
-  mp.seq(new Wait(plasmaDuration));
-  mp.seq(new Wait(plasmaWait));
-  mp.seq(new PopCel(cel0));
+  //mp.seq(new Wait(plasmaDuration));
+  //mp.seq(new Wait(plasmaWait));
+  //mp.seq(new PopCel(cel0));
 
 
   // SECTION: White Gradient --------------------------------------------
-  int whitePlasmaDuration = 90 * fps;
-  int whitePlasmaWait = 10 * fps;
-  //int whitePlasmaDuration = 3 * fps;
-  //int whitePlasmaWait = 3 * fps;
+  //int whitePlasmaDuration = 90 * fps;
+  //int whitePlasmaWait = 10 * fps;
+  ////int whitePlasmaDuration = 3 * fps;
+  ////int whitePlasmaWait = 3 * fps;
 
-  Gradient whiteGradient = new Gradient();
-  float whiteGradientWidth1 = 0.05;
-  float whiteGradientWidth2 = 0.5;
-  whiteGradient.add(color(255), whiteGradientWidth1);
-  whiteGradient.add(color(255, 0), whiteGradientWidth2);
-  whiteGradient.add(color(255, 0), whiteGradientWidth1);
-  whiteGradient.add(color(255), whiteGradientWidth1);
-  whiteGradient.add(color(255, 0), whiteGradientWidth2);
-  whiteGradient.add(color(255, 0), whiteGradientWidth1);
-  whiteGradient.add(color(255), whiteGradientWidth1);
-  whiteGradient.add(color(255, 0), whiteGradientWidth2);
-  whiteGradient.add(color(255, 0), whiteGradientWidth1);
+  //Gradient whiteGradient = new Gradient();
+  //float whiteGradientWidth1 = 0.05;
+  //float whiteGradientWidth2 = 0.5;
+  //whiteGradient.add(color(255), whiteGradientWidth1);
+  //whiteGradient.add(color(255, 0), whiteGradientWidth2);
+  //whiteGradient.add(color(255, 0), whiteGradientWidth1);
+  //whiteGradient.add(color(255), whiteGradientWidth1);
+  //whiteGradient.add(color(255, 0), whiteGradientWidth2);
+  //whiteGradient.add(color(255, 0), whiteGradientWidth1);
+  //whiteGradient.add(color(255), whiteGradientWidth1);
+  //whiteGradient.add(color(255, 0), whiteGradientWidth2);
+  //whiteGradient.add(color(255, 0), whiteGradientWidth1);
 
-  // White Plasma for Teatro
-  //Plasma whitePlasmaTeatro = new Plasma(pixelMap, teatro, whiteGradient);
-  //mp.seq(new PatchSet(whitePlasmaTeatro.nInc, (0.1)));
-  //mp.seq(new PatchSet(whitePlasmaTeatro.transparency, 0.0));
-  //mp.seq(new Line(1 * fps, whitePlasmaTeatro.transparency, 255.0));
-  //mp.seq(new Line(whitePlasmaDuration, whitePlasmaTeatro.nInc, 0.005));
-  //mp.seq(new PushCel(cel0, whitePlasmaTeatro));
+  //// White Plasma for Teatro
+  ////Plasma whitePlasmaTeatro = new Plasma(pixelMap, teatro, whiteGradient);
+  ////mp.seq(new PatchSet(whitePlasmaTeatro.nInc, (0.1)));
+  ////mp.seq(new PatchSet(whitePlasmaTeatro.transparency, 0.0));
+  ////mp.seq(new Line(1 * fps, whitePlasmaTeatro.transparency, 255.0));
+  ////mp.seq(new Line(whitePlasmaDuration, whitePlasmaTeatro.nInc, 0.005));
+  ////mp.seq(new PushCel(cel0, whitePlasmaTeatro));
 
-  // White Plasma for Sign
-  Plasma whitePlasmaSign = new Plasma(pixelMap, signStructure, whiteGradient);
-  mp.seq(new PatchSet(whitePlasmaSign.nInc, (0.5)));
-  mp.seq(new Line(whitePlasmaDuration, whitePlasmaSign.nInc, 0.01));
-  mp.seq(new PushCel(cel0, whitePlasmaSign));
-
-
-  // Wait for Line Envelope
-  mp.seq(new Wait(whitePlasmaDuration));
-
-  // Wait until next change
-  mp.seq(new Wait(whitePlasmaWait));
+  //// White Plasma for Sign
+  //Plasma whitePlasmaSign = new Plasma(pixelMap, signStructure, whiteGradient);
+  //mp.seq(new PatchSet(whitePlasmaSign.nInc, (0.5)));
+  //mp.seq(new Line(whitePlasmaDuration, whitePlasmaSign.nInc, 0.01));
+  //mp.seq(new PushCel(cel0, whitePlasmaSign));
 
 
+  //// Wait for Line Envelope
+  //mp.seq(new Wait(whitePlasmaDuration));
+
+  //// Wait until next change
+  //mp.seq(new Wait(whitePlasmaWait));
 
 
-  // SECTION: letterSegmentScroller
-  int letterSegmentScrollerWait = 10 * fps;
-
-  //mp.seq(new Line(30 * fps, cel1.getTransparency(), 255.0));  // Cels reversed. Big bug. Living with it.
-  //mp.seq(new PatchSet(cel0.getTransparency(), 128.0));
-  mp.seq(new PatchSet(cel1.getTransparency(), 255.0));
-  LetterSegmentScroller letterSegmentScroller = new LetterSegmentScroller(pixelMap, signStructure); 
-  //mp.seq(new PatchSet(letterSegmentScroller.transparency, 0.0));
-  //mp.seq(new Line(1 * fps, letterSegmentScroller.transparency, 255.0));
-  mp.seq(new PushCel(cel1, letterSegmentScroller));
-  mp.seq(new Wait(4 * fps));
-  //mp.seq(new PopCel(cel1));
-  //mp.seq(new Line(10 * fps, cel0.getTransparency(), 0));
 
 
-  mp.seq(new Wait(letterSegmentScrollerWait));
+  //// SECTION: letterSegmentScroller
+  //int letterSegmentScrollerWait = 10 * fps;
+
+  ////mp.seq(new Line(30 * fps, cel1.getTransparency(), 255.0));  // Cels reversed. Big bug. Living with it.
+  ////mp.seq(new PatchSet(cel0.getTransparency(), 128.0));
+  //mp.seq(new PatchSet(cel1.getTransparency(), 255.0));
+  //LetterSegmentScroller letterSegmentScroller = new LetterSegmentScroller(pixelMap, signStructure); 
+  ////mp.seq(new PatchSet(letterSegmentScroller.transparency, 0.0));
+  ////mp.seq(new Line(1 * fps, letterSegmentScroller.transparency, 255.0));
+  //mp.seq(new PushCel(cel1, letterSegmentScroller));
+  //mp.seq(new Wait(4 * fps));
+  ////mp.seq(new PopCel(cel1));
+  ////mp.seq(new Line(10 * fps, cel0.getTransparency(), 0));
 
 
-  //mp.seq(new ClearCels());
-  mp.seq(new PopCel(cel0));
+  //mp.seq(new Wait(letterSegmentScrollerWait));
+
+
+  ////mp.seq(new ClearCels());
+  //mp.seq(new PopCel(cel0));
 
 
   // Sign Animation Test 3
