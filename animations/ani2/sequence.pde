@@ -18,9 +18,21 @@ void createSequence() {
   mp.seq(new Line(1 * fps, cel0.getTransparency(), 255));
 
 /**
+Animation Ideas:
+Sparkly Letters
 
+Sequencer Fixes:
 Transition between color and white gradients
 */
+
+
+
+  // SECTION: SparkleSegment
+  SparkleSegment sparkleSegment = new SparkleSegment(pixelMap, signStructure);
+  mp.seq(new PushCel(cel0, sparkleSegment));
+  mp.seq(new Wait(60 * fps));
+  mp.seq(new Line(30 * fps, sparkleSegment.transparency, 0.0));
+
 
   // SECTION: Default Gradient Plasma with some changes -----------------
   int plasmaDuration = 90 * fps;

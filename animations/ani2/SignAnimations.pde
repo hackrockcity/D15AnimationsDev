@@ -107,7 +107,7 @@ class CrossyAnimation extends DisplayableLEDs {
     } else {
       heliosPattern.add(0, false);
     }
-    
+
     if (heliosPattern.size() == sign.ledList.size()) {
       heliosPattern.remove(sign.ledList.size() - 1);
     }
@@ -141,7 +141,7 @@ class LetterSegmentScroller extends DisplayableLEDs {
     int size = sign.ledSegmentsList.size();
     int segmentIndex = frame % size;
     frame++;
-    
+
     for (int i = 0; i < nSegments; i++) {
       int thisIndex = (segmentIndex + i) % size;
       for (LED led : sign.ledSegmentsList.get(thisIndex)) {
@@ -201,6 +201,36 @@ class FlickerLetter extends DisplayableLEDs {
       color c = led.c;
       led.c = color(red(c) * brightness, green(c) * brightness, blue(c) * brightness);
     }
+    copyLEDList(sign.ledList);
+    super.update();
+  }
+}
+
+class SparkleSegment extends DisplayableLEDs {
+  Sign sign;
+  float odds = 0.002;
+  float decayAmount = 0.04;
+  color c = white;
+  
+  SparkleSegment(PixelMap pixelMap, SignStructure structure) {
+    super(pixelMap, structure);
+    SignStructure signStructure = (SignStructure) structure;
+    this.sign = signStructure.sign;
+  }
+
+  void update() {
+    for (LEDList segment : sign.ledSegmentsList) {
+      if (random(1.0) < odds) {
+        // Set all to color
+        segment.setAll(c);
+      } else {
+        // Decay all LEDs here
+        LED led = segment.get(0);
+        color c = lerpColor(led.c, black, decayAmount);
+        segment.setAll(c);
+      }
+    }
+
     copyLEDList(sign.ledList);
     super.update();
   }

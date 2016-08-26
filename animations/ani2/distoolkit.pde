@@ -336,8 +336,14 @@ class LED {
     this.c = c;
   }
 }
+
 // LEDList or Strip or Channel
 class LEDList extends ArrayList<LED> {
+  void setAll(color c) {
+    for (LED led : this) {
+      led.c = c;
+    }
+  }
 }
 
 // StripList of ChannelList
