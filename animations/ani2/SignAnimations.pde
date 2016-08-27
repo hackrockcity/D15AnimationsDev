@@ -369,7 +369,6 @@ class ShootingStars extends DisplayableLEDs {
       Star star = (Star) iter.next();
       star.update();
       if (star.framesLeft == 0) {
-        println("removed");
         iter.remove();
       }
     }

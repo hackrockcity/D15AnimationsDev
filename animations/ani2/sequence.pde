@@ -16,13 +16,14 @@ void createSequence() {
 
   // Fade in cel
   mp.seq(new Line(1 * fps, cel0.getTransparency(), 255));
+  //mp.seq(new Line(1 * fps, cel1.getTransparency(), 255));
 
-/**
-Animation Ideas:
-UDP Simulator (sample and hold)
-
-Sequencer Fixes:
-*/
+  /**
+   Animation Ideas:
+   UDP Simulator (sample and hold)
+   
+   Sequencer Fixes:
+   */
 
   // TESTING: ----------------------------------------------------
   // SignTest
@@ -34,7 +35,7 @@ Sequencer Fixes:
   //RGB rgb = new RGB(pixelMap, signStructure);
   //mp.seq(new PushCel(cel0, rgb));  
   //mp.seq(new Wait(60 * fps));
-    
+
 
   // SECTION: SparkleSegment
   //SparkleSegment sparkleSegment = new SparkleSegment(pixelMap, signStructure);
@@ -48,8 +49,8 @@ Sequencer Fixes:
   ShootingStars shootingStars = new ShootingStars(pixelMap, allStructures);
   mp.seq(new PushCel(cel0, shootingStars));  
   mp.seq(new Wait(60 * fps));
-  
-  
+
+
 
   // SECTION: Default Gradient Plasma with some changes -----------------
   int plasmaDuration = 120 * fps;
@@ -58,7 +59,7 @@ Sequencer Fixes:
   plasmaSign.phaseInc = 0.001;
   mp.seq(new PatchSet(plasmaSign.nInc, (0.01)));
   mp.seq(new PatchSet(plasmaSign.transparency, 0.0));
-  mp.seq(new Line(10 * fps, plasmaSign.transparency, 255.0));
+  mp.seq(new Line(10 * fps, plasmaSign.transparency, 255.0));  
   mp.seq(new PushCel(cel0, plasmaSign));
   mp.seq(new Wait(30 * fps));
   mp.seq(new Line(1 * fps, shootingStars.transparency, 0.0));
@@ -69,7 +70,7 @@ Sequencer Fixes:
   mp.seq(new Line(1 * fps, plasmaSign.transparency, 0));
   mp.seq(new Wait(1 * fps));
   mp.seq(new PopCel(cel0));
-  
+
 
   // SECTION: White Gradient --------------------------------------------
   int whitePlasmaDuration = 90 * fps;
@@ -129,7 +130,7 @@ Sequencer Fixes:
   mp.seq(new Line(20 * fps, whitePlasmaSign.transparency, 0.0));
   mp.seq(new Wait(letterSegmentScrollerWait));
 
-  
+
   mp.seq(new PopCel(cel0));
 
   // SECTION: CrossyAnimation ---------------------------------------------------
@@ -162,7 +163,7 @@ Sequencer Fixes:
   sparkleDecay.odds = 0.001;
   mp.seq(new PatchSet(sparkleDecay.transparency, 0.0));
   mp.seq(new PushCel(cel0, sparkleDecay));
-  
+
   mp.seq(new PatchSet(crossyAnimation.isGenerating, false));
   mp.seq(new Wait(20 * fps));
   mp.seq(new Line(3 * fps, crossyAnimation.transparency, 0.0));

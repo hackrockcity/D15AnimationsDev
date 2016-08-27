@@ -21,7 +21,7 @@ class Sign {
     createLEDSegmentsList();
     createAllChannelsList();
     setDimensions();
-    //displayNumPixelsPerLetter();
+    displayNumPixelsPerLetter();
   }
 
   private void createAllChannelsList() {
@@ -131,7 +131,7 @@ class Sign {
 
 // SignLetter is more or less a conversion from d14signmask.png to an object.
 abstract class SignLetter {
-  boolean displayInfo = false;
+  boolean displayInfo = true;
   int nChannels = 4;
   float spacer = 1;  // Space between pixels
   int xOffset = -3;
@@ -162,7 +162,7 @@ abstract class SignLetter {
     LEDList strip = new LEDList();
 
     if (displayInfo) {
-      print(this.getClass().getSimpleName() + " Channel " + channelIndex + "  nLeds: ");
+      println(this.getClass().getSimpleName() + " Channel " + channelIndex + "  nLeds: ");
     }
 
     // Horizontal strip
