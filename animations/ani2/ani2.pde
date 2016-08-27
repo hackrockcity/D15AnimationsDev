@@ -1,6 +1,7 @@
 import hypermedia.net.*;
 import moonpaper.*;
 import moonpaper.opcodes.*;
+import java.util.Iterator;
 
 // Broadcast
 boolean broadcastData = false; 

@@ -308,3 +308,72 @@ class SignTester extends DisplayableLEDs {
     super.update();
   }
 }
+
+class ShootingStars extends DisplayableLEDs {
+  color c = orange;
+  int index = 0;
+  int nStarsPerFrame = 20;
+  int nFrames = 60;
+  StarList starList = new StarList();
+
+  class StarList extends ArrayList<Star> {
+  }
+
+  class Star {
+    int position;
+    int direction;
+    color c;
+    int framesLeft = fps;
+    int nFrames;
+
+    Star(int position, color c, int nFrames, int direction) {
+      this.position = position;
+      this.c = c;
+      this.direction = direction;
+      this.nFrames = nFrames;
+      framesLeft = this.nFrames;
+    }
+
+    void update() {
+      
+      leds.get(position).c = lerpColor(white, color(0, 0), (float) framesLeft / (float) nFrames);
+      position += direction;
+      position %= leds.size();
+      if (position < 0) {
+        position += leds.size();
+      }
+      framesLeft--;
+    }
+  }
+
+  ShootingStars(PixelMap pixelMap, Structure structure) {
+    super(pixelMap, structure);
+  }
+
+  void update() {
+    clear();
+
+    for (int i = 0; i < nStarsPerFrame; i++) {
+      int position = (int) random(leds.size());
+      int direction = random(1.0) < 0.5 ? 1 : -1;
+      Star star = new Star(position, c, nFrames, direction * (int) random(1, 2));
+      starList.add(star);
+    }
+
+    for (Star star : starList) {
+      star.update();
+    }
+
+    Iterator iter = starList.iterator(); 
+    while (iter.hasNext()) {
+      Star star = (Star) iter.next();
+      star.update();
+      if (star.framesLeft == 0) {
+        println("removed");
+        iter.remove();
+      }
+    }
+
+    super.update();
+  }
+}

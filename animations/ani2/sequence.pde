@@ -19,6 +19,7 @@ void createSequence() {
 
 /**
 Animation Ideas:
+UDP Simulator (sample and hold)
 
 Sequencer Fixes:
 */
@@ -42,26 +43,37 @@ Sequencer Fixes:
   //mp.seq(new Line(30 * fps, sparkleSegment.transparency, 0.0));
 
 
+
+  // SECTION: Shooting Stars
+  ShootingStars shootingStars = new ShootingStars(pixelMap, allStructures);
+  mp.seq(new PushCel(cel0, shootingStars));  
+  mp.seq(new Wait(60 * fps));
+  
+  
+
   // SECTION: Default Gradient Plasma with some changes -----------------
-  int plasmaDuration = 2 * fps;
-  int plasmaWait = 2 * fps;
+  int plasmaDuration = 120 * fps;
+  int plasmaWait = 120 * fps;
   Plasma plasmaSign = new Plasma(pixelMap, signStructure);
   plasmaSign.phaseInc = 0.001;
   mp.seq(new PatchSet(plasmaSign.nInc, (0.01)));
   mp.seq(new PatchSet(plasmaSign.transparency, 0.0));
-  mp.seq(new Line(1 * fps, plasmaSign.transparency, 255.0));
+  mp.seq(new Line(10 * fps, plasmaSign.transparency, 255.0));
   mp.seq(new PushCel(cel0, plasmaSign));
+  mp.seq(new Wait(30 * fps));
+  mp.seq(new Line(1 * fps, shootingStars.transparency, 0.0));
+  mp.seq(new Wait(10 * fps));
   mp.seq(new Wait(plasmaWait));
   mp.seq(new Line(plasmaDuration, plasmaSign.nInc, 0.1));
   mp.seq(new Wait(plasmaWait));
   mp.seq(new Line(1 * fps, plasmaSign.transparency, 0));
   mp.seq(new Wait(1 * fps));
   mp.seq(new PopCel(cel0));
-
+  
 
   // SECTION: White Gradient --------------------------------------------
-  int whitePlasmaDuration = 10 * fps;
-  int whitePlasmaWait = 10 * fps;
+  int whitePlasmaDuration = 90 * fps;
+  int whitePlasmaWait = 90 * fps;
   //int whitePlasmaDuration = 3 * fps;
   //int whitePlasmaWait = 3 * fps;
 
@@ -135,7 +147,7 @@ Sequencer Fixes:
 
   mp.seq(new PushCel(cel0, flickerLetter));
   int flickerWaitCounter = 0;
-  int flickerWaitTime = 20 * fps;
+  int flickerWaitTime = 90 * fps;
   while (flickerWaitCounter < flickerWaitTime) {
     mp.seq(new PatchSet(flickerLetter.index, (int) random(9)));
     int w = 2 * fps / (int) random(1, 6);
@@ -155,7 +167,7 @@ Sequencer Fixes:
   mp.seq(new Wait(20 * fps));
   mp.seq(new Line(3 * fps, crossyAnimation.transparency, 0.0));
   mp.seq(new Line(3 * fps, sparkleDecay.transparency, 255.0));
-  mp.seq(new Wait(60 * fps));
+  mp.seq(new Wait(120 * fps));
   //mp.seq(new PopCel(cel0));
   //mp.seq(new PopCel(cel0));
 
