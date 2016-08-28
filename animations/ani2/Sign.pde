@@ -161,9 +161,6 @@ abstract class SignLetter {
     // Create strip
     LEDList strip = new LEDList();
 
-    if (displayInfo) {
-      println(this.getClass().getSimpleName() + " Channel " + channelIndex + "  nLeds: ");
-    }
 
     // Horizontal strip
     if (y0 == y1) {
@@ -194,6 +191,11 @@ abstract class SignLetter {
       println("Illegal strip added:");
       println(x0 + ", " + y0 + ", " + x1 + ", " + y1 + ", " + channelIndex);
       exit();
+    }
+
+    if (displayInfo) {
+      print(this.getClass().getSimpleName() + " Channel " + channelIndex + "  nLeds: ");
+      println(strip.size());
     }
 
     // Add LEDs to their channel
@@ -254,13 +256,13 @@ class SignLetterD extends SignLetter {
 
     // Channel 1 
     add(11, 99, 11, 19, 1);
-    add(11, 11, 119, 11, 1);
+    add(11, 11, 111, 11, 1);
     add(131, 23, 131, 95, 1);
     add(119, 107, 11, 107, 1);
 
     // Channel 2 
-    add(19, 91, 19, 19, 2);
-    add(23, 19, 119, 19, 2);
+    add(19, 91, 19, 15, 2);
+    add(19, 19, 119, 19, 2);
     add(123, 23, 123, 95, 2);
     add(119, 99, 19, 99, 2);
 

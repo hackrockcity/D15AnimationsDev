@@ -2,9 +2,16 @@ import hypermedia.net.*;
 import moonpaper.*;
 import moonpaper.opcodes.*;
 import java.util.Iterator;
+import java.io.*;
 
 // Broadcast
 boolean broadcastData = false; 
+
+// Save Stream
+//OutputStream outputStream; 
+
+FileOutputStream signStream;
+String signFile = "disorientSign";
 
 // Colors
 color orange = color(255, 48, 0);
@@ -81,9 +88,23 @@ void setup() {
 
   // Print dimension sketches
   println("Sketch dimensions: " + width, ", " + height);
+
+
+  // Files
+  //outputStream = createOutput("DisSignAnimation");
+  try {
+    signStream = new FileOutputStream("./foo");
+  } 
+  catch (FileNotFoundException e) {
+    println("file not found");
+    exit();
+  }
+  
+  exit();
 }
 
 void draw() {
+
   background(0);
 
   // Update and display animation
@@ -99,4 +120,7 @@ void draw() {
   if (broadcastData) {
     broadcast.update();
   }
+
+  // Create Byte File
+
 }

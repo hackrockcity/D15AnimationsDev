@@ -169,6 +169,9 @@ void createSequence() {
   mp.seq(new Line(3 * fps, crossyAnimation.transparency, 0.0));
   mp.seq(new Line(3 * fps, sparkleDecay.transparency, 255.0));
   mp.seq(new Wait(120 * fps));
+  
+  mp.seq(new ExitSketch());
+  
   //mp.seq(new PopCel(cel0));
   //mp.seq(new PopCel(cel0));
 
