@@ -50,7 +50,6 @@ void createSequence() {
   mp.seq(new PushCel(cel0, sparkleSegmentAll));
 
 
-  
   SparkleSegment sparkleSegment = new SparkleSegment(pixelMap, signStructure);
   mp.seq(new PushCel(cel0, sparkleSegment));
   mp.seq(new Wait(120 * fps));
@@ -60,25 +59,34 @@ void createSequence() {
   // SECTION: Shooting Stars
   ShootingStars shootingStars = new ShootingStars(pixelMap, allStructures);
   mp.seq(new PushCel(cel0, shootingStars));  
-  mp.seq(new Wait(60 * fps));
+  mp.seq(new Wait(120 * fps));
 
 
 
   // SECTION: Default Gradient Plasma with some changes -----------------
   int plasmaDuration = 120 * fps;
   int plasmaWait = 120 * fps;
+
+  Plasma plasmaTeatro = new Plasma(pixelMap, teatro);
+  plasmaTeatro.phaseInc = 0.001;
   Plasma plasmaSign = new Plasma(pixelMap, signStructure);
   plasmaSign.phaseInc = 0.001;
+  mp.seq(new PatchSet(plasmaTeatro.nInc, (0.01)));
+  mp.seq(new PatchSet(plasmaTeatro.transparency, 0.0));
   mp.seq(new PatchSet(plasmaSign.nInc, (0.01)));
   mp.seq(new PatchSet(plasmaSign.transparency, 0.0));
+  mp.seq(new Line(10 * fps, plasmaTeatro.transparency, 255.0));  
   mp.seq(new Line(10 * fps, plasmaSign.transparency, 255.0));  
   mp.seq(new PushCel(cel0, plasmaSign));
+  mp.seq(new PushCel(cel0, plasmaTeatro));
   mp.seq(new Wait(30 * fps));
   mp.seq(new Line(1 * fps, shootingStars.transparency, 0.0));
   mp.seq(new Wait(10 * fps));
   mp.seq(new Wait(plasmaWait));
+  mp.seq(new Line(plasmaDuration, plasmaTeatro.nInc, 0.1));
   mp.seq(new Line(plasmaDuration, plasmaSign.nInc, 0.1));
   mp.seq(new Wait(plasmaWait));
+  mp.seq(new Line(1 * fps, plasmaTeatro.transparency, 0));
   mp.seq(new Line(1 * fps, plasmaSign.transparency, 0));
   mp.seq(new Wait(1 * fps));
   mp.seq(new PopCel(cel0));
@@ -104,12 +112,12 @@ void createSequence() {
   whiteGradient.add(color(255, 0), whiteGradientWidth1);
 
   // White Plasma for Teatro
-  //Plasma whitePlasmaTeatro = new Plasma(pixelMap, teatro, whiteGradient);
-  //mp.seq(new PatchSet(whitePlasmaTeatro.nInc, (0.1)));
-  //mp.seq(new PatchSet(whitePlasmaTeatro.transparency, 0.0));
-  //mp.seq(new Line(1 * fps, whitePlasmaTeatro.transparency, 255.0));
-  //mp.seq(new Line(whitePlasmaDuration, whitePlasmaTeatro.nInc, 0.005));
-  //mp.seq(new PushCel(cel0, whitePlasmaTeatro));
+  Plasma whitePlasmaTeatro = new Plasma(pixelMap, teatro, whiteGradient);
+  mp.seq(new PatchSet(whitePlasmaTeatro.nInc, (0.1)));
+  mp.seq(new PatchSet(whitePlasmaTeatro.transparency, 0.0));
+  mp.seq(new Line(1 * fps, whitePlasmaTeatro.transparency, 255.0));
+  mp.seq(new Line(whitePlasmaDuration, whitePlasmaTeatro.nInc, 0.005));
+  mp.seq(new PushCel(cel0, whitePlasmaTeatro));
 
   // White Plasma for Sign
   Plasma whitePlasmaSign = new Plasma(pixelMap, signStructure, whiteGradient);
@@ -169,6 +177,12 @@ void createSequence() {
   }
 
   mp.seq(new PopCel(cel0));
+
+
+
+  // Fade out Plasma 
+  mp.seq(new Line(20 * fps, whitePlasmaTeatro.transparency, 0.0));
+
 
   // SECTION: SparkleDecay ---------------------------------------------
   SparkleDecay sparkleDecay = new SparkleDecay(pixelMap, allStructures);
