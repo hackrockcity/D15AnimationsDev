@@ -3,7 +3,7 @@ import moonpaper.opcodes.*;
 
 public class ExitSketch extends MoonCodeEvent {
   @Override
-    public void exec() {
+  public void exec() {
     println("ExitSketch.exec() at Frame " + frameCount);
     if (captureStream) {
       try {
@@ -11,7 +11,6 @@ public class ExitSketch extends MoonCodeEvent {
       } 
       catch (IOException e) {
         println("Can't close file");
-        exit();
       }
     }
     exit();

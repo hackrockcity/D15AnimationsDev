@@ -32,27 +32,35 @@ void createSequence() {
   //mp.seq(new Wait(60 * fpm));
 
   // RGB!!!!
-  ShootingStars shootingStars = new ShootingStars(pixelMap, teatro);
-  mp.seq(new PushCel(cel0, shootingStars));  
+  //ShootingStars shootingStarsTest = new ShootingStars(pixelMap, teatro);
+  //mp.seq(new PushCel(cel0, shootingStarsTest));  
 
-  RGB rgb = new RGB(pixelMap, signStructure);
-  mp.seq(new PushCel(cel0, rgb));  
-  mp.seq(new Wait(60 * fps));
-  mp.seq(new ExitSketch());
+  //RGB rgb = new RGB(pixelMap, signStructure);
+  //mp.seq(new PushCel(cel0, rgb));  
+  //mp.seq(new Wait(10 * fps));
+  //mp.seq(new ExitSketch());
 
+
+
+
+  // MAIN SEQUENCE STARTS HERE -------------------------------------------------
 
   // SECTION: SparkleSegment
+  SparkleSegmentAll sparkleSegmentAll= new SparkleSegmentAll(pixelMap, teatro);
+  mp.seq(new PushCel(cel0, sparkleSegmentAll));
+
+
+  
   SparkleSegment sparkleSegment = new SparkleSegment(pixelMap, signStructure);
   mp.seq(new PushCel(cel0, sparkleSegment));
   mp.seq(new Wait(120 * fps));
+  mp.seq(new Line(30 * fps, sparkleSegmentAll.transparency, 0.0));
   mp.seq(new Line(30 * fps, sparkleSegment.transparency, 0.0));
 
-
-
   // SECTION: Shooting Stars
-  //ShootingStars shootingStars = new ShootingStars(pixelMap, allStructures);
-  //mp.seq(new PushCel(cel0, shootingStars));  
-  //mp.seq(new Wait(60 * fps));
+  ShootingStars shootingStars = new ShootingStars(pixelMap, allStructures);
+  mp.seq(new PushCel(cel0, shootingStars));  
+  mp.seq(new Wait(60 * fps));
 
 
 

@@ -236,6 +236,49 @@ class SparkleSegment extends DisplayableLEDs {
   }
 }
 
+class SparkleSegmentAll extends DisplayableLEDs {
+  float odds = 0.002;
+  float decayAmount = 0.04;
+  color c = white;
+  int maxLength = 30;
+  int minLength = 4;
+  LEDList tempList = new LEDList();
+
+  SparkleSegmentAll(PixelMap pixelMap, Structure structure) {
+    super(pixelMap, structure);
+
+    for (int i = 0; i < leds.size(); i++) {
+      tempList.add(new LED());
+    }
+  }
+
+  void update() {
+    //clear();
+
+    int startIndex = (int) random(0, leds.size());
+    int endIndex = startIndex + (int) random(minLength, maxLength);
+    endIndex = min(endIndex, leds.size());
+
+    for (int i = 0; i < tempList.size(); i++) {
+      LED led = tempList.get(i);
+      color c = lerpColor(led.c, black, decayAmount);
+      led.c = c;
+    }
+
+    if (random(1.0) < 0.5) {
+      for (int i = startIndex; i < endIndex; i++) {
+        tempList.get(i).c = white;
+      }
+    }
+
+    for (int i = 0; i < tempList.size(); i++) {
+      leds.get(i).c = tempList.get(i).c;
+    }
+    super.update();
+  }
+}
+
+
 class RGB extends DisplayableLEDs {
   Sign sign;
   int nFrames = 10;
@@ -334,7 +377,7 @@ class ShootingStars extends DisplayableLEDs {
     }
 
     void update() {
-      
+
       leds.get(position).c = lerpColor(white, color(0, 0), (float) framesLeft / (float) nFrames);
       position += direction;
       position %= leds.size();

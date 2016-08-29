@@ -338,7 +338,7 @@ class LED {
 }
 
 // LEDList or Strip or Channel
-class LEDList extends ArrayList<LED> {
+  class LEDList extends ArrayList<LED> {
   void setAll(color c) {
     for (LED led : this) {
       led.c = c;

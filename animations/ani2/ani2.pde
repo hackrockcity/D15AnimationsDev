@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.io.*;
 
 // Do you have a flag?
-boolean captureFrames = true;
-boolean captureStream = true;
+boolean captureFrames = false;
+boolean captureStream = false;
 boolean broadcastData = false; 
 
 // Save Stream
@@ -33,7 +33,7 @@ String ip = "192.168.1.99";
 int port = 9999;
 
 // Set FrameRate
-int fps = 300;        // Frames-per-second
+int fps = 60;        // Frames-per-second
 
 // PixelMap and Structures
 String teatroJSON = "../../teatro16.json";
@@ -73,7 +73,7 @@ void settings() {
 
 void setup() {
   surface.setResizable(true);
-  frameRate(fps);
+  frameRate(60);
 
   // Load in structures and create master PixelMap
   setupPixelMap();
@@ -113,6 +113,12 @@ void draw() {
     println("Capturing stream");
   }
 
+  // Capture frame
+  if (captureFrames) {
+    saveFrame(captureFolder + "f########.png");
+  }
+
+
   // Save bytes
   if (captureStream) {
     try {
@@ -130,28 +136,8 @@ void draw() {
     }
   }
 
-
-  //exit();
-  //if (frameCount == 10 && captureStream) {
-  //  try {
-  //    signStream.close();
-  //  } 
-  //  catch (IOException e) {
-  //    println("Can't close file");
-  //    exit();
-  //  }
-  //  exit();
-  //}
-
-  // Capture frame
-  if (captureFrames) {
-    saveFrame(captureFolder + "f########.png");
-  }
-
   // Broadcast to simulator
   if (broadcastData) {
     broadcast.update();
   }
-
-  // Create Byte File
 }
