@@ -32,10 +32,13 @@ void createSequence() {
   //mp.seq(new Wait(60 * fpm));
 
   // RGB!!!!
-  //RGB rgb = new RGB(pixelMap, signStructure);
-  //mp.seq(new PushCel(cel0, rgb));  
-  //mp.seq(new Wait(60 * fps));
-  //mp.seq(new ExitSketch());
+  ShootingStars shootingStars = new ShootingStars(pixelMap, teatro);
+  mp.seq(new PushCel(cel0, shootingStars));  
+
+  RGB rgb = new RGB(pixelMap, signStructure);
+  mp.seq(new PushCel(cel0, rgb));  
+  mp.seq(new Wait(60 * fps));
+  mp.seq(new ExitSketch());
 
 
   // SECTION: SparkleSegment
@@ -47,9 +50,9 @@ void createSequence() {
 
 
   // SECTION: Shooting Stars
-  ShootingStars shootingStars = new ShootingStars(pixelMap, allStructures);
-  mp.seq(new PushCel(cel0, shootingStars));  
-  mp.seq(new Wait(60 * fps));
+  //ShootingStars shootingStars = new ShootingStars(pixelMap, allStructures);
+  //mp.seq(new PushCel(cel0, shootingStars));  
+  //mp.seq(new Wait(60 * fps));
 
 
 

@@ -4,11 +4,12 @@ import moonpaper.opcodes.*;
 import java.util.Iterator;
 import java.io.*;
 
-// Broadcast
+// Do you have a flag?
+boolean captureFrames = true;
+boolean captureStream = true;
 boolean broadcastData = false; 
 
 // Save Stream
-boolean captureStream = false;
 FileOutputStream signStream;
 String signFile = "disorientSign";
 
@@ -20,8 +21,8 @@ color white = color(255);
 color black = color(0);
 
 // Turn on frame capture
-boolean captureFrames = false;
-String captureFolder = "./frames/";
+//String captureFolder = "./frames/";
+String captureFolder = "./testframes/";
 
 // Broadcast
 Broadcast broadcast;
@@ -32,7 +33,7 @@ String ip = "192.168.1.99";
 int port = 9999;
 
 // Set FrameRate
-int fps = 60;        // Frames-per-second
+int fps = 300;        // Frames-per-second
 
 // PixelMap and Structures
 String teatroJSON = "../../teatro16.json";
@@ -55,7 +56,7 @@ void setupPixelMap() {
   pixelMap = new PixelMap();  // Create 2D PixelMap from strips
 
   // Create teatro structure
-  //teatro = new Structure(pixelMap, teatroJSON);
+  teatro = new Structure(pixelMap, teatroJSON);
 
   // Create sign structure
   signStructure = new SignStructure(pixelMap, new Sign());

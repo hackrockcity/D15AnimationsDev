@@ -276,7 +276,6 @@ class RGB extends DisplayableLEDs {
   }
 }
 
-
 class SignTester extends DisplayableLEDs {
   Sign sign;
 
