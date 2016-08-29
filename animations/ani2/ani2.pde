@@ -8,8 +8,7 @@ import java.io.*;
 boolean broadcastData = false; 
 
 // Save Stream
-//OutputStream outputStream; 
-
+boolean captureStream = false;
 FileOutputStream signStream;
 String signFile = "disorientSign";
 
@@ -91,16 +90,14 @@ void setup() {
 
 
   // Files
-  //outputStream = createOutput("DisSignAnimation");
   try {
-    signStream = new FileOutputStream("./foo");
+    //signStream = new FileOutputStream("/Users/jacobjoaquin/Documents/BM2016/D15AnimationsDev/animations/ani2/");
+    signStream = new FileOutputStream("./disorientSignBytes");
   } 
   catch (FileNotFoundException e) {
     println("file not found");
     exit();
   }
-  
-  exit();
 }
 
 void draw() {
@@ -110,6 +107,40 @@ void draw() {
   // Update and display animation
   mp.update();
   mp.display();
+
+  if (captureStream && frameCount == 1) {
+    println("Capturing stream");
+  }
+
+  // Save bytes
+  if (captureStream) {
+    try {
+      int bufferLength = broadcast.buffer.length;
+
+      for (int i = 0; i < bufferLength; i++) { 
+        signStream.write(broadcast.buffer[i]);
+      }
+    } 
+    catch (IOException e) {
+      println(e);
+      println("Can't write to buffer");
+      println("FrameCount = " + frameCount);
+      exit();
+    }
+  }
+
+
+  //exit();
+  //if (frameCount == 10 && captureStream) {
+  //  try {
+  //    signStream.close();
+  //  } 
+  //  catch (IOException e) {
+  //    println("Can't close file");
+  //    exit();
+  //  }
+  //  exit();
+  //}
 
   // Capture frame
   if (captureFrames) {
@@ -122,5 +153,4 @@ void draw() {
   }
 
   // Create Byte File
-
 }

@@ -35,13 +35,14 @@ void createSequence() {
   //RGB rgb = new RGB(pixelMap, signStructure);
   //mp.seq(new PushCel(cel0, rgb));  
   //mp.seq(new Wait(60 * fps));
+  //mp.seq(new ExitSketch());
 
 
   // SECTION: SparkleSegment
-  //SparkleSegment sparkleSegment = new SparkleSegment(pixelMap, signStructure);
-  //mp.seq(new PushCel(cel0, sparkleSegment));
-  //mp.seq(new Wait(120 * fps));
-  //mp.seq(new Line(30 * fps, sparkleSegment.transparency, 0.0));
+  SparkleSegment sparkleSegment = new SparkleSegment(pixelMap, signStructure);
+  mp.seq(new PushCel(cel0, sparkleSegment));
+  mp.seq(new Wait(120 * fps));
+  mp.seq(new Line(30 * fps, sparkleSegment.transparency, 0.0));
 
 
 
@@ -169,15 +170,6 @@ void createSequence() {
   mp.seq(new Line(3 * fps, crossyAnimation.transparency, 0.0));
   mp.seq(new Line(3 * fps, sparkleDecay.transparency, 255.0));
   mp.seq(new Wait(120 * fps));
-  
+
   mp.seq(new ExitSketch());
-  
-  //mp.seq(new PopCel(cel0));
-  //mp.seq(new PopCel(cel0));
-
-
-  // Exit sketch
-  if (captureFrames) {
-    mp.seq(new ExitSketch());
-  }
 }
