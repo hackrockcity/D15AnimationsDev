@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.io.*;
 
 // Do you have a flag?
-boolean captureFrames = true;
-boolean captureStream = true;
+boolean captureFrames = false;
+boolean captureStream = false;
 boolean broadcastData = false; 
 
 // Save Stream
@@ -27,7 +27,10 @@ String captureFolder = "./testframes/";
 // Broadcast
 Broadcast broadcast;
 //String ip = "localhost";  // For simulator 
-String ip = "192.168.1.99"; 
+//String ip = "192.168.1.99";  // Side of container 
+String ip = "192.168.8.104"; 
+
+
 //String ip = "192.168.1.255"; 
 //String ip = "255.255.255.255"; 
 int port = 9999;
@@ -37,7 +40,7 @@ int fps = 60;        // Frames-per-second
 
 // PixelMap and Structures
 String teatroJSON = "../../teatro16.json";
-Structure teatro;
+//Structure teatro;
 SignStructure signStructure;
 PixelMap pixelMap;  // PixelMap is the master canvas which all animations will draw to
 Moonpaper mp;
@@ -56,7 +59,7 @@ void setupPixelMap() {
   pixelMap = new PixelMap();  // Create 2D PixelMap from strips
 
   // Create teatro structure
-  teatro = new Structure(pixelMap, teatroJSON);
+  //teatro = new Structure(pixelMap, teatroJSON);
 
   // Create sign structure
   signStructure = new SignStructure(pixelMap, new Sign());
@@ -73,7 +76,7 @@ void settings() {
 
 void setup() {
   surface.setResizable(true);
-  frameRate(60);
+  frameRate(120);
 
   // Load in structures and create master PixelMap
   setupPixelMap();

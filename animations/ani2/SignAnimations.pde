@@ -285,7 +285,8 @@ class RGB extends DisplayableLEDs {
   int framesLeft = nFrames;
   ArrayList<Integer> ticks = new ArrayList<Integer>();
   int currentLetter = 0;
-  color[] colors = {color(255, 0, 0), color(0, 255, 0), color(0, 0, 255)}; 
+  //color[] colors = {color(255, 0, 0), color(0, 255, 0), color(0, 0, 255)}; 
+  color[] colors = {orange, pink, white}; 
 
   RGB(PixelMap pixelMap, SignStructure structure) {
     super(pixelMap, structure);
