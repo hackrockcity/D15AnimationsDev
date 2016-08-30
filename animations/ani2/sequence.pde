@@ -47,16 +47,18 @@ void createSequence() {
 
   // MAIN SEQUENCE STARTS HERE -------------------------------------------------
 
+  int duration = 30 * fps;
+
   // SECTION: Shooting Stars
   ShootingStars shootingStars = new ShootingStars(pixelMap, allStructures);
   mp.seq(new PushCel(cel0, shootingStars));  
-  mp.seq(new Wait(40 * fps));
+  mp.seq(new Wait(duration));
 
 
 
   // SECTION: Default Gradient Plasma with some changes -----------------
-  int plasmaDuration = 30 * fps;
-  int plasmaWait = 30 * fps;
+  int plasmaDuration = duration;
+  int plasmaWait = duration;
 
   //Plasma plasmaTeatro = new Plasma(pixelMap, teatro);
   //plasmaTeatro.phaseInc = 0.001;
@@ -67,28 +69,26 @@ void createSequence() {
   mp.seq(new PatchSet(plasmaSign.nInc, (0.01)));
   mp.seq(new PatchSet(plasmaSign.transparency, 0.0));
   //mp.seq(new Line(10 * fps, plasmaTeatro.transparency, 255.0));  
-  mp.seq(new Line(10 * fps, plasmaSign.transparency, 255.0));  
+  mp.seq(new Line(duration / 3, plasmaSign.transparency, 255.0));  
   mp.seq(new PushCel(cel0, plasmaSign));
   //mp.seq(new PushCel(cel0, plasmaTeatro));
-  mp.seq(new Wait(30 * fps));
+  mp.seq(new Wait(duration));
   mp.seq(new Line(1 * fps, shootingStars.transparency, 0.0));
-  mp.seq(new Wait(10 * fps));
+  mp.seq(new Wait(duration / 3));
   mp.seq(new Wait(plasmaWait));
   //mp.seq(new Line(plasmaDuration, plasmaTeatro.nInc, 0.1));
   mp.seq(new Line(plasmaDuration, plasmaSign.nInc, 0.1));
   mp.seq(new Wait(plasmaWait));
   //mp.seq(new Line(1 * fps, plasmaTeatro.transparency, 0));
-  mp.seq(new Line(1 * fps, plasmaSign.transparency, 0));
-  mp.seq(new Wait(1 * fps));
+  mp.seq(new Line(15, plasmaSign.transparency, 0));
+  mp.seq(new Wait(15));
   mp.seq(new PopCel(cel0));
 
 
   
   // SECTION: White Gradient --------------------------------------------
-  int whitePlasmaDuration = 30 * fps;
-  int whitePlasmaWait = 30 * fps;
-  //int whitePlasmaDuration = 3 * fps;
-  //int whitePlasmaWait = 3 * fps;
+  int whitePlasmaDuration = duration;
+  int whitePlasmaWait = duration;
 
   Gradient whiteGradient = new Gradient();
   float whiteGradientWidth1 = 0.05;
@@ -113,8 +113,6 @@ void createSequence() {
 
   // White Plasma for Sign
   Plasma whitePlasmaSign = new Plasma(pixelMap, signStructure, whiteGradient);
-  mp.seq(new PatchSet(whitePlasmaSign.transparency, 0.0));
-  mp.seq(new Line(1 * fps, whitePlasmaSign.transparency, 255.0));
   mp.seq(new PatchSet(whitePlasmaSign.nInc, (0.5)));
   mp.seq(new Line(whitePlasmaDuration, whitePlasmaSign.nInc, 0.01));
   mp.seq(new PushCel(cel0, whitePlasmaSign));
@@ -130,7 +128,7 @@ void createSequence() {
 
 
   ////// SECTION: letterSegmentScroller
-  int letterSegmentScrollerWait = 20 * fps;
+  int letterSegmentScrollerWait = duration;
 
   //mp.seq(new Line(30 * fps, cel1.getTransparency(), 255.0));  // Cels reversed. Big bug. Living with it.
   //mp.seq(new PatchSet(cel0.getTransparency(), 128.0));
@@ -139,7 +137,7 @@ void createSequence() {
   //mp.seq(new PatchSet(letterSegmentScroller.transparency, 0.0));
   mp.seq(new PushCel(cel1, letterSegmentScroller));
   mp.seq(new Wait(5 * fps));
-  mp.seq(new Line(20 * fps, whitePlasmaSign.transparency, 0.0));
+  mp.seq(new Line(duration / 2, whitePlasmaSign.transparency, 0.0));
   mp.seq(new Wait(letterSegmentScrollerWait));
   mp.seq(new PopCel(cel0));
 
@@ -149,8 +147,8 @@ void createSequence() {
   mp.seq(new PatchSet(crossyAnimation.heliosOdds, 0.001));
   mp.seq(new Line(1 * fps, crossyAnimation.heliosOdds, 0.15));
   mp.seq(new PushCel(cel0, crossyAnimation));
-  mp.seq(new Wait(30 * fps));
-  mp.seq(new Line(30 * fps, letterSegmentScroller.transparency, 0.0));
+  mp.seq(new Wait(duration));
+  mp.seq(new Line(duration, letterSegmentScroller.transparency, 0.0));
 
   // FlickerLetter
   FlickerLetter flickerLetter = new FlickerLetter(pixelMap, signStructure);
@@ -158,8 +156,7 @@ void createSequence() {
 
   mp.seq(new PushCel(cel0, flickerLetter));
   int flickerWaitCounter = 0;
-  int flickerWaitTime = 30 * fps;
-  while (flickerWaitCounter < flickerWaitTime) {
+  while (flickerWaitCounter < duration) {
     mp.seq(new PatchSet(flickerLetter.index, (int) random(9)));
     int w = 2 * fps / (int) random(1, 6);
     flickerWaitCounter += w;
@@ -182,9 +179,9 @@ void createSequence() {
 
   mp.seq(new PatchSet(crossyAnimation.isGenerating, false));
   mp.seq(new Wait(20 * fps));
-  mp.seq(new Line(3 * fps, crossyAnimation.transparency, 0.0));
-  mp.seq(new Line(3 * fps, sparkleDecay.transparency, 255.0));
-  mp.seq(new Wait(30 * fps));
+  mp.seq(new Line(duration / 3, crossyAnimation.transparency, 0.0));
+  mp.seq(new Line(duration / 3, sparkleDecay.transparency, 255.0));
+  mp.seq(new Wait(duration));
 
   mp.seq(new ExitSketch());
 }

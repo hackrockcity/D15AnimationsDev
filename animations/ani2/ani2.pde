@@ -6,7 +6,7 @@ import java.io.*;
 
 // Do you have a flag?
 boolean captureFrames = false;
-boolean captureStream = false;
+boolean captureStream = true;
 boolean broadcastData = false; 
 
 // Save Stream
