@@ -8,12 +8,12 @@ void createSequence() {
   // Start of sequence
   mp.seq(new ClearCels());
   mp.seq(new PushCel(cel0, pixelMap));
-  mp.seq(new PatchSet(cel0.getTransparency(), 0.0));
+  mp.seq(new PatchSet(cel0.getTransparency(), 255.));
   mp.seq(new PushCel(cel1, pixelMap));
   mp.seq(new PatchSet(cel1.getTransparency(), 0.0));
 
   // Fade in cel
-  mp.seq(new Line(1 * fps, cel0.getTransparency(), 255));
+  //mp.seq(new Line(1 * fps, cel0.getTransparency(), 255));
   //mp.seq(new Line(1 * fps, cel1.getTransparency(), 255));
 
   /**
@@ -47,10 +47,11 @@ void createSequence() {
 
   // MAIN SEQUENCE STARTS HERE -------------------------------------------------
 
-  int duration = 30 * fps;
+  int duration = 10 * fps;
 
   // SECTION: Shooting Stars
   ShootingStars shootingStars = new ShootingStars(pixelMap, allStructures);
+  mp.seq(new PatchSet(shootingStars.nStarsPerFrame, 20));
   mp.seq(new PushCel(cel0, shootingStars));  
   mp.seq(new Wait(duration));
 
@@ -85,7 +86,7 @@ void createSequence() {
   mp.seq(new PopCel(cel0));
 
 
-  
+
   // SECTION: White Gradient --------------------------------------------
   int whitePlasmaDuration = duration;
   int whitePlasmaWait = duration;
@@ -115,8 +116,14 @@ void createSequence() {
   Plasma whitePlasmaSign = new Plasma(pixelMap, signStructure, whiteGradient);
   mp.seq(new PatchSet(whitePlasmaSign.nInc, (0.5)));
   mp.seq(new Line(whitePlasmaDuration, whitePlasmaSign.nInc, 0.01));
-  mp.seq(new PushCel(cel0, whitePlasmaSign));
 
+  // Colorize stars
+  ArrayList<Integer> shootingStarsOrangePink = new ArrayList<Integer>();
+  shootingStarsOrangePink.add(orange);
+  shootingStarsOrangePink.add(pink);
+  mp.seq(new SetShootStarsColors(shootingStars, shootingStarsOrangePink));
+  mp.seq(new Line(whitePlasmaDuration, shootingStars.transparency, 255.0));
+  mp.seq(new PushCel(cel0, whitePlasmaSign));
 
   // Wait for Line Envelope
   mp.seq(new Wait(whitePlasmaDuration));
@@ -127,7 +134,7 @@ void createSequence() {
 
 
 
-  ////// SECTION: letterSegmentScroller
+  // SECTION: letterSegmentScroller ---------------------------------------------
   int letterSegmentScrollerWait = duration;
 
   //mp.seq(new Line(30 * fps, cel1.getTransparency(), 255.0));  // Cels reversed. Big bug. Living with it.

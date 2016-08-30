@@ -353,11 +353,11 @@ class SignTester extends DisplayableLEDs {
 }
 
 class ShootingStars extends DisplayableLEDs {
-  color c = orange;
   int index = 0;
-  int nStarsPerFrame = 20;
+  Patchable<Integer> nStarsPerFrame = new Patchable<Integer>(20);
   int nFrames = 60;
   StarList starList = new StarList();
+  ArrayList<Integer> possibleColors = new ArrayList<Integer>();
 
   class StarList extends ArrayList<Star> {
   }
@@ -378,8 +378,7 @@ class ShootingStars extends DisplayableLEDs {
     }
 
     void update() {
-
-      leds.get(position).c = lerpColor(white, color(0, 0), (float) framesLeft / (float) nFrames);
+      leds.get(position).c = lerpColor(c, color(0, 0), (float) framesLeft / (float) nFrames);
       position += direction;
       position %= leds.size();
       if (position < 0) {
@@ -389,16 +388,22 @@ class ShootingStars extends DisplayableLEDs {
     }
   }
 
+  //MoonCodeEvent foo() {
+  //  return
+  //}
+
   ShootingStars(PixelMap pixelMap, Structure structure) {
     super(pixelMap, structure);
+    possibleColors.add(white);
   }
 
   void update() {
     clear();
 
-    for (int i = 0; i < nStarsPerFrame; i++) {
+    for (int i = 0; i < nStarsPerFrame.value(); i++) {
       int position = (int) random(leds.size());
       int direction = random(1.0) < 0.5 ? 1 : -1;
+      color c = possibleColors.get((int) random(possibleColors.size()));
       Star star = new Star(position, c, nFrames, direction * (int) random(1, 2));
       starList.add(star);
     }
@@ -417,5 +422,19 @@ class ShootingStars extends DisplayableLEDs {
     }
 
     super.update();
+  }
+}
+
+class SetShootStarsColors extends MoonCodeEvent {
+  ShootingStars shootingStars;
+  ArrayList<Integer> possibleColors;
+  SetShootStarsColors(ShootingStars shootingStars, ArrayList<Integer> possibleColors) {
+    this.shootingStars = shootingStars;
+    this.possibleColors = possibleColors;
+  }
+
+  @Override
+    public void exec() {
+      shootingStars.possibleColors = possibleColors;
   }
 }
