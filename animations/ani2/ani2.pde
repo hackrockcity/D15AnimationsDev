@@ -39,8 +39,8 @@ int port = 9999;
 int fps = 60;        // Frames-per-second
 
 // PixelMap and Structures
-String teatroJSON = "../../teatro16.json";
-//Structure teatro;
+String teatroJSON = "../../teatro16half.json";
+Structure teatro;
 SignStructure signStructure;
 PixelMap pixelMap;  // PixelMap is the master canvas which all animations will draw to
 Moonpaper mp;
@@ -59,7 +59,7 @@ void setupPixelMap() {
   pixelMap = new PixelMap();  // Create 2D PixelMap from strips
 
   // Create teatro structure
-  //teatro = new Structure(pixelMap, teatroJSON);
+  teatro = new Structure(pixelMap, teatroJSON);
 
   // Create sign structure
   signStructure = new SignStructure(pixelMap, new Sign());
@@ -105,7 +105,6 @@ void setup() {
 }
 
 void draw() {
-
   background(0);
 
   // Update and display animation
@@ -121,6 +120,8 @@ void draw() {
     saveFrame(captureFolder + "f########.png");
   }
 
+  // Broadcast to simulator
+  broadcast.update();
 
   // Save bytes
   if (captureStream) {
@@ -137,10 +138,5 @@ void draw() {
       println("FrameCount = " + frameCount);
       exit();
     }
-  }
-
-  // Broadcast to simulator
-  if (broadcastData) {
-    broadcast.update();
   }
 }
