@@ -6,7 +6,7 @@ void createSequence2017() {
   Cel cel1 = mp.createCel(width, height);
 
   // INIT
-  int duration = 3 * fps;  // Time between sections
+  int duration = 10 * fps;  // Time between sections
   mp.seq(new ClearCels());
   mp.seq(new PushCel(cel0, pixelMap));
   mp.seq(new PatchSet(cel0.getTransparency(), 255.0));
@@ -20,7 +20,7 @@ void createSequence2017() {
 
   // TEST
   SparkleScroller foo = new SparkleScroller(pixelMap, teatro);
-  foo.setText("disorient");
+  foo.setText("disor1e7t    disorioriorient   ");
   mp.seq(new PushCel(cel0, foo));
   mp.seq(new Wait(duration));
   mp.seq(new PatchSet(foo.transparency, 0.0));
@@ -96,16 +96,18 @@ void createSequence2017() {
   mp.seq(new PopCel(cel0));
   // //// Fade out Plasma
   mp.seq(new Line(20 * fps, whitePlasmaTeatro.transparency, 0.0));
+  mp.seq(new Line(20 * fps, shootingStars.transparency, 0.0));
+  mp.seq(new Wait(40 * fps));
 
   // // SECTION: SparkleDecay ---------------------------------------------
-  SparkleDecay sparkleDecay = new SparkleDecay(pixelMap, allStructures);
-  sparkleDecay.odds = 0.005;
-
-  mp.seq(new PushCel(cel0, sparkleDecay));
-
-  mp.seq(new Wait(20 * fps));
-  mp.seq(new Line(duration / 3, sparkleDecay.transparency, 255.0));
-  mp.seq(new Wait(duration));
+  // SparkleDecay sparkleDecay = new SparkleDecay(pixelMap, allStructures);
+  // sparkleDecay.odds = 0.005;
+  //
+  // mp.seq(new PushCel(cel0, sparkleDecay));
+  //
+  // mp.seq(new Wait(20 * fps));
+  // mp.seq(new Line(duration / 3, sparkleDecay.transparency, 255.0));
+  // mp.seq(new Wait(duration));
 
   mp.seq(new ExitSketch());
 }

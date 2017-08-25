@@ -12,7 +12,7 @@ class SparkleScroller extends DisplayableLEDs {
 
     void update() {
       c = color(phase * 256);
-      phase += phaseInc;
+      phase += phaseInc + random(phaseInc);
       if (phase < 0) {
         phase += 1;
       } else if (phase >= 1.0) {
@@ -26,7 +26,7 @@ class SparkleScroller extends DisplayableLEDs {
   int xOffset = 0;
   int yOffset = 2;
   int speed = -1;
-  int xScale = 3;
+  int xScale = 4;
   String text = "hello world";
   private ArrayList<Pixel> pList = new ArrayList<Pixel>();
   int textWidth;
@@ -64,7 +64,8 @@ class SparkleScroller extends DisplayableLEDs {
 
   void setText(String s) {
     text = s;
-    pList = new ArrayList<Pixel>();
+    pList = new ArrayList<Pixel>(); // Reset pList
+
     // Create pixels from font
     ArrayList<PVector> points = df.getPoints(text);
     println(points);
@@ -75,12 +76,7 @@ class SparkleScroller extends DisplayableLEDs {
         pTemp.x += i;
         pList.add(new Pixel(pTemp));
       }
-      // pList.add(new Pixel(p));
     }
-
-    // for (Pixel pixel : pList) {
-    //   pixel.p.x *= xScale;
-    // }
 
     // start text to the right
     for (Pixel pixel : pList) {
