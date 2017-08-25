@@ -6,6 +6,7 @@ void createSequence2017() {
   Cel cel1 = mp.createCel(width, height);
 
   // INIT
+  int duration = 4 * fps;  // Time between sections
   mp.seq(new ClearCels());
   mp.seq(new PushCel(cel0, pixelMap));
   mp.seq(new PatchSet(cel0.getTransparency(), 255.0));
@@ -16,8 +17,16 @@ void createSequence2017() {
   //mp.seq(new Line(1 * fps, cel0.getTransparency(), 255));
   //mp.seq(new Line(1 * fps, cel1.getTransparency(), 255));
 
+
+  // TEST
+  DisplayableLEDsTest foo = new DisplayableLEDsTest(pixelMap, teatro);
+  mp.seq(new PushCel(cel0, foo));
+  mp.seq(new Wait(duration));
+
+
+
+
   // MAIN SEQUENCE STARTS HERE -------------------------------------------------
-  int duration = 4 * fps;  // Time between sections
 
   // SECTION: Shooting Stars
   ShootingStars shootingStars = new ShootingStars(pixelMap, allStructures);

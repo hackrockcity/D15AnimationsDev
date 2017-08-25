@@ -45,6 +45,10 @@ SignStructure signStructure;
 PixelMap pixelMap;  // PixelMap is the master canvas which createSequence2017 animations will draw to
 Moonpaper mp;
 
+// Important
+int teatroWidth = 135;
+int teatroHeigt = 12;
+
 // Animation
 void verifySize() {
   if (width != pixelMap.pg.width || height != pixelMap.pg.height) {
