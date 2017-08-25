@@ -62,7 +62,7 @@ void setupPixelMap() {
   teatro = new Structure(pixelMap, teatroJSON);
 
   // Create sign structure
-  signStructure = new SignStructure(pixelMap, new Sign());
+  // signStructure = new SignStructure(pixelMap, new Sign());
 
   // Once all structures are loaded, finalize the pixelMap
   pixelMap.finalize();
@@ -76,7 +76,12 @@ void settings() {
 
 void setup() {
   surface.setResizable(true);
-  frameRate(120);
+  frameRate(fps);
+
+  // Fastest possible if capturing
+  if (captureFrames) {
+    frameRate(480);
+  }
 
   // Load in structures and create master PixelMap
   setupPixelMap();
