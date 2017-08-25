@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.io.*;
 
 // Do you have a flag?
-boolean captureFrames = false;
+boolean captureFrames = true;
 boolean captureStream = false;
 boolean broadcastData = false;
 
@@ -49,6 +49,9 @@ Moonpaper mp;
 int teatroWidth = 135;
 int teatroHeigt = 12;
 
+// Font
+FontDisorient2017  df = new FontDisorient2017 ();
+
 // Animation
 void verifySize() {
   if (width != pixelMap.pg.width || height != pixelMap.pg.height) {
@@ -83,9 +86,9 @@ void setup() {
   frameRate(fps);
 
   // Fastest possible if capturing
-  if (captureFrames) {
-    frameRate(480);
-  }
+  //if (captureFrames) {
+  //  frameRate(480);
+  //}
 
   // Load in structures and create master PixelMap
   setupPixelMap();

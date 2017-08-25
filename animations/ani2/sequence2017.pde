@@ -19,9 +19,10 @@ void createSequence2017() {
 
 
   // TEST
-  DisplayableLEDsTest foo = new DisplayableLEDsTest(pixelMap, teatro);
+  DisorientFont foo = new DisorientFont(pixelMap, teatro);
   mp.seq(new PushCel(cel0, foo));
   mp.seq(new Wait(duration));
+  mp.seq(new PatchSet(foo.transparency, 0.0));
 
 
 
