@@ -13,7 +13,7 @@ Strips strips;
 PVector theCamera = new PVector(0, eyeHeight, 0);
 PixelMap pixelMap;
 String ip = "localhost";
-int port = 6100;
+int port = 9999;
 
 
 PeasyCam g_pCamera;
@@ -60,7 +60,7 @@ void setup() {
   Strips teatro = new Strips();
   loadStrips(teatro, "../teatro.json");
   strips.addAll(teatro);
-  teatro_model = loadShape("../teatro.obj");
+  //teatro_model = loadShape("../teatro.obj");
 
   // Load asterix
   pushMatrix();

@@ -143,6 +143,26 @@ class FontDisorient2017 {
     popStyle();
   }
 
+  ArrayList<PVector> getPoints(String s) {
+    ArrayList<PVector> list = new ArrayList<PVector>();
+    int xOffset = 0;
+
+    for (char c : s.toCharArray()) {
+      ArrayList<PVector> pList = getPoints(c);
+      for (PVector p : pList) {
+        p.x += xOffset;
+      }
+      xOffset += getCharWidth(c) + 1;
+
+      // This is what you get when you don't have internet/stackoverflow
+      for (PVector p : pList) {
+        list.add(p);
+      }
+    }
+
+    return list;
+  }
+
   ArrayList<PVector> getPoints(char c) {
     ArrayList<PVector> list = new ArrayList<PVector>();
 

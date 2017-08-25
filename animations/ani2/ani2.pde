@@ -26,9 +26,9 @@ String captureFolder = "./testframes/";
 
 // Broadcast
 Broadcast broadcast;
-//String ip = "localhost";  // For simulator
+String ip = "localhost";  // For simulator
 //String ip = "192.168.1.99";  // Side of container
-String ip = "192.168.8.104";
+//String ip = "192.168.8.104";
 
 
 //String ip = "192.168.1.255";
@@ -47,7 +47,7 @@ Moonpaper mp;
 
 // Important
 int teatroWidth = 135;
-int teatroHeigt = 12;
+int teatroHeight = 12;
 
 // Font
 FontDisorient2017  df = new FontDisorient2017 ();
