@@ -6,8 +6,8 @@ import java.io.*;
 
 // Do you have a flag?
 boolean captureFrames = false;
-boolean captureStream = true;
-boolean broadcastData = false; 
+boolean captureStream = false;
+boolean broadcastData = false;
 
 // Save Stream
 FileOutputStream signStream;
@@ -26,23 +26,23 @@ String captureFolder = "./testframes/";
 
 // Broadcast
 Broadcast broadcast;
-//String ip = "localhost";  // For simulator 
-//String ip = "192.168.1.99";  // Side of container 
-String ip = "192.168.8.104"; 
+//String ip = "localhost";  // For simulator
+//String ip = "192.168.1.99";  // Side of container
+String ip = "192.168.8.104";
 
 
-//String ip = "192.168.1.255"; 
-//String ip = "255.255.255.255"; 
+//String ip = "192.168.1.255";
+//String ip = "255.255.255.255";
 int port = 9999;
 
 // Set FrameRate
-int fps = 60;        // Frames-per-second
+int fps = 30;        // Frames-per-second
 
 // PixelMap and Structures
 String teatroJSON = "../../teatro16half.json";
 Structure teatro;
 SignStructure signStructure;
-PixelMap pixelMap;  // PixelMap is the master canvas which all animations will draw to
+PixelMap pixelMap;  // PixelMap is the master canvas which createSequence2017 animations will draw to
 Moonpaper mp;
 
 // Animation
@@ -55,7 +55,7 @@ void verifySize() {
 }
 
 void setupPixelMap() {
-  // Setup Virtual LED Installation  
+  // Setup Virtual LED Installation
   pixelMap = new PixelMap();  // Create 2D PixelMap from strips
 
   // Create teatro structure
@@ -87,7 +87,7 @@ void setup() {
   broadcast.pg = g;
 
   // Create sequence
-  createSequence();
+  createSequence2017();
 
   // Print dimension sketches
   println("Sketch dimensions: " + width, ", " + height);
@@ -97,7 +97,7 @@ void setup() {
   try {
     //signStream = new FileOutputStream("/Users/jacobjoaquin/Documents/BM2016/D15AnimationsDev/animations/ani2/");
     signStream = new FileOutputStream("./disorientSignBytes");
-  } 
+  }
   catch (FileNotFoundException e) {
     println("file not found");
     exit();
@@ -128,10 +128,10 @@ void draw() {
     try {
       int bufferLength = broadcast.buffer.length;
 
-      for (int i = 0; i < bufferLength; i++) { 
+      for (int i = 0; i < bufferLength; i++) {
         signStream.write(broadcast.buffer[i]);
       }
-    } 
+    }
     catch (IOException e) {
       println(e);
       println("Can't write to buffer");
