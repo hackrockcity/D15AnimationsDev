@@ -36,7 +36,7 @@ String ip = "localhost";  // For simulator
 int port = 9999;
 
 // Set FrameRate
-int fps = 30;        // Frames-per-second
+int fps = 60;        // Frames-per-second
 
 // PixelMap and Structures
 String teatroJSON = "../../teatro16half.json";

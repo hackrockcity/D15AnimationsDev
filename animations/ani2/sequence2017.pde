@@ -6,7 +6,7 @@ void createSequence2017() {
   Cel cel1 = mp.createCel(width, height);
 
   // INIT
-  int duration = 4 * fps;  // Time between sections
+  int duration = 30 * fps;  // Time between sections
   mp.seq(new ClearCels());
   mp.seq(new PushCel(cel0, pixelMap));
   mp.seq(new PatchSet(cel0.getTransparency(), 255.0));
@@ -19,7 +19,8 @@ void createSequence2017() {
 
 
   // TEST
-  DisorientFont foo = new DisorientFont(pixelMap, teatro);
+  Scroller foo = new Scroller(pixelMap, teatro);
+  foo.setText("Disorioriorient");
   mp.seq(new PushCel(cel0, foo));
   mp.seq(new Wait(duration));
   mp.seq(new PatchSet(foo.transparency, 0.0));
