@@ -25,7 +25,7 @@ class SparkleScroller extends DisplayableLEDs {
   Patchable<Float> brightness = new Patchable<Float>(1.0);
   int xOffset = 0;
   int yOffset = 2;
-  int speed = -1;
+  int speed = -2;
   int xScale = 4;
   String text = "hello world";
   private ArrayList<Pixel> pList = new ArrayList<Pixel>();
