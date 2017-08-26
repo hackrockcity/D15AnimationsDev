@@ -1,5 +1,5 @@
 void createSequence2017() {
-  int fpm = fps * 60;  // Frames-per-minute
+  float sawInc = 0.033;
   StructurePixelMap allStructures = new StructurePixelMap(pixelMap);
   mp = new Moonpaper(this);
   Cel cel0 = mp.createCel(width, height);
@@ -18,17 +18,17 @@ void createSequence2017() {
   //mp.seq(new Line(1 * fps, cel1.getTransparency(), 255));
 
 
-  // TEST
+  // Start Sparkle Scroller
   SparkleScroller foo = new SparkleScroller(pixelMap, teatro);
-  foo.setText("disor1e7t              disor1e7t              disor1e7t              disor1e7t              disorioriorient");
+  foo.setText("disor1e7t       disor1e7t       disor1e7t       disor1e7t       disorioriorient");
   mp.seq(new PushCel(cel0, foo));
 
-  // Pseudo
-  // Saw(duration, bpm, Patchable<Float>
-  mp.seq(new Saw(10 * fps, 144, foo.brightness));
+
+  // Saw
+  // mp.seq(new Saw(10 * fps, sawInc, foo.brightness));
 
 
-  mp.seq(new Wait(duration));
+  mp.seq(new Wait(duration / 2));
 
 
 
@@ -38,7 +38,9 @@ void createSequence2017() {
   ShootingStars shootingStars = new ShootingStars(pixelMap, allStructures);
   mp.seq(new PatchSet(shootingStars.nStarsPerFrame, 20));
   mp.seq(new PushCel(cel0, shootingStars));
+  mp.seq(new Saw(duration + duration / 2, -sawInc, foo.brightness));
   mp.seq(new Wait(duration));
+
 
   // SECTION: Default Gradient Plasma with some changes -----------------
   int plasmaDuration = duration;
@@ -57,8 +59,10 @@ void createSequence2017() {
   mp.seq(new Line(plasmaDuration, plasmaTeatro.nInc, 0.02));
   mp.seq(new Wait(plasmaWait));
   mp.seq(new Line(15, plasmaTeatro.transparency, 0));
+  mp.seq(new Saw(15 * fps, -sawInc, foo.brightness));
   mp.seq(new Wait(15));
   mp.seq(new PopCel(cel0));
+
 
   // // SECTION: White Gradient --------------------------------------------
   int whitePlasmaDuration = duration;
@@ -84,11 +88,11 @@ void createSequence2017() {
   mp.seq(new PushCel(cel0, whitePlasmaTeatro));
 
   // // Colorize stars
-  ArrayList<Integer> shootingStarsPink = new ArrayList<Integer>();
-  shootingStarsPink.add(pink);
-  mp.seq(new SetShootStarsColors(shootingStars, shootingStarsPink));
-  mp.seq(new PatchSet(shootingStars.nStarsPerFrame, 10));
-  mp.seq(new Line(whitePlasmaDuration, shootingStars.transparency, 255.0));
+  // ArrayList<Integer> shootingStarsPink = new ArrayList<Integer>();
+  // shootingStarsPink.add(pink);
+  // mp.seq(new SetShootStarsColors(shootingStars, shootingStarsPink));
+  // mp.seq(new PatchSet(shootingStars.nStarsPerFrame, 10));
+  // mp.seq(new Line(whitePlasmaDuration, shootingStars.transparency, 255.0));
 
   // // Wait for Line Envelope
   mp.seq(new Wait(whitePlasmaDuration));

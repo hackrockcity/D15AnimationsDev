@@ -6,12 +6,15 @@ public class Saw extends MoonCodeGenerator {
   private float phase = 1.0;
   private float phaseInc = 0;
   private Patchable<Float> value;
+  private float initialValue;
 
-  public Saw(int nFrames, float bpm, Patchable<Float> value) {
+  public Saw(int nFrames, float phaseInc, Patchable<Float> value) {
     this.nFrames = nFrames;
-    phaseInc = -0.04;
+    this.phaseInc = phaseInc;
     this.value = value;
     this.counter = nFrames;
+    
+    initialValue = value.value();
   }
 
   @Override
@@ -36,6 +39,7 @@ public class Saw extends MoonCodeGenerator {
 
     // Release
     if (counter <= 0) {
+      value.set(initialValue);
       release();
     }
   }

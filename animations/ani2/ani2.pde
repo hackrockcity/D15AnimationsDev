@@ -37,6 +37,7 @@ int port = 9999;
 
 // Set FrameRate
 int fps = 60;        // Frames-per-second
+int fpm = fps * 60;  // Frames-per-minute
 
 // PixelMap and Structures
 String teatroJSON = "../../teatro16half.json";

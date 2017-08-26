@@ -35,7 +35,7 @@ void drawPlane() {
 }
 
 void setup() {
-  size(1600, 1200, P3D);
+  size(640, 460, P3D);
   frameRate(60);
   
   //g_pCamera = new PeasyCam(this, 0, 1.2, 0, 4);
@@ -63,23 +63,24 @@ void setup() {
   //teatro_model = loadShape("../teatro.obj");
 
   // Load asterix
-  pushMatrix();
-  //  scale(1, -1, 1);
-  translate(0, 0, -2000);
-  Strips asterix = new Strips();
-  loadStrips(asterix, "../asterix.json");
-  for (Strip strip : asterix) {
-    for (LED led : strip.leds) {
-      led.position.y *= -1;
-    }
-  }
-  popMatrix();
-  strips.addAll(asterix);
+  //pushMatrix();
+  ////  scale(1, -1, 1);
+  //translate(0, 0, -2000);
+  //Strips asterix = new Strips();
+  //loadStrips(asterix, "../asterix.json");
+  //for (Strip strip : asterix) {
+  //  for (LED led : strip.leds) {
+  //    led.position.y *= -1;
+  //  }
+  //}
+  //popMatrix();
+  
+  //strips.addAll(asterix);
 
   // Load sign
-  Strips sign = new Strips();
-  loadStrips(sign, "../sign.json");
-  strips.addAll(sign);
+  //Strips sign = new Strips();
+  //loadStrips(sign, "../sign.json");
+  //strips.addAll(sign);
 
   // Generate PixelMap
   pixelMap = new PixelMap();
@@ -131,7 +132,7 @@ void draw() {
   scale(30);
   rotateX(-PI/2);
   rotateZ(PI);
-  shape(teatro_model, 0, 0);
+  //shape(teatro_model, 0, 0);
   popMatrix();
 
   pushStyle();
