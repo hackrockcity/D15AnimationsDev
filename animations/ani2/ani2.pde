@@ -85,6 +85,8 @@ void settings() {
 }
 
 void setup() {
+  randomSeed(2017);
+  noiseSeed(2017);
   surface.setResizable(true);
   frameRate(fps);
 
