@@ -95,7 +95,7 @@ void setup() {
   loadWords();
   // words.add("Disorient");
   // words.add("meh");
-  // words.add("10 print 'hello world'  20 goto 10");
+  // words.add("*!@!@#");
 
   // Load in structures and create master PixelMap
   setupPixelMap();

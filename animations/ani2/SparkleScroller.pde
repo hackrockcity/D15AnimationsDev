@@ -13,7 +13,7 @@ class SparkleScroller extends DisplayableLEDs {
 
     void update() {
       // c = color(phase * brightness.value() * 256.0);
-      if (random(1.0) < 0.05) {
+      if (random(1.0) < 0.10) {
         c = lerpColor(black, white, phase * brightness.value());
       } else {
         c = lerpColor(black, baseColor, phase * brightness.value());
@@ -37,9 +37,15 @@ class SparkleScroller extends DisplayableLEDs {
   String text = "default";
   private ArrayList<Pixel> pList = new ArrayList<Pixel>();
   int textWidth;
+  ArrayList<Integer> colors = new ArrayList<Integer>();
+  int colorsIndex = 0;
 
   SparkleScroller(PixelMap pixelMap, Structure structure) {
     super(pixelMap, structure);
+    colors.add(white);
+    colors.add(orange);
+    colors.add(magenta);
+    colors.add(pink);
   }
 
   // void init() {
@@ -90,7 +96,9 @@ class SparkleScroller extends DisplayableLEDs {
       ArrayList<Pixel> tempPixels = new ArrayList<Pixel>();
 
       // Scale and color new pixel
-      color baseColor = random(1.0) < 0.5 ? orange : magenta;
+      color baseColor = colors.get(colorsIndex);
+      colorsIndex = (colorsIndex + 1) % colors.size();
+
       for (PVector p : tempPoints) {
         for (int i = 0; i < xScale; i++) {
           PVector pTemp = p.copy();
