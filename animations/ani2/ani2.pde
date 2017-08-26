@@ -50,8 +50,10 @@ Moonpaper mp;
 int teatroWidth = 405;
 int teatroHeight = 8;
 
-// Font
+// Font / text / words / anagrams
 FontDisorient2017  df = new FontDisorient2017 ();
+ArrayList<String> words = new ArrayList<String>();
+
 
 // Animation
 void verifySize() {
@@ -116,6 +118,9 @@ void setup() {
     println("file not found");
     exit();
   }
+
+  // Load names
+  loadWords();
 }
 
 void draw() {
