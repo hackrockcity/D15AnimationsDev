@@ -58,6 +58,12 @@ class SparkleScroller extends DisplayableLEDs {
     xOffset += speed;
     if (xOffset > textWidth || xOffset < -textWidth) {
       xOffset = 0;
+      // mp.seq(new ExitSketch());
+
+      // Janky way to exit
+      if (frameCount > 100) {
+        exit();
+      }
     }
 
     super.update();

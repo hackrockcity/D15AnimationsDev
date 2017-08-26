@@ -6,7 +6,7 @@ import java.io.*;
 
 // Do you have a flag?
 boolean isFastRender = false;
-boolean captureFrames = true;
+boolean captureFrames = false;
 boolean captureStream = false;
 boolean broadcastData = false;
 
@@ -110,7 +110,6 @@ void setup() {
 
   // Print dimension sketches
   println("Sketch dimensions: " + width, ", " + height);
-
 
   // Files
   try {
