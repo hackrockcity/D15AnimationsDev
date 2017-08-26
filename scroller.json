@@ -1,0 +1,122 @@
+[
+  {
+    "endPoint": [
+      -400,
+      1350,
+      -1000
+    ],
+    "density": 30,
+    "startPoint": [
+      -400,
+      0,
+      -1000
+    ],
+    "id": 0,
+    "numberOfLights": 405
+  },
+  {
+    "endPoint": [
+      -390,
+      1350,
+      -1000
+    ],
+    "density": 30,
+    "startPoint": [
+      -390,
+      0,
+      -1000
+    ],
+    "id": 1,
+    "numberOfLights": 405
+  },
+  {
+    "endPoint": [
+      -380,
+      1350,
+      -1000
+    ],
+    "density": 30,
+    "startPoint": [
+      -380,
+      0,
+      -1000
+    ],
+    "id": 2,
+    "numberOfLights": 405
+  },
+  {
+    "endPoint": [
+      -370,
+      1350,
+      -1000
+    ],
+    "density": 30,
+    "startPoint": [
+      -370,
+      0,
+      -1000
+    ],
+    "id": 3,
+    "numberOfLights": 405
+  },
+  {
+    "endPoint": [
+      -360,
+      1350,
+      -1000
+    ],
+    "density": 30,
+    "startPoint": [
+      -360,
+      0,
+      -1000
+    ],
+    "id": 4,
+    "numberOfLights": 405
+  },
+  {
+    "endPoint": [
+      -350,
+      1350,
+      -1000
+    ],
+    "density": 30,
+    "startPoint": [
+      -350,
+      0,
+      -1000
+    ],
+    "id": 5,
+    "numberOfLights": 405
+  },
+  {
+    "endPoint": [
+      -340,
+      1350,
+      -1000
+    ],
+    "density": 30,
+    "startPoint": [
+      -340,
+      0,
+      -1000
+    ],
+    "id": 6,
+    "numberOfLights": 405
+  },
+  {
+    "endPoint": [
+      -330,
+      1350,
+      -1000
+    ],
+    "density": 30,
+    "startPoint": [
+      -330,
+      0,
+      -1000
+    ],
+    "id": 7,
+    "numberOfLights": 405
+  }
+]

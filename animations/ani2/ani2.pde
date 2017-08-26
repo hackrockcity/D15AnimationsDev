@@ -40,14 +40,14 @@ int fps = 60;        // Frames-per-second
 int fpm = fps * 60;  // Frames-per-minute
 
 // PixelMap and Structures
-String teatroJSON = "../../teatro8bars.json";
+String teatroJSON = "../../scroller.json";
 Structure teatro;
 SignStructure signStructure;
 PixelMap pixelMap;  // PixelMap is the master canvas which createSequence2017 animations will draw to
 Moonpaper mp;
 
 // Important
-int teatroWidth = 135;
+int teatroWidth = 405;
 int teatroHeight = 8;
 
 // Font
