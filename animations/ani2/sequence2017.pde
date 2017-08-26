@@ -6,7 +6,7 @@ void createSequence2017() {
   Cel cel1 = mp.createCel(width, height);
 
   // INIT
-  int duration = 10 * fps;  // Time between sections
+  int duration = 30 * fps;  // Time between sections
   mp.seq(new ClearCels());
   mp.seq(new PushCel(cel0, pixelMap));
   mp.seq(new PatchSet(cel0.getTransparency(), 255.0));
@@ -20,11 +20,15 @@ void createSequence2017() {
 
   // TEST
   SparkleScroller foo = new SparkleScroller(pixelMap, teatro);
-  foo.setText("disor1e7t    disorioriorient   ");
+  foo.setText("disor1e7t              disor1e7t              disor1e7t              disor1e7t              disorioriorient");
   mp.seq(new PushCel(cel0, foo));
-  mp.seq(new Wait(duration));
-  mp.seq(new PatchSet(foo.transparency, 0.0));
 
+  // Pseudo
+  // Saw(duration, bpm, Patchable<Float>
+  mp.seq(new Saw(10 * fps, 144, foo.brightness));
+
+
+  mp.seq(new Wait(duration));
 
 
 

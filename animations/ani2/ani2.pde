@@ -85,10 +85,11 @@ void setup() {
   surface.setResizable(true);
   frameRate(fps);
 
+
   // Fastest possible if capturing
-  //if (captureFrames) {
+  // if (captureFrames) {
   //  frameRate(480);
-  //}
+  // }
 
   // Load in structures and create master PixelMap
   setupPixelMap();

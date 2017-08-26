@@ -2,8 +2,9 @@ class SparkleScroller extends DisplayableLEDs {
   class Pixel {
     PVector p;
     float phase;
-    float phaseInc = -0.01;
+    float phaseInc = 0.03;
     color c = color(255);
+    Patchable<Float> brightness;
 
     Pixel(PVector p) {
       this.p = p;
@@ -11,7 +12,7 @@ class SparkleScroller extends DisplayableLEDs {
     }
 
     void update() {
-      c = color(phase * 256);
+      c = color(phase * brightness.value() * 256.0);
       phase += phaseInc + random(phaseInc);
       if (phase < 0) {
         phase += 1;
@@ -21,8 +22,7 @@ class SparkleScroller extends DisplayableLEDs {
     }
   }
 
-  color c = orange;
-  boolean isSolid = true;
+  Patchable<Float> brightness = new Patchable<Float>(0.5);
   int xOffset = 0;
   int yOffset = 2;
   int speed = -1;
@@ -58,7 +58,9 @@ class SparkleScroller extends DisplayableLEDs {
 
   void updatePixels() {
     for (Pixel pixel : pList) {
-      pixel.update();
+      //if (pixel.p.x >= 0 && pixel.p.x < teatroWidth && pixel.p.y >= 0 && pixel.p.y < teatroHeight) {
+        pixel.update();
+      //}
     }
   }
 
@@ -68,13 +70,15 @@ class SparkleScroller extends DisplayableLEDs {
 
     // Create pixels from font
     ArrayList<PVector> points = df.getPoints(text);
-    println(points);
     for (PVector p : points) {
       for (int i = 0; i < xScale; i++) {
         PVector pTemp = p.copy();
         pTemp.x *= xScale;
         pTemp.x += i;
-        pList.add(new Pixel(pTemp));
+        Pixel pixel = new Pixel(pTemp);
+        pixel.brightness = brightness;
+        // pixel.brightness.set(0.1);
+        pList.add(pixel);
       }
     }
 
@@ -101,7 +105,7 @@ class SparkleScroller extends DisplayableLEDs {
     int w = x + y * teatroWidth;
     int maxWidth = 12 * teatroWidth;
     if (w >= 0 && x < maxWidth && x >= 0 && x < teatroWidth &&
-    y >= 0 && y < teatroHeight) {
+      y >= 0 && y < teatroHeight) {
       pixelMapPG.pixels[x + y * teatroWidth] = c;
     }
   }
