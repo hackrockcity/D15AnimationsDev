@@ -16,7 +16,7 @@ class SparkleScroller extends DisplayableLEDs {
       if (random(1.0) < 0.05) {
         c = lerpColor(black, white, phase * brightness.value());
       } else {
-        c = lerpColor(black, magenta, phase * brightness.value());
+        c = lerpColor(black, baseColor, phase * brightness.value());
       }
       //c = lerpColor(magenta, black, 0.27);
       phase += phaseInc + random(phaseInc);
@@ -33,7 +33,8 @@ class SparkleScroller extends DisplayableLEDs {
   int yOffset = 0;
   int speed = -2;
   int xScale = 3;
-  String text = "hello world";
+  int spaceOffset = 5;
+  String text = "default";
   private ArrayList<Pixel> pList = new ArrayList<Pixel>();
   int textWidth;
 
@@ -41,9 +42,9 @@ class SparkleScroller extends DisplayableLEDs {
     super(pixelMap, structure);
   }
 
-  void init() {
-    setText(text);
-  }
+  // void init() {
+    // setText(text);
+  // }
 
   void update() {
     clear();
@@ -70,6 +71,63 @@ class SparkleScroller extends DisplayableLEDs {
         pixel.update();
       }
     }
+  }
+
+  void setWords(ArrayList<String> words) {
+    println("setWords called");
+    xOffset = teatroWidth;                    // TODO: Set to teatroWidth?
+    pList = new ArrayList<Pixel>(); // Reset pList
+
+    // Process each word
+    for (String s : words) {
+      ArrayList<PVector> tempPoints = df.getPoints(s);
+      ArrayList<Pixel> tempPixels = new ArrayList<Pixel>();
+
+      // Scale and color new pixel
+      color baseColor = random(1.0) < 0.5 ? orange : magenta;
+      for (PVector p : tempPoints) {
+        for (int i = 0; i < xScale; i++) {
+          PVector pTemp = p.copy();
+          pTemp.x *= xScale;
+          pTemp.x += i;
+          Pixel pixel = new Pixel(pTemp);
+          pixel.baseColor = baseColor;
+          tempPixels.add(pixel);
+        }
+      }
+
+      // Get farthest x point for offset
+      int widthOfWord = 0;
+      for (Pixel pixel : tempPixels) {
+        widthOfWord = max(widthOfWord, (int) pixel.p.x);
+      }
+
+      // Offset pixels
+      for (Pixel pixel : tempPixels) {
+        pixel.p.x += xOffset;
+      }
+      println(xOffset + " " + widthOfWord);
+      xOffset += widthOfWord;
+
+      for (Pixel pixel : tempPixels) {
+        pList.add(pixel);
+      }
+
+      // add space separator (increase xOffset)
+      xOffset += xScale * 10 * spaceOffset;
+    }
+
+    // set the textWidth
+    int lastX = 0;
+    for (Pixel pixel : pList) {
+      if (pixel.p.x > lastX) {
+        lastX = (int) pixel.p.x;
+      }
+    }
+    textWidth = lastX;
+    println(textWidth);
+    // text = "asdf";
+    // setText("meh");
   }
 
   void setText(String s) {
@@ -102,7 +160,6 @@ class SparkleScroller extends DisplayableLEDs {
     }
 
     textWidth = lastX;
-    println(textWidth);
   }
 
   private void setPixel(int x, int y, color c) {
@@ -111,7 +168,7 @@ class SparkleScroller extends DisplayableLEDs {
     int w = x + y * teatroWidth;
     int maxWidth = 12 * teatroWidth;
     if (w >= 0 && x < maxWidth && x >= 0 && x < teatroWidth &&
-      y >= 0 && y < teatroHeight) {
+    y >= 0 && y < teatroHeight) {
       pixelMapPG.pixels[x + y * teatroWidth] = c;
     }
   }

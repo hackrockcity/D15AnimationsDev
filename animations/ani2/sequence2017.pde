@@ -17,10 +17,10 @@ void createSequence2017() {
   //mp.seq(new Line(1 * fps, cel0.getTransparency(), 255));
   //mp.seq(new Line(1 * fps, cel1.getTransparency(), 255));
 
-
   // Start Sparkle Scroller
   SparkleScroller sparkleScroller = new SparkleScroller(pixelMap, teatro);
-  sparkleScroller.setText(createLongString(words, "  "));
+  // sparkleScroller.setText(createLongString(words, "  "));
+  sparkleScroller.setWords(words);
   mp.seq(new PushCel(cel0, sparkleScroller));
 
 
