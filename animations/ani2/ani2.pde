@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.io.*;
 
 // Do you have a flag?
+boolean isFastRender = true;
 boolean captureFrames = true;
 boolean captureStream = false;
 boolean broadcastData = false;
@@ -28,11 +29,6 @@ String captureFolder = "./testframes/";
 Broadcast broadcast;
 String ip = "localhost";  // For simulator
 //String ip = "192.168.1.99";  // Side of container
-//String ip = "192.168.8.104";
-
-
-//String ip = "192.168.1.255";
-//String ip = "255.255.255.255";
 int port = 9999;
 
 // Set FrameRate
@@ -88,13 +84,13 @@ void setup() {
   randomSeed(2017);
   noiseSeed(2017);
   surface.setResizable(true);
-  frameRate(fps);
-
 
   // Fastest possible if capturing
-  // if (captureFrames) {
-  //  frameRate(480);
-  // }
+  if (isFastRender) {
+   frameRate(480);
+ } else {
+   frameRate(fps);
+  }
 
   // Load in structures and create master PixelMap
   setupPixelMap();
