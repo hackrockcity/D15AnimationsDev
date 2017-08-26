@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.io.*;
 
 // Do you have a flag?
-boolean isFastRender = true;
+boolean isFastRender = false;
 boolean captureFrames = true;
 boolean captureStream = false;
 boolean broadcastData = false;
@@ -50,7 +50,6 @@ int teatroHeight = 8;
 FontDisorient2017  df = new FontDisorient2017 ();
 ArrayList<String> words = new ArrayList<String>();
 
-
 // Animation
 void verifySize() {
   if (width != pixelMap.pg.width || height != pixelMap.pg.height) {
@@ -92,6 +91,9 @@ void setup() {
    frameRate(fps);
   }
 
+  // Load names
+  loadWords();
+
   // Load in structures and create master PixelMap
   setupPixelMap();
 
@@ -117,8 +119,6 @@ void setup() {
     exit();
   }
 
-  // Load names
-  loadWords();
 }
 
 void draw() {

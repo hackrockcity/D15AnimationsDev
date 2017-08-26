@@ -25,8 +25,8 @@ class SparkleScroller extends DisplayableLEDs {
   Patchable<Float> brightness = new Patchable<Float>(1.0);
   int xOffset = 0;
   int yOffset = 0;
-  int speed = -1;
-  int xScale = 2;
+  int speed = -2;
+  int xScale = 3;
   String text = "hello world";
   private ArrayList<Pixel> pList = new ArrayList<Pixel>();
   int textWidth;
@@ -58,9 +58,11 @@ class SparkleScroller extends DisplayableLEDs {
 
   void updatePixels() {
     for (Pixel pixel : pList) {
-      //if (pixel.p.x >= 0 && pixel.p.x < teatroWidth && pixel.p.y >= 0 && pixel.p.y < teatroHeight) {
+      float x = pixel.p.x + xOffset;
+      float y = pixel.p.y + yOffset;
+      if (x >= 0 && x < teatroWidth && y >= 0 && y < teatroHeight) {
         pixel.update();
-      //}
+      }
     }
   }
 

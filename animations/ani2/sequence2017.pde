@@ -19,9 +19,9 @@ void createSequence2017() {
 
 
   // Start Sparkle Scroller
-  SparkleScroller foo = new SparkleScroller(pixelMap, teatro);
-  foo.setText("disor1e7t       disor1e7t       disor1e7t       disor1e7t       disorioriorient");
-  mp.seq(new PushCel(cel0, foo));
+  SparkleScroller sparkleScroller = new SparkleScroller(pixelMap, teatro);
+  sparkleScroller.setText(createLongString(words, "  "));
+  mp.seq(new PushCel(cel0, sparkleScroller));
 
 
   // Saw
@@ -38,7 +38,7 @@ void createSequence2017() {
   ShootingStars shootingStars = new ShootingStars(pixelMap, allStructures);
   mp.seq(new PatchSet(shootingStars.nStarsPerFrame, 20));
   mp.seq(new PushCel(cel0, shootingStars));
-  mp.seq(new Saw(duration + duration / 2, -sawInc, foo.brightness));
+  mp.seq(new Saw(duration + duration / 2, -sawInc, sparkleScroller.brightness));
   mp.seq(new Wait(duration));
 
 
@@ -59,7 +59,7 @@ void createSequence2017() {
   mp.seq(new Line(plasmaDuration, plasmaTeatro.nInc, 0.02));
   mp.seq(new Wait(plasmaWait));
   mp.seq(new Line(15, plasmaTeatro.transparency, 0));
-  mp.seq(new Saw(15 * fps, -sawInc, foo.brightness));
+  mp.seq(new Saw(15 * fps, -sawInc, sparkleScroller.brightness));
   mp.seq(new Wait(15));
   mp.seq(new PopCel(cel0));
 
