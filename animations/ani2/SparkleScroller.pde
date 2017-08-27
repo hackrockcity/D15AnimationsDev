@@ -9,7 +9,7 @@ class SparkleScroller extends DisplayableLEDs {
     Pixel(PVector p) {
       this.p = p;
       phase = random(1.0);
-      phaseInc = random(0.01, 0.2);
+      phaseInc = random(0.01, 0.08);
     }
 
     void update() {

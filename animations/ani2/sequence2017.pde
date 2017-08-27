@@ -24,13 +24,21 @@ void createSequence2017() {
   // MAIN SEQUENCE STARTS HERE -------------------------------------------------
   for (int i = 0; i < 20; i++) {
 
-
+    // SECTION: Drop
+    Drop drop = new Drop(pixelMap, allStructures);
+    mp.seq(new PushCel(cel0, drop));
+    mp.seq(new PatchSet(drop.transparency, 0.0));
+    mp.seq(new Line(duration, drop.transparency, 5.0));
+    mp.seq(new Wait(duration / 2));
+    mp.seq(new Wait(duration / 4));
 
     // SECTION: Shooting Stars
     ShootingStars shootingStars = new ShootingStars(pixelMap, allStructures);
     mp.seq(new PatchSet(shootingStars.nStarsPerFrame, 20));
     mp.seq(new PushCel(cel0, shootingStars));
     mp.seq(new Saw(duration + duration / 2, -sawInc, sparkleScroller.brightness));
+    mp.seq(new Wait(duration / 2));
+    mp.seq(new Line(duration / 2, drop.transparency, 0.0));
     mp.seq(new Wait(duration));
 
 
@@ -92,7 +100,7 @@ void createSequence2017() {
     mp.seq(new Line(duration, shootingStars.transparency, 0.0));
     mp.seq(new Wait(duration / 4));
     mp.seq(new PopCel(cel0));
-    // mp.seq(new PopCel(cel0));
+    mp.seq(new PopCel(cel0));
   }
 
   mp.seq(new ExitSketch());
