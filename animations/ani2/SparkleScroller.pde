@@ -9,16 +9,17 @@ class SparkleScroller extends DisplayableLEDs {
     Pixel(PVector p) {
       this.p = p;
       phase = random(1.0);
-      phaseInc = random(0.01, 0.04);
+      phaseInc = random(0.01, 0.2);
     }
 
     void update() {
       float b = phase * map(brightness.value(), 0, 1, 0.25, 1);  // brightness of pixel
-      if (random(1.0) < 0.10) {
+      if (random(1.0) < 0.05) {
         c = lerpColor(black, white, b);
       } else {
         c = lerpColor(black, baseColor, b);
       }
+      //c = lerpColor(black, baseColor, b);
 
       phase += phaseInc + random(phaseInc);
       if (phase < 0) {
@@ -50,7 +51,7 @@ class SparkleScroller extends DisplayableLEDs {
   }
 
   // void init() {
-    // setText(text);
+  // setText(text);
   // }
 
   void update() {
@@ -178,7 +179,7 @@ class SparkleScroller extends DisplayableLEDs {
     int w = x + y * teatroWidth;
     int maxWidth = 12 * teatroWidth;
     if (w >= 0 && x < maxWidth && x >= 0 && x < teatroWidth &&
-    y >= 0 && y < teatroHeight) {
+      y >= 0 && y < teatroHeight) {
       pixelMapPG.pixels[x + y * teatroWidth] = c;
     }
   }
