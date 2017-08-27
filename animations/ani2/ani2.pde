@@ -130,6 +130,11 @@ void draw() {
   mp.update();
   mp.display();
 
+  // Fix 2 red frames issue
+  if (frameCount <= 2) {
+    background(0);
+  }
+
   if (captureStream && frameCount == 1) {
     println("Capturing stream");
   }
@@ -147,14 +152,8 @@ void draw() {
     try {
       int bufferLength = broadcast.buffer.length;
 
-      if (frameCount > 2) {
-        for (int i = 0; i < bufferLength; i++) {
-          signStream.write(broadcast.buffer[i]);
-        }
-      } else {
-        for (int i = 0; i < bufferLength; i++) {
-          signStream.write(0);
-        }
+      for (int i = 0; i < bufferLength; i++) {
+        signStream.write(broadcast.buffer[i]);
       }
     }
     catch (IOException e) {
