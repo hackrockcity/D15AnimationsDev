@@ -5,7 +5,7 @@
  */
 class SignAnimationTest extends DisplayableLEDs {
   color c = magenta;
-  int index = 0;  
+  int index = 0;
 
   SignAnimationTest(PixelMap pixelMap, Structure structure) {
     super(pixelMap, structure);
@@ -121,7 +121,7 @@ class CrossyAnimation extends DisplayableLEDs {
 /**
  * CrossyAnimation 1D Animation
  *
- * Target the sign.ledSegmentsList. Black Fade to Bright Gradient Scroller 
+ * Target the sign.ledSegmentsList. Black Fade to Bright Gradient Scroller
  */
 class LetterSegmentScroller extends DisplayableLEDs {
   Sign sign;
@@ -285,8 +285,8 @@ class RGB extends DisplayableLEDs {
   int framesLeft = nFrames;
   ArrayList<Integer> ticks = new ArrayList<Integer>();
   int currentLetter = 0;
-  //color[] colors = {color(255, 0, 0), color(0, 255, 0), color(0, 0, 255)}; 
-  color[] colors = {orange, pink, white}; 
+  //color[] colors = {color(255, 0, 0), color(0, 255, 0), color(0, 0, 255)};
+  color[] colors = {orange, pink, white};
 
   RGB(PixelMap pixelMap, SignStructure structure) {
     super(pixelMap, structure);
@@ -358,6 +358,7 @@ class ShootingStars extends DisplayableLEDs {
   int nFrames = 60;
   StarList starList = new StarList();
   ArrayList<Integer> possibleColors = new ArrayList<Integer>();
+  float directionDistribution = 0.95;
 
   class StarList extends ArrayList<Star> {
   }
@@ -365,6 +366,7 @@ class ShootingStars extends DisplayableLEDs {
   class Star {
     int position;
     int direction;
+
     color c;
     int framesLeft = fps;
     int nFrames;
@@ -402,7 +404,7 @@ class ShootingStars extends DisplayableLEDs {
 
     for (int i = 0; i < nStarsPerFrame.value(); i++) {
       int position = (int) random(leds.size());
-      int direction = random(1.0) < 0.5 ? 1 : -1;
+      int direction = random(1.0) < directionDistribution ? 1 : -1;
       color c = possibleColors.get((int) random(possibleColors.size()));
       Star star = new Star(position, c, nFrames, direction * (int) random(1, 2));
       starList.add(star);
@@ -412,7 +414,7 @@ class ShootingStars extends DisplayableLEDs {
       star.update();
     }
 
-    Iterator iter = starList.iterator(); 
+    Iterator iter = starList.iterator();
     while (iter.hasNext()) {
       Star star = (Star) iter.next();
       star.update();

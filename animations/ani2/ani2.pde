@@ -7,7 +7,7 @@ import java.io.*;
 // Do you have a flag?
 boolean isFastRender = false;
 boolean captureFrames = false;
-boolean captureStream = true;
+boolean captureStream = false;
 boolean broadcastData = false;
 
 // Save Stream

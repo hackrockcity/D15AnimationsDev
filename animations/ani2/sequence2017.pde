@@ -22,8 +22,7 @@ void createSequence2017() {
   // mp.seq(new Wait(duration / 2));
 
   // MAIN SEQUENCE STARTS HERE -------------------------------------------------
-  for (int i = 0; i < 20; i++)
-  {
+  for (int i = 0; i < 20; i++) {
 
 
 
