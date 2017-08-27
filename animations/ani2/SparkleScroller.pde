@@ -86,7 +86,6 @@ class SparkleScroller extends DisplayableLEDs {
   }
 
   void setWords(ArrayList<String> words) {
-    println("setWords called");
     xOffset = teatroWidth;                    // TODO: Set to teatroWidth?
     pList = new ArrayList<Pixel>(); // Reset pList
 
@@ -120,7 +119,6 @@ class SparkleScroller extends DisplayableLEDs {
       for (Pixel pixel : tempPixels) {
         pixel.p.x += xOffset;
       }
-      println(xOffset + " " + widthOfWord);
       xOffset += widthOfWord;
 
       for (Pixel pixel : tempPixels) {
@@ -139,9 +137,6 @@ class SparkleScroller extends DisplayableLEDs {
       }
     }
     textWidth = lastX;
-    println(textWidth);
-    // text = "asdf";
-    // setText("meh");
   }
 
   void setText(String s) {
