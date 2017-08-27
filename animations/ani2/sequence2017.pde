@@ -80,9 +80,10 @@ void createSequence2017() {
     mp.seq(new PushCel(cel0, whitePlasmaTeatro));
 
     // Wait for Line Envelope
-    mp.seq(new Wait(whitePlasmaDuration));
+    mp.seq(new Wait(whitePlasmaDuration * 2));
 
     // Wait until next change
+    mp.seq(new Line(whitePlasmaDuration, whitePlasmaTeatro.transparency, 0.0));
     mp.seq(new Wait(whitePlasmaWait));
     mp.seq(new PopCel(cel0));
 
