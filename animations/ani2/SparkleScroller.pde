@@ -2,23 +2,24 @@ class SparkleScroller extends DisplayableLEDs {
   class Pixel {
     PVector p;
     float phase;
-    float phaseInc = 0.03;
+    float phaseInc;
     color baseColor = orange;
     color c = baseColor;
 
     Pixel(PVector p) {
       this.p = p;
       phase = random(1.0);
+      phaseInc = random(0.01, 0.04);
     }
 
     void update() {
-      // c = color(phase * brightness.value() * 256.0);
+      float b = phase * map(brightness.value(), 0, 1, 0.25, 1);  // brightness of pixel
       if (random(1.0) < 0.10) {
-        c = lerpColor(black, white, phase * brightness.value());
+        c = lerpColor(black, white, b);
       } else {
-        c = lerpColor(black, baseColor, phase * brightness.value());
+        c = lerpColor(black, baseColor, b);
       }
-      //c = lerpColor(magenta, black, 0.27);
+
       phase += phaseInc + random(phaseInc);
       if (phase < 0) {
         phase += 1;

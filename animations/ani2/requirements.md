@@ -3,7 +3,7 @@
 - Text
   - Names of campers (x)
   - Anagrams
-  - Changing effects
+  - Changing effects (x)
 - Patterns
   - Port gradient from GeoTem
 - JSON

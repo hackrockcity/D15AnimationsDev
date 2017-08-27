@@ -15,11 +15,12 @@ FileOutputStream signStream;
 String signFile = "disorientSign";
 
 // Colors
-color orange = color(255, 48, 0);
-color magenta = color(180, 0, 180);
-color pink = color(212, 0, 128);
+color orange = color(255, 100, 0);
+color magenta = color(248, 0, 212);
+color pink = color(255, 32, 128);
 color white = color(255);
 color black = color(0);
+color transparent = color(0, 0);
 
 // Turn on frame capture
 //String captureFolder = "./frames/";
