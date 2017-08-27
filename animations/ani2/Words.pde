@@ -1,4 +1,16 @@
 void loadWords() {
+  ArrayList<String> anagrams = new ArrayList<String>();
+  anagrams.add("disor1e7t");
+  anagrams.add("disorient");
+  anagrams.add("teatro di sorient");
+  anagrams.add("sedition");
+  anagrams.add("dsrnt");
+  anagrams.add("tneirosid");
+  anagrams.add("rose noose");
+  anagrams.add("sore door");
+  anagrams.add("dentor seat");
+  anagrams.add("sordid dose");
+
   // Load names from file
   String[] lines = loadStrings("./data/names.txt");
 
@@ -9,6 +21,7 @@ void loadWords() {
     }
     words.add(lines[i]);
   }
+  words.add("ice $4.99");
 }
 
 String createLongString(ArrayList<String> stringList, String separator) {
