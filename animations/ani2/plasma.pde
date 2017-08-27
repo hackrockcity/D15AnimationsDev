@@ -23,12 +23,16 @@ class Plasma extends DisplayableLEDs {
 
   void createDefaultGradient() {
     gradient = new Gradient();
-    gradient.add(white, 0.1);
+    float edgeThickness = 0.01;
+    gradient.add(white, edgeThickness);
     gradient.add(pink, 1);
-    gradient.add(color(pink, 0), 0.1);
+    gradient.add(color(pink, 0), edgeThickness);
     gradient.add(white, 0.1);
     gradient.add(orange, 1);
-    gradient.add(color(orange, 0), 0.1);
+    gradient.add(color(orange, 0), edgeThickness);
+    gradient.add(white, 0.1);
+    gradient.add(magenta, 1);
+    gradient.add(color(magenta, 0), edgeThickness);
   }
 
   void update() {
