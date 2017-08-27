@@ -87,9 +87,9 @@ void setup() {
 
   // Fastest possible if capturing
   if (isFastRender) {
-   frameRate(480);
- } else {
-   frameRate(fps);
+    frameRate(480);
+  } else {
+    frameRate(fps);
   }
 
   // Load names
@@ -121,7 +121,6 @@ void setup() {
     println("file not found");
     exit();
   }
-
 }
 
 void draw() {
@@ -148,8 +147,14 @@ void draw() {
     try {
       int bufferLength = broadcast.buffer.length;
 
-      for (int i = 0; i < bufferLength; i++) {
-        signStream.write(broadcast.buffer[i]);
+      if (frameCount > 2) {
+        for (int i = 0; i < bufferLength; i++) {
+          signStream.write(broadcast.buffer[i]);
+        }
+      } else {
+        for (int i = 0; i < bufferLength; i++) {
+          signStream.write(0);
+        }
       }
     }
     catch (IOException e) {
