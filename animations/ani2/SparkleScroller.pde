@@ -13,7 +13,7 @@ class SparkleScroller extends DisplayableLEDs {
     }
 
     void update() {
-      float b = phase * map(brightness.value(), 0, 1, 0.25, 1);  // brightness of pixel
+      float b = phase * map(brightness.value(), 0, 1, 0.0, 1);  // brightness of pixel
       if (random(1.0) < 0.05) {
         c = lerpColor(black, white, b);
       } else {

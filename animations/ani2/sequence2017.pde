@@ -101,6 +101,7 @@ void createSequence2017() {
     mp.seq(new Wait(duration / 4));
     mp.seq(new PopCel(cel0));
     mp.seq(new PopCel(cel0));
+    //mp.seq(new PopCel(cel0));
   }
 
   mp.seq(new ExitSketch());

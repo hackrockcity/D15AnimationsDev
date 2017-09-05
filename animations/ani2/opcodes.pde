@@ -13,7 +13,7 @@ public class Saw extends MoonCodeGenerator {
     this.phaseInc = phaseInc;
     this.value = value;
     this.counter = nFrames;
-    
+
     initialValue = value.value();
   }
 
@@ -39,7 +39,7 @@ public class Saw extends MoonCodeGenerator {
 
     // Release
     if (counter <= 0) {
-      value.set(initialValue);
+      value.set(1.0);
       release();
     }
   }
